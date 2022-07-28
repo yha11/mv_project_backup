@@ -79,7 +79,7 @@ public class JwtTokenProvider {
 	}
 
 	public String getUserInfo(String token) {
-		return (String) Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().get("userId");
+		return (String) Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().get("email");
 	}
 
 	public String resolveToken(HttpServletRequest request) {

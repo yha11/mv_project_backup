@@ -13,9 +13,11 @@ import com.runtime.sendbug.model.UserInfoModel;
 import com.runtime.sendbug.provider.JwtTokenProvider;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AuthService {
 
     private final JwtTokenProvider jwtProvider;
@@ -27,16 +29,13 @@ public class AuthService {
             );
             return createTokenReturn(user);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("loginException=>{}",e);
             throw new AuthException(ErrorCode.UsernameOrPasswordNotFoundException);
         }
-
     }
 
-    // 토큰을 생성해서 반환
     private Map<String, String> createTokenReturn(UserInfoModel user) {
         Map<String,String> result = new HashMap<>();
-
         String accessToken = jwtProvider.createAccessToken(user);
         result.put("accessToken", accessToken);
         return result;
