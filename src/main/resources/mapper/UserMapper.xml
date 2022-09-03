@@ -7,4 +7,8 @@
     <select id="selectUserInfoById" resultType="userInfoModel">
         select * from USER_INFO where USER_ID = #{userId}
     </select>
+    <select id="selectUserInfos" resultType="userInfoModel">
+        select * from USER_INFO 
+    </select>
+    
 </mapper>
