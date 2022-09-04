@@ -27,7 +27,7 @@ import io.jsonwebtoken.UnsupportedJwtException;
 
 @Component
 public class JwtTokenProvider {
-	private final long TOKEN_VALID_MILISECOND = 1000L * 60; // 1분
+	private final long TOKEN_VALID_MILISECOND = 1000L * 600; // 10분
 
 	@Value("jwt.secret")
 	private String secretKey;
@@ -79,7 +79,7 @@ public class JwtTokenProvider {
 	}
 
 	public String getUserInfo(String token) {
-		return (String) Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().get("email");
+		return (String) Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().get("userId");
 	}
 
 	public String resolveToken(HttpServletRequest request) {
