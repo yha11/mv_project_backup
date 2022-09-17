@@ -27,7 +27,7 @@ import io.jsonwebtoken.UnsupportedJwtException;
 
 @Component
 public class JwtTokenProvider {
-	private final long TOKEN_VALID_MILISECOND = 1000L * 600; // 10분
+	private final long TOKEN_VALID_MILISECOND = 1000L * 6000; // 100분
 
 	@Value("jwt.secret")
 	private String secretKey;

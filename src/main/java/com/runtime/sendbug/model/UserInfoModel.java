@@ -15,6 +15,7 @@ import lombok.ToString;
 public class UserInfoModel implements UserDetails {
 	private static final long serialVersionUID = 1L;
 	
+	private String role;
 	private Long userNum;
 	private String userId;
 	private String password;

@@ -1,5 +1,6 @@
 package com.runtime.sendbug.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -30,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final WebAccessDeniedHandler webAccessDeniedHandler;
     private final AuthenticationEntryPointHandler authenticationEntryPointHandler;
     private final UserService authService;
-
+    
     @Override
     protected void configure(AuthenticationManagerBuilder builder) throws Exception {
         builder.userDetailsService(authService).passwordEncoder(passwordEncoder());
