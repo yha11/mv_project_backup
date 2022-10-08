@@ -1,6 +1,8 @@
 package com.runtime.sendbug.provider;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
@@ -13,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
@@ -75,7 +79,13 @@ public class JwtTokenProvider {
 
 	public Authentication getAuthentication(String token) {
 		UserDetails userDetails = userService.loadUserByUsername(this.getUserInfo(token));
-		return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
+		UserInfoModel uiModel = (UserInfoModel) userDetails;
+		Collection<GrantedAuthority> authorities = new ArrayList<>();
+
+        for(String role : uiModel.getRole().split(",")){
+            authorities.add(new SimpleGrantedAuthority(role));
+        }
+		return new UsernamePasswordAuthenticationToken(userDetails, "", authorities);
 	}
 
 	public String getUserInfo(String token) {

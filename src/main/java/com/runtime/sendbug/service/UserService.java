@@ -26,4 +26,10 @@ public class UserService implements UserDetailsService {
 		return userMapper.selectUserInfos();
 	}
 
+	public int insertUserInfo(UserInfoModel uiModel) {
+		return userMapper.insertUserInfo(uiModel);
+	}
+	public int deleteUserInfo(long userNum) {
+		return userMapper.deleteUserInfo(userNum);
+	}
 }

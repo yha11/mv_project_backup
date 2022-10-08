@@ -20,6 +20,7 @@ public class UserInfoModel implements UserDetails {
 	private String userId;
 	private String password;
 	private String userName;
+	private String userEmail;
     private boolean isAccountNonExpired = true;
     private boolean isAccountNonLocked = true;
     private boolean isCredentialsNonExpired = true;

@@ -1,11 +1,20 @@
 package com.runtime.sendbug.service;
 
-import com.runtime.sendbug.service.impl.TestServiceImpl2;
+import java.lang.reflect.Method;
 
 public class Test {
 
+	class Test2{
+		
+	}
+	public static void print(String... str) {
+		System.out.println(str);
+	}
 	public static void main(String[] args) {
-		TestService ts = new TestServiceImpl2();
-		ts.getTests();
+		print(); 
+		print("1");
+		print("1","2");
+		
+		Method method;
 	}
 }

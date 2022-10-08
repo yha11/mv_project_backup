@@ -9,4 +9,7 @@ public interface UserMapper {
 	UserInfoModel selectUserInfoById(String userId);
 	
 	List<UserInfoModel> selectUserInfos();
+
+	int insertUserInfo(UserInfoModel uiModel);
+	int deleteUserInfo(long userNum);
 }

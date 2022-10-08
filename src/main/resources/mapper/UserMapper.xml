@@ -10,5 +10,11 @@
     <select id="selectUserInfos" resultType="userInfoModel">
         select * from user_info 
     </select>
-    
+    <insert id="insertUserInfo" parameterType="userInfoModel">
+    	INSERT INTO USER_INFO(USER_ID, USER_NAME, USER_EMAIL, PASSWORD)
+		VALUES(#{userId},#{userName},#{userEmail},#{password})
+    </insert>
+    <delete id="deleteUserInfo">
+    	DELETE FROM USER_INFO WHERE USER_NUM=#{userNum}
+    </delete>
 </mapper>
