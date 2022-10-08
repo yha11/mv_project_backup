@@ -5,7 +5,9 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,6 +27,21 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
+
+
+	@GetMapping("/user/select")
+	@ApiOperation(value = "현재 로그인한 유저 검색 이나 다른 유저 검색이 가능하다(단 현재 로그인한 유저가 아닐 경우에는 ID, EMAIL, NAME 정보만 가져온다)")
+	@ApiResponses({ @ApiResponse(code = 200, message = "OK") })
+	public UserInfoModel getUser(String userId, Authentication authentication) {
+		return null;
+	}
+
+	@PostMapping("/user/update")
+	@ApiOperation(value = "유저 수정")
+	@ApiResponses({ @ApiResponse(code = 200, message = "OK") })
+	public Map<String, Object> updateUser(@RequestBody UserInfoModel userInfo, Authentication authentication) {
+		return null;
+	}
 
     @PostMapping("/users")
     @ApiOperation(value="유저생성")
