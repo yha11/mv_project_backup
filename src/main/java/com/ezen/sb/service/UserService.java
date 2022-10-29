@@ -27,7 +27,12 @@ public class UserService implements UserDetailsService {
 	}
 
 	public int insertUserInfo(UserInfoModel uiModel) {
-		return userMapper.insertUserInfo(uiModel);
+		int cnt = userMapper.insertUserInfo(uiModel);
+		cnt += userMapper.insertUserInfo(uiModel);
+		if(cnt!=1) {
+			new RuntimeException("오류가 발생했음");
+		}
+		return cnt;
 	}
 	public int deleteUserInfo(long userNum) {
 		return userMapper.deleteUserInfo(userNum);

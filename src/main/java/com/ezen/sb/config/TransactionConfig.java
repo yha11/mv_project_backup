@@ -30,9 +30,8 @@ public class TransactionConfig {
 
 	private final PlatformTransactionManager transactionManager;
 	
-	@Bean
+	
 	TransactionInterceptor transactionAdvice() {
-		log.debug("transactionAdvice()");
 		TransactionInterceptor txAdvice = new TransactionInterceptor();
 		NameMatchTransactionAttributeSource txAttributeSource = new NameMatchTransactionAttributeSource();
 		RuleBasedTransactionAttribute txAttribute = new RuleBasedTransactionAttribute();
@@ -50,7 +49,7 @@ public class TransactionConfig {
 		return txAdvice;
 	}
 	
-	@Bean
+	
 	Advisor transactionAdviceAdvisor() {
 		log.debug("transactionAdviceAdvisor()");
 		AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
