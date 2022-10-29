@@ -10,7 +10,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @MapperScan
 @EnableWebMvc
 public class SendbugApplication {
-
 	private static BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
 	public static void main(String[] args) {
