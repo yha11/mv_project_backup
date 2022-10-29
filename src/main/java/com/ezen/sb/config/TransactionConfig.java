@@ -18,19 +18,20 @@ import org.springframework.transaction.interceptor.RuleBasedTransactionAttribute
 import org.springframework.transaction.interceptor.TransactionAttribute;
 import org.springframework.transaction.interceptor.TransactionInterceptor;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
 @Slf4j
 @Aspect
 @Configuration
+@RequiredArgsConstructor
 public class TransactionConfig {
 
-	@Autowired
-	private PlatformTransactionManager transactionManager;
+	private final PlatformTransactionManager transactionManager;
 	
 	@Bean
-	public TransactionInterceptor transactionAdvice() {
+	TransactionInterceptor transactionAdvice() {
 		log.debug("transactionAdvice()");
 		TransactionInterceptor txAdvice = new TransactionInterceptor();
 		NameMatchTransactionAttributeSource txAttributeSource = new NameMatchTransactionAttributeSource();
@@ -50,10 +51,10 @@ public class TransactionConfig {
 	}
 	
 	@Bean
-	public Advisor transactionAdviceAdvisor() {
+	Advisor transactionAdviceAdvisor() {
 		log.debug("transactionAdviceAdvisor()");
 		AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
-		pointcut.setExpression("execution(* com.example.base..service.*.*(..))");
+		pointcut.setExpression("execution(* com.ezen.sb.service..*Service.*(..))");
 		return new DefaultPointcutAdvisor(pointcut, transactionAdvice());
 	}
 }
