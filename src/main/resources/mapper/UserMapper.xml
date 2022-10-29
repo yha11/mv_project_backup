@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.runtime.sendbug.mapper.UserMapper">
+<mapper namespace="com.ezen.sb.mapper.UserMapper">
     <select id="selectUserInfoById" resultType="userInfoModel">
         select * from user_info where USER_ID = #{userId}
     </select>
