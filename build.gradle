@@ -35,6 +35,8 @@ dependencies {
     implementation "io.springfox:springfox-boot-starter:3.0.0"
     implementation 'io.springfox:springfox-swagger-ui:3.0.0'
 	implementation 'javax.xml.bind:jaxb-api:2.3.1'
+	implementation 'javax.servlet:jstl'
+    implementation "org.apache.tomcat.embed:tomcat-embed-jasper"
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'

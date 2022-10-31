@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @SpringBootApplication
 @MapperScan
-@EnableWebMvc
+//@EnableWebMvc
 public class SendbugApplication {
 	private static BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
