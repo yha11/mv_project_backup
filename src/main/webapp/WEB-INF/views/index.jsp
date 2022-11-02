@@ -8,5 +8,6 @@
 </head>
 <body>
 홈입니다.
+${user};
 </body>
 </html>

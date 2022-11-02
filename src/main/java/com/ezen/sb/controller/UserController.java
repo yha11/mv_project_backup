@@ -5,7 +5,9 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,14 +22,12 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import lombok.RequiredArgsConstructor;
 
 @Api(tags = "User / 유저")
 @RestController
-@RequiredArgsConstructor
 public class UserController {
-    private final UserService userService;
-
+	@Autowired
+    private UserService userService;
 
 	@GetMapping("/user/select")
 	@ApiOperation(value = "현재 로그인한 유저 검색 이나 다른 유저 검색이 가능하다(단 현재 로그인한 유저가 아닐 경우에는 ID, EMAIL, NAME 정보만 가져온다)")
@@ -70,4 +70,5 @@ public class UserController {
     	rMap.put("result", result+"");
         return rMap;
     }
+    
 }

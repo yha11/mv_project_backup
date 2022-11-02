@@ -21,61 +21,46 @@ import com.ezen.sb.handler.WebAccessDeniedHandler;
 import com.ezen.sb.provider.JwtTokenProvider;
 import com.ezen.sb.service.UserService;
 
-import lombok.RequiredArgsConstructor;
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	
-    private final JwtTokenProvider jwtProvider;
-    private final WebAccessDeniedHandler webAccessDeniedHandler;
-    private final AuthenticationEntryPointHandler authenticationEntryPointHandler;
-    private final UserService authService;
-    
-    @Override
-    protected void configure(AuthenticationManagerBuilder builder) throws Exception {
-        builder.userDetailsService(authService).passwordEncoder(passwordEncoder());
-    }
 
-    @Bean
-    PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+	@Autowired
+	private JwtTokenProvider jwtProvider;
+	@Autowired
+	private WebAccessDeniedHandler webAccessDeniedHandler;
+	@Autowired
+	private AuthenticationEntryPointHandler authenticationEntryPointHandler;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	@Autowired
+	private UserService authService;
+
+	@Override
+	protected void configure(AuthenticationManagerBuilder builder) throws Exception {
+		builder.userDetailsService(authService).passwordEncoder(passwordEncoder);
+	}
 
 	@Bean(name = BeanIds.AUTHENTICATION_MANAGER)
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
+	}
 
-    @Override
-    public void configure(WebSecurity web) {
-        web.ignoring().antMatchers("/v2/api-docs",
-                "/configuration/ui",
-                "/swagger-resources/**",
-                "/configuration/security",
-                "/swagger-ui.html",
-                "/webjars/**",
-                "/swagger-ui/**",
-                "/test/**");
-    }
+	@Override
+	public void configure(WebSecurity web) {
+		web.ignoring().antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**",
+				"/configuration/security", "/swagger-ui.html", "/webjars/**", "/swagger-ui/**", "/test/**");
+	}
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-            .httpBasic().disable()
-            .csrf().disable()
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
-                .authorizeRequests()
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.httpBasic().disable().csrf().disable().sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
 //                .antMatchers("/admin/**", "/admins/**").hasRole("ADMIN")
-                .antMatchers("/**").permitAll()
-                .anyRequest().authenticated()
-            .and()
-                .exceptionHandling()
-                .authenticationEntryPoint(authenticationEntryPointHandler)
-                .accessDeniedHandler(webAccessDeniedHandler)
-            .and()
-                .addFilterAfter(new JwtAuthenticationFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class);
-    }
+				.antMatchers("/**").permitAll().anyRequest().authenticated().and().exceptionHandling()
+				.authenticationEntryPoint(authenticationEntryPointHandler).accessDeniedHandler(webAccessDeniedHandler)
+				.and()
+				.addFilterAfter(new JwtAuthenticationFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class);
+	}
 }
