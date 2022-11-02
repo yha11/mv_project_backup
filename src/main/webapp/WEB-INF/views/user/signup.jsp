@@ -31,7 +31,7 @@
             <div class="mb-md-5 mt-md-4 pb-5">
 
               <div class="form-outline form-white mb-4">
-              <h2 class="fw-bold mb-2 text-uppercase">로그인</h2>
+              <h2 class="fw-bold mb-2 text-uppercase">회원가입</h2>
               </div>
 
               <div class="form-outline form-white mb-4">
@@ -44,9 +44,22 @@
                 <label class="form-label" for="password">Password</label>
               </div>
 
-              <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">비밀번호를 잊으셨나요?</a></p>
+              <div class="form-outline form-white mb-4">
+                <input type="password" id="password2" class="form-control form-control-lg" placeholder="비밀번호 확인"/>
+                <label class="form-label" for="password2">Password 확인</label>
+              </div>
 
-              <button class="btn btn-outline-light btn-lg px-5" type="button" onclick="login()">로그인</button>
+              <div class="form-outline form-white mb-4">
+                <input type="text" id="userName" class="form-control form-control-lg" placeholder="이름" />
+                <label class="form-label" for="userName">이름</label>
+              </div>
+
+              <div class="form-outline form-white mb-4">
+                <input type="text" id="userEmail" class="form-control form-control-lg" placeholder="이메일" />
+                <label class="form-label" for="userEmail">이메일</label>
+              </div>
+
+              <button class="btn btn-outline-light btn-lg px-5" type="button" onclick="signUp()">회원가입</button>
 
               <div class="d-flex justify-content-center text-center mt-4 pt-1">
                 <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
@@ -57,7 +70,7 @@
             </div>
 
             <div>
-              <p class="mb-0">회원이 아니신가요? <a href="/views/user/signup" class="text-white-50 fw-bold">회원가입</a>
+              <p class="mb-0">이미 회원이신가요? <a href="/views/user/login" class="text-white-50 fw-bold">로그인</a>
               </p>
             </div>
 
@@ -68,7 +81,7 @@
   </div>
 </section>
 <script>
-	function login(){
+	function signUp(){
 		//유효성 검사
 		//아이디를 공백제거후 3글자 미만일때
 		if($('#userId').val().trim().length<3){
@@ -87,6 +100,15 @@
 			$('#password').val('');
 			//포커스 이동
 			$('#password').focus();
+			//function 나감
+			return;
+		}
+		
+		//비밀번호와 비밀번호 확인의 값이 다를 때
+		if($('#password').val() !== $('#password2').val()){
+			alert('비밀번호 확인!!')
+			//포커스 이동
+			$('#password2').focus();
 			//function 나감
 			return;
 		}
