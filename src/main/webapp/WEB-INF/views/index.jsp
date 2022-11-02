@@ -8,6 +8,7 @@
 </head>
 <body>
 홈입니다.
+<a href="/views/user/login">로그인</a>
 ${user};
 </body>
 </html>
