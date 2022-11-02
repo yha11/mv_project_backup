@@ -7,10 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-홈입니다.
-<a href="/views/user/login">로그인</a>
-<div>
-	<img src="/resources/img/cat.jpg" style="width:500px;height:300px">
-</div>
+
+ 안녕 난 테스트.제이에스피라고 해~~ 반갑다~~
 </body>
 </html>
