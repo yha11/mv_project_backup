@@ -7,11 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-홈입니다.
-<a href="/views/user/login">로그인</a>
-<div>
-	<img src="/resources/img/cat.jpg" style="width:500px;height:300px">
-	${user}
-</div>
+
+안녕하세요, ${user.userName}님!
 </body>
 </html>

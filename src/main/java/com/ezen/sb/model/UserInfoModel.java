@@ -2,6 +2,7 @@ package com.ezen.sb.model;
 
 import java.util.Collection;
 
+import org.apache.ibatis.type.Alias;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

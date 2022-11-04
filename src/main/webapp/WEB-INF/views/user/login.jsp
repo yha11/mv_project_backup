@@ -90,12 +90,19 @@
 			//function 나감
 			return;
 		}
+		/*
+		form 태그의 submit으로 데이터를 서버로 보낼 경우는 동기 방식
+		ajax를 활용해서 브라우저는 가만히 있는 상태에서 데이터만 보내고 받는 경우가 비동기 방식
+		json
+		*/
 		
 		//위의 유효성검사를 모두 통과했을때
-		const param = {
+		//const는 상수입니다.
+		var param = {
 				userId : $('#userId').val(),
 				password : $('#password').val()
 		}
+		//userId, password
 		$.ajax({
 			url : '/auth/login',
 			type: 'POST',
