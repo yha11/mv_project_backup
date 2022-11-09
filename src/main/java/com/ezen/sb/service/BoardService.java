@@ -11,7 +11,7 @@ import com.ezen.sb.model.BoardModel;
 @Service
 public class BoardService {
 	@Autowired
-	private BoardMapper boardMapper;
+	private BoardMapper boardMapper; 
 
 	public List<BoardModel> selectBoards(){
 		return boardMapper.selectBoards();
