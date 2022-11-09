@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -28,35 +29,20 @@
     <script src="js/bootstrap.min.js"></script>
 <%@ include file="../ui/nav.jsp" %>
 
-	<div class="card text-center" style="width: 650px; margin: 30px auto 30px auto;">
-	  <div class="card-header">
-	    ${user.userMembership} 회원
-	  </div>
-	  <div class="card-body">
-	    <h5 class="card-title">${user.userName}님 반가워요!</h5>
-	    <p class="card-text">현재 포인트는 ${point.userPoint}점 입니다.</p>
-	    <a href="#" class="btn btn-primary" style="border-radius: 20px;">MEMBERSHIP ZONE</a>
-	  </div>
-	  <div class="card-footer text-muted">
-	    <ul class="nav justify-content-center">
-		  <li class="nav-item">
-		    <a class="nav-link active" aria-current="page" href="myreviews">MY 리뷰</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" href="mymovie">무비로그</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" href="myask">1:1 문의</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" href="mymodify">정보 관리</a>
-		  </li>
-		</ul>
-	  </div>
-	</div>
-	
-
-
+<div class="card mb-3" style="max-width: 540px; margin: 30px auto 30px auto; cursor: pointer;" onclick="location.href='#'">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000086/86119/86119_320.jpg" class="img-fluid rounded-start" alt="블랙 팬서-와칸다 포에버">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">영화 제목</h5>
+        <p class="card-text">내가 쓴 영화 리뷰</p>
+        <p class="card-text"><small class="text-muted">리뷰 쓴 날짜(최신순)</small></p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <%@ include file="../ui/footer.jsp" %>
 

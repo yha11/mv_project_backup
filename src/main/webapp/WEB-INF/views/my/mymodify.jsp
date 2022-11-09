@@ -28,33 +28,37 @@
     <script src="js/bootstrap.min.js"></script>
 <%@ include file="../ui/nav.jsp" %>
 
-	<div class="card text-center" style="width: 650px; margin: 30px auto 30px auto;">
-	  <div class="card-header">
-	    ${user.userMembership} 회원
-	  </div>
-	  <div class="card-body">
-	    <h5 class="card-title">${user.userName}님 반가워요!</h5>
-	    <p class="card-text">현재 포인트는 ${point.userPoint}점 입니다.</p>
-	    <a href="#" class="btn btn-primary" style="border-radius: 20px;">MEMBERSHIP ZONE</a>
-	  </div>
-	  <div class="card-footer text-muted">
-	    <ul class="nav justify-content-center">
-		  <li class="nav-item">
-		    <a class="nav-link active" aria-current="page" href="myreviews">MY 리뷰</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" href="mymovie">무비로그</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" href="myask">1:1 문의</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" href="mymodify">정보 관리</a>
-		  </li>
-		</ul>
-	  </div>
-	</div>
 	
+<form style="width: 300px; margin: 30px auto 30px auto;">
+<fieldset disabled>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">아이디</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" value="test1234">
+  </div>
+</fieldset>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">비밀번호</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" >
+    <div id="emailHelp" class="form-text">8글자 이상 입력해주세요.</div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">이름</label>
+    <input type="text" class="form-control" id="exampleInputPassword1" value="홍길동">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">전화번호</label>
+    <input type="tel" class="form-control" id="exampleInputPassword1" value="010-0000-0000">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">이메일</label>
+    <input type="email" class="form-control" id="exampleInputPassword1" value="hong@naver.com">
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" class="btn btn-primary">수정</button>
+</form>
 
 
 
