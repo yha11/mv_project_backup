@@ -3,8 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="MovieMapper">
 	<select id="list" resultType="com.ezen.sb.model.MovieVO">
-		select * from movie order by rank
-		desc
+		select * from movie order by rank desc
 	</select>
 	<insert id="insert">
 		insert into movie(rank, title, image, percent, link,
