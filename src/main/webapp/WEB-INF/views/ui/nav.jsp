@@ -46,7 +46,7 @@ li {
                                 <li><a class="dropdown-item" href="#!">자주묻는 질문</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="movie">영화 둘러보기</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/movie">영화 둘러보기</a></li>
                     </ul>
 
                     &nbsp;&nbsp;&nbsp;
