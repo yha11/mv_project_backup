@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MuserMapper">
+	<select id="list" resultType="com.ezen.sb.model.MuserVO">
+		select ms.username, ms.content from
+		muser ms, movie m
+		where m.rank = ms.mrank and mrank=#{mrank}
+		order by ms.userid DESC
+	</select>
+
+	<insert id="insert">
+		insert into muser(userpw, username, content, mrank)
+		values(#{userpw}, #{username}, #{content}, #{mrank})
+	</insert>
+	
+	<delete id="delete">
+		delete from
+		muser where mrank=#{mrank}
+	</delete>
+</mapper>
