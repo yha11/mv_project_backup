@@ -50,9 +50,9 @@ a:active {
 	</header>
 
 	홈입니다.
-	<a href="/views/user/login">로그인</a>
+	<a href="/views/login/login">로그인</a>
 	<div>
-		<img src="/resources/img/cat.jpg" style="width: 500px; height: 300px">
+		<img src="/resources/img/about.jpg" style="width: 500px; height: 300px">
 		${user}
 		
 	</div>

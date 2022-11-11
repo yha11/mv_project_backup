@@ -23,4 +23,10 @@ public class ViewController {
 		// /WEB-INF/views/index.jsp 
 	}
 	
+	//사이트소개
+		@GetMapping("/about")
+		public String about() {
+			
+			return "views/ui/about";
+		}
 }
