@@ -28,41 +28,33 @@
     <script src="js/bootstrap.min.js"></script>
 <%@ include file="../ui/nav.jsp" %>
 
-	
-<form style="width: 300px; margin: 30px auto 30px auto;">
-<fieldset disabled>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">아이디</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" value="test1234">
-  </div>
-</fieldset>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">비밀번호</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" >
-    <div id="emailHelp" class="form-text">8글자 이상 입력해주세요.</div>
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">이름</label>
-    <input type="text" class="form-control" id="exampleInputPassword1" value="홍길동">
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">전화번호</label>
-    <input type="tel" class="form-control" id="exampleInputPassword1" value="010-0000-0000">
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">이메일</label>
-    <input type="email" class="form-control" id="exampleInputPassword1" value="hong@naver.com">
-  </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <button type="submit" class="btn btn-primary">수정</button>
+<form action="addqna" method="post">
+<div style="width: 500px; margin: 30px auto 30px auto;">
+	<div class="mb-3">
+	  <label for="userId" class="form-label">아이디</label>
+	  <input class="form-control" type="text" value="${user.userId}" aria-label="Disabled input example" disabled>
+	</div>
+	<div class="mb-3">
+	  <label for="qnaTitle" class="form-label">제목</label>
+	  <input type="text" class="form-control" id="qnaTitle">
+	</div>
+	<div class="mb-3">
+	  <label for="qnaContent" class="form-label">내용</label>
+	  <textarea class="form-control" id="qnaContent" rows="3" style="height: 200px"></textarea>
+	</div>
+	<div class="mb-3">
+	  <input class="form-control" type="file" id="formFile">
+	</div>
+	<div style="width: 200px; margin: 30px auto 30px auto; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+		<input type="submit" value="문의하기" class="btn btn-primary" style="border-radius: 20px;">
+	</div>
+</div>
 </form>
 
 
-
 <%@ include file="../ui/footer.jsp" %>
+
+
 
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>

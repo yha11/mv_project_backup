@@ -47,4 +47,8 @@ public class UserService implements UserDetailsService {
 	public int deleteUserInfo(long userNum) {
 		return userMapper.deleteUserInfo(userNum);
 	}
+	
+	public int updateUserInfo(UserInfoModel userInfoModel) {
+		return userMapper.updateUserInfo(userInfoModel);
+	}
 }

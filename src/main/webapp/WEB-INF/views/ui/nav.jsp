@@ -42,7 +42,7 @@ li {
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="javascript:method2();">공지사항</a></li>
                                 <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">문의하기</a></li>
+                                <li><a class="dropdown-item" href="../my/qna">문의하기</a></li>
                                 <li><a class="dropdown-item" href="#!">자주묻는 질문</a></li>
                             </ul>
                         </li>

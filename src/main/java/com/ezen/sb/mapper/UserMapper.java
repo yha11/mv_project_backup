@@ -12,4 +12,6 @@ public interface UserMapper {
 
 	int insertUserInfo(UserInfoModel uiModel);
 	int deleteUserInfo(long userNum);
+	
+	int updateUserInfo(UserInfoModel userInfoModel);
 }

@@ -30,12 +30,12 @@
 
 	<div class="card text-center" style="width: 650px; margin: 30px auto 30px auto;">
 	  <div class="card-header">
-	    ${user.userMembership} 회원
+	    일반 회원
 	  </div>
 	  <div class="card-body">
 	    <h5 class="card-title">${user.userName}님 반가워요!</h5>
-	    <p class="card-text">현재 포인트는 ${point.userPoint}점 입니다.</p>
-	    <a href="#" class="btn btn-primary" style="border-radius: 20px;">MEMBERSHIP ZONE</a>
+	    <p class="card-text">오늘은 어떤 영화를 보셨나요?</p>
+	    <a href="#" class="btn btn-primary" style="border-radius: 20px;">리뷰 쓰기</a>
 	  </div>
 	  <div class="card-footer text-muted">
 	    <ul class="nav justify-content-center">
@@ -43,13 +43,10 @@
 		    <a class="nav-link active" aria-current="page" href="myreviews">MY 리뷰</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="nav-link" href="mymovie">무비로그</a>
+		    <a class="nav-link" href="myqna">1:1 문의</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="nav-link" href="myask">1:1 문의</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" href="mymodify">정보 관리</a>
+		    <a class="nav-link" href="infomodify">정보 관리</a>
 		  </li>
 		</ul>
 	  </div>

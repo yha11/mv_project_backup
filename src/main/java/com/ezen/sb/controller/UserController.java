@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ezen.sb.model.UserInfoModel;
@@ -36,7 +37,7 @@ public class UserController {
 		return null;
 	}
 
-	@PostMapping("/user/update")
+	@PostMapping("/user/update1")
 	@ApiOperation(value = "유저 수정")
 	@ApiResponses({ @ApiResponse(code = 200, message = "OK") })
 	public Map<String, Object> updateUser(@RequestBody UserInfoModel userInfo, Authentication authentication) {
@@ -70,5 +71,10 @@ public class UserController {
     	rMap.put("result", result+"");
         return rMap;
     }
+    
+    @PostMapping("/user/update")
+    public int updateUserInfo(@RequestBody UserInfoModel userInfoModel) {
+		return userService.updateUserInfo(userInfoModel);
+	}
     
 }

@@ -51,6 +51,7 @@ a:active {
 
 	홈입니다.
 	<a href="/views/user/login">로그인</a>
+	<a href="/views/my/mypage">마이페이지</a>
 	<div>
 		<img src="/resources/img/cat.jpg" style="width: 500px; height: 300px">
 		${user}

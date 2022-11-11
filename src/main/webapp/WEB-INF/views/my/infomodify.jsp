@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -29,24 +28,64 @@
     <script src="js/bootstrap.min.js"></script>
 <%@ include file="../ui/nav.jsp" %>
 
-<div class="card mb-3" style="max-width: 540px; margin: 30px auto 30px auto;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000086/86119/86119_320.jpg" class="img-fluid rounded-start" alt="블랙 팬서-와칸다 포에버">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">영화 제목</h5>
-        <p class="card-text">영화 줄거리</p>
-        <p class="card-text"><small class="text-muted">영화 본 날짜(최신순)</small></p>
-      </div>
-    </div>
+	
+<div style="width: 300px; margin: 30px auto 30px auto;">
+<fieldset disabled>
+  <div class="mb-3">
+    <label for="userId" class="form-label">아이디</label>
+    <input type="text" class="form-control" id="userId" value="${user.userId}">
   </div>
+</fieldset>
+  <div class="mb-3">
+    <label for="userName" class="form-label">이름</label>
+    <input type="text" class="form-control" id="userName" value="${user.userName}">
+  </div>
+  <div class="mb-3">
+    <label for="userEmail" class="form-label">이메일</label>
+    <input type="email" class="form-control" id="userEmail" value="${user.userEmail}">
+  </div>
+  <button type="button" class="btn btn-primary" onclick="login()">수정</button>
 </div>
+
+
 
 <%@ include file="../ui/footer.jsp" %>
 
 <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
+
+function login(){
+	/*
+	form 태그의 submit으로 데이터를 서버로 보낼 경우는 동기 방식
+	ajax를 활용해서 브라우저는 가만히 있는 상태에서 데이터만 보내고 받는 경우가 비동기 방식
+	json
+	*/
+	
+	//const는 상수입니다.
+	var param = {
+			userId : $('#userId').val(),
+			userName : $('#userName').val()
+			userEmail : $('#userEmail').val()
+	}
+	//userId, password
+		$.ajax({
+			url : '/user/update',
+			type: 'POST',
+			accept: "application/json",
+			contentType: "application/json; charset=utf-8",
+			data: JSON.stringify(param),
+			dataType: "json",
+			success: function(data) {
+				alert(data.userName + '님 정보 수정에 성공하였습니다.');
+				location.href='/'
+			  },
+			error: function(error) {
+				  console.log(error);
+			  },
+			
+		});
+}
+
+</script>
   </body>
 </html>

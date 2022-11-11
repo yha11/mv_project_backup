@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="com.ezen.sb.mapper.QnaMapper">
+    
+    	<select id="selectQnas" resultType="qnaModel">
+    		SELECT QAN_NUM, QAN_DATE, QAN_TITLE, QAN_STATUS
+			FROM QAN_BOARD
+			WHERE USER_NUM=#{userNum}
+    	</select>
+    	<select id="selectQna" resultType="qnaModel">
+    		SELECT QAN_DATE, QAN_STATUS, QAN_TITLE, QAN_CONTENT, QAN_FILE, QAN_ANSWER
+			FROM QAN_BOARD
+			WHERE QAN_NUM=#{qnaNum}
+    	</select>
+    	<insert id="insertQna" parameterType="qnaModel">
+    		INSERT INTO QAN_BOARD(USER_NUM, QAN_TITLE, QAN_CONTENT, QAN_FILE)
+			VALUES(#{userNum}, #{qnaTitle}, #{qnaContent}, #{qnaFile})
+    	</insert>
+    	<update id="updateQna" parameterType="qnaModel">
+    	UPDATE QAN_BOARD
+		SET QAN_STATUS='완료', QAN_ANSWER=#{qnaAnswer}
+		WHERE QAN_NUM=#{qnaNum}
+    	</update>
+    
+    </mapper>
