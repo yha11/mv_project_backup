@@ -5,9 +5,18 @@ import lombok.Data;
 @Data
 public class BoardModel {
 
-	private long boardNum;
-	private String boardTitme;
+	private Integer page;
+	private Integer pageSize;
+	private Integer boardNum;
+	private Integer boardParentNum;
+	private Integer level;
+	private String boardTitle;
+	private String boardFilePath;
 	private String boardContent;
-	private String boardCredat;
-	private long boardCnt;
+	private String credate;
+	private String crename;
+	private Integer creusr;
+	private String moddate;
+	private Integer modusr;
+	private String order;
 }

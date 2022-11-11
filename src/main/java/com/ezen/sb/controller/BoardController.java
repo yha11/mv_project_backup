@@ -1,11 +1,10 @@
 package com.ezen.sb.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ezen.sb.model.BoardModel;
 import com.ezen.sb.service.BoardService;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 public class BoardController {
@@ -20,9 +20,19 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 
+	@GetMapping("/boardstest")
+	public @ResponseBody boolean boardsTest() {
+		boardService.inserTest();
+		return true;
+	}
 	@GetMapping("/boards")
-	public @ResponseBody List<BoardModel> getBoards(){
-		return boardService.selectBoards();
+	public @ResponseBody PageInfo<BoardModel> getBoards(BoardModel boardModel){
+		return boardService.selectBoards(boardModel);
+	}
+
+	@GetMapping("/boards/{boardNum}")
+	public @ResponseBody BoardModel getBoards(@PathVariable("boardNum") int boardNum){
+		return boardService.selectBoard(boardNum);
 	}
 	
 	@PostMapping("/boards")
