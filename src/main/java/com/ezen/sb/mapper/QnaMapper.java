@@ -1,12 +1,13 @@
 package com.ezen.sb.mapper;
 
 
+import java.util.List;
+
 import com.ezen.sb.model.QnaModel;
-import com.github.pagehelper.PageInfo;
 
 public interface QnaMapper {
 	
-	PageInfo<QnaModel> selectQnas(Long userNum);
+	List<QnaModel> selectQnas(long userNum);
 	
 	QnaModel selectQna(Integer qnaNum);
 	

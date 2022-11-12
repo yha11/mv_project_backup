@@ -4,12 +4,13 @@ import lombok.Data;
 
 @Data
 public class QnaModel {
-	private Integer qanNum;
+	private Integer qnaNum;
 	private String qnaDate;
-	private String qanStatus;
-	private String qanTitle;
-	private String qanContent;
-	private String qanFile;
-	private String qanAnswer;
+	private String qnaStatus;
+	private String qnaTitle;
+	private String qnaContent;
+	private String qnaFile;
+	private String qnaAnswer;
+	private Integer userNum;
 
 }

@@ -20,7 +20,7 @@
     </delete>
     <update id="updateUserInfo" parameterType="userInfoModel">
     	UPDATE USER_INFO
-		SET USER_NAME=#{userName}, USER_EMAIL=#{userEmail}
+		SET USER_EMAIL=#{userEmail}
 		WHERE USER_ID=#{userID}
     </update>
     
