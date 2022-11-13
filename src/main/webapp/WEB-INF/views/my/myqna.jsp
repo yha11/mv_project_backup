@@ -25,11 +25,13 @@
 		<table class="table">
 			<thead class="table-light">
 				<tr>
-					<th scope="col" colspan="4" style="text-align: center;">질문</th>
+					<th scope="col" style="text-align: center;"></th>
+					<th scope="col">문의 날짜</th>
+					<th scope="col">질문</th>
+					<th scope="col">답변 현황</th>
 				</tr>
 			</thead>
-			<tbody id="tBody">
-			</tbody>
+			<tbody id="tBody"></tbody>
 		</table>
 		<div
 			style="width: 200px; margin: 30px auto 30px auto; display: flex; flex-direction: column; justify-content: center; align-items: center;">
@@ -53,9 +55,7 @@
 	})
 
 	function qnalist(){
-		var data = {
-				userNum : ${user.userNum}
-		}
+		
 		/*
 		form 태그의 submit으로 데이터를 서버로 보낼 경우는 동기 방식
 		ajax를 활용해서 브라우저는 가만히 있는 상태에서 데이터만 보내고 받는 경우가 비동기 방식
@@ -65,13 +65,12 @@
 			url : '/qnaboard',
 			type: 'GET',
 			accept : "application/json",
-			data: data,
 			contentType: "application/json; charset=utf-8",
 			dataType: "json",
 			success: function(res) {
 				console.log(res);
 				let html = '';
-				let list = res.list;
+				let list = res.list; //페이징할때 필요하고 안할땐 필요없음
 				for(let i=0; i<list.length; i++) {
 					const board = list[i];
 					console.log(board);

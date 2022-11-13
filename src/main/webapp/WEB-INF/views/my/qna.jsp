@@ -24,32 +24,31 @@
 
     <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
-    <script src="js/bootstrap.min.js"></script>
 <%@ include file="../ui/nav.jsp" %>
 
-<form action="addqna" method="post">
 <div style="width: 500px; margin: 30px auto 30px auto;">
-	<div class="mb-3">
-	  <label for="userId" class="form-label">아이디</label>
-	  <input class="form-control" type="text" value="${user.userId}" aria-label="Disabled input example" disabled>
-	</div>
-	<div class="mb-3">
-	  <label for="qnaTitle" class="form-label">제목</label>
-	  <input type="text" class="form-control" id="qnaTitle">
-	</div>
-	<div class="mb-3">
-	  <label for="qnaContent" class="form-label">내용</label>
-	  <textarea class="form-control" id="qnaContent" rows="3" style="height: 200px"></textarea>
-	</div>
-	<div class="mb-3">
-	  <input class="form-control" type="file" id="formFile">
-	</div>
+	<div class="mb-3 row">
+	    <label for="userId" class="col-sm-2 col-form-label" style="background-color: #dddddd; border-radius: 6px; text-align: center;">아이디</label>
+	    <div class="col-sm-10">
+	      <input type="text" readonly class="form-control-plaintext" id="userId" value="${user.userId}">
+	    </div>
+  	</div>
+	<div class="mb-3 row">
+	    <label for="qnaTitle" class="col-sm-2 col-form-label" style="background-color: #dddddd; border-radius: 6px; display: flex; flex-direction: column; justify-content: center; align-items: center;">제목</label>
+	    <div class="col-sm-10">
+	    <input type="text" class="form-control" id="qnaTitle">
+	    </div>
+  	</div>
+  	<div class="mb-3 row">
+	    <label for="qnaContent" class="col-sm-2 col-form-label" style="background-color: #dddddd; border-radius: 6px; display: flex; flex-direction: column; justify-content: center; align-items: center;">내용</label>
+	    <div class="col-sm-10">
+	    <textarea class="form-control" id="qnaContent" rows="3" style="height: 200px"></textarea>
+	    </div>
+  	</div>
 	<div style="width: 200px; margin: 30px auto 30px auto; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-		<input type="submit" value="문의하기" class="btn btn-primary" style="border-radius: 20px;">
+		<button type="button" class="btn btn-primary" style="border-radius: 20px;" onclick="qna()">문의하기</button>
 	</div>
 </div>
-</form>
 
 
 <%@ include file="../ui/footer.jsp" %>
@@ -58,5 +57,45 @@
 
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+<script>
+	function qna() {
+		//유효성 검사
+		//제목이 공백제거후 1글자 미만일때
+		if($('#qnaTitle').val().trim().length<1) {
+			alert('제목을 입력해주세요.');
+			$('#qnaTitle').focus();
+			return;
+		}
+		//내용이 공백제거후 1글자 미만일때
+		if($('#qnaContent').val().trim().length<1) {
+			alert('내용을 입력해주세요.');
+			$('#qnaContent').focus();
+			return;
+		}
+		
+		var param = {
+				qnaTitle : $('#qnaTitle').val(),
+				qnaContent : $('#qnaContent').val()
+		}
+		
+		$.ajax({
+			url : '/addqna',
+			type : 'POST',
+			accept : "application/json",
+			contentType: "application/json; charset=utf-8",
+			data: JSON.stringify(param),
+			dataType: "json",
+			success : function(res) {
+				console.log(res);
+				alert('문의가 등록되었습니다.');
+				location.href='myqna';
+			},
+			error: function(error) {
+				console.log(error);
+			}
+		})
+	}
+</script>
   </body>
 </html>

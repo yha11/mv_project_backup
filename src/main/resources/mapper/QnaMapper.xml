@@ -9,6 +9,7 @@
     		SELECT QNA_NUM, QNA_DATE, QNA_TITLE, QNA_STATUS
 			FROM QNA_BOARD
 			WHERE USER_NUM=#{userNum}
+			ORDER BY QNA_NUM DESC
     	</select>
     	<select id="selectQna" resultType="qnaModel">
     		SELECT QNA_DATE, QNA_STATUS, QNA_TITLE, QNA_CONTENT, QNA_FILE, QNA_ANSWER
@@ -16,8 +17,8 @@
 			WHERE USER_NUM=#{userNum} AND QNA_NUM=#{qnaNum}
     	</select>
     	<insert id="insertQna" parameterType="qnaModel">
-    		INSERT INTO QNA_BOARD(USER_NUM, QNA_TITLE, QNA_CONTENT, QNA_FILE)
-			VALUES(#{userNum}, #{qnaTitle}, #{qnaContent}, #{qnaFile})
+    		INSERT INTO QNA_BOARD(USER_NUM, QNA_TITLE, QNA_CONTENT)
+			VALUES(#{userNum}, #{qnaTitle}, #{qnaContent})
     	</insert>
     	<update id="updateQna" parameterType="qnaModel">
     	UPDATE QNA_BOARD

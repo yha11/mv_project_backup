@@ -2,6 +2,7 @@ package com.ezen.sb.controller;
 
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,10 @@ import com.ezen.sb.model.UserInfoModel;
 import com.ezen.sb.service.QnaService;
 import com.github.pagehelper.PageInfo;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
+@Slf4j
 public class QnaController {
 	@Autowired
 	private QnaService qnaService;
@@ -37,8 +41,10 @@ public class QnaController {
 	}
 	
 	@PostMapping("/addqna")
-	public @ResponseBody int addQna(@RequestBody QnaModel qnaModel) {
-		return qnaService.insertQna(qnaModel);
+	public @ResponseBody int addQna(HttpSession session, @RequestBody QnaModel qnaModel) {
+		UserInfoModel user = (UserInfoModel) session.getAttribute("user");
+		log.info("user={}", user);
+		return qnaService.insertQna(user.getUserNum(), qnaModel);
 	}
 	
 	@PostMapping("/modifyqna")
