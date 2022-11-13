@@ -28,17 +28,7 @@
 					<th scope="col" colspan="4" style="text-align: center;">질문</th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr onclick="">
-					<th scope="row">1</th>
-					<td>질문제목1-안녕하세요 리뷰 수정에 관한 질문입니다.</td>
-					<td>답변 완료</td>
-				</tr>
-				<tr>
-					<th scope="row">2</th>
-					<td>질문제목2</td>
-					<td>답변 미완료</td>
-				</tr>
+			<tbody id="tBody">
 			</tbody>
 		</table>
 		<div
@@ -63,6 +53,9 @@
 	})
 
 	function qnalist(){
+		var data = {
+				userNum : ${user.userNum}
+		}
 		/*
 		form 태그의 submit으로 데이터를 서버로 보낼 경우는 동기 방식
 		ajax를 활용해서 브라우저는 가만히 있는 상태에서 데이터만 보내고 받는 경우가 비동기 방식
@@ -71,16 +64,35 @@
 		$.ajax({
 			url : '/qnaboard',
 			type: 'GET',
-			data: JSON.stringify(param),
+			accept : "application/json",
+			data: data,
 			contentType: "application/json; charset=utf-8",
 			dataType: "json",
-			success: function(resp) {
-				console.log(resp);
+			success: function(res) {
+				console.log(res);
+				let html = '';
+				let list = res.list;
+				for(let i=0; i<list.length; i++) {
+					const board = list[i];
+					console.log(board);
+					html += '<tr style="cursor:pointer" onclick="goQnaView(' + board.qnaNum + ')">';
+					html += '<th scope="row">' + board.qnaNum + '</th>';
+					html += '<td>' + board.qnaDate + '</td>';
+					html += '<td>' + board.qnaTitle + '</td>';
+					html += '<td>' + board.qnaStatus + '</td>';
+					html += '</tr>';
+				}
+				console.log(html);
+				$('tBody').html(html);
 			},
 			error: function(error) {
 				console.log(error);
 			}
 		})
+	}
+	
+	function goQnaView(qnaNum) {
+		location.href='/views/my/qnadetail?qnaNum=' + qnaNum;
 	}
 </script>
 

@@ -9,7 +9,7 @@ public interface QnaMapper {
 	
 	List<QnaModel> selectQnas(long userNum);
 	
-	QnaModel selectQna(Integer qnaNum);
+	QnaModel selectQna(long userNum, long qnaNum);
 	
 	int insertQna(QnaModel qnaModel);
 	

@@ -8,18 +8,22 @@ import org.springframework.stereotype.Service;
 
 import com.ezen.sb.mapper.QnaMapper;
 import com.ezen.sb.model.QnaModel;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 @Service
 public class QnaService {
 	@Autowired
 	private QnaMapper qnaMapper;
 	
-	public List<QnaModel> selectQnas(long userNum) {
-		return qnaMapper.selectQnas(userNum);
+	public PageInfo<QnaModel> selectQnas(long userNum) {
+		PageHelper.startPage(1,10);
+		return PageInfo.of(qnaMapper.selectQnas(userNum));
 	}
 	
-	public QnaModel selectQna(Integer qnaNum) {
-		return qnaMapper.selectQna(qnaNum);
+	public QnaModel selectQna(long userNum, long qnaNum) {
+		return qnaMapper.selectQna(userNum, qnaNum);
 	}
 	
 	public int insertQna(QnaModel qnaModel) {
@@ -29,5 +33,12 @@ public class QnaService {
 	public int updateQna(QnaModel qnaModel) {
 		return qnaMapper.updateQna(qnaModel);
 	}
+
+
+
+
+
+
+
 
 }

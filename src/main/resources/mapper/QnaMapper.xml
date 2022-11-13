@@ -13,7 +13,7 @@
     	<select id="selectQna" resultType="qnaModel">
     		SELECT QNA_DATE, QNA_STATUS, QNA_TITLE, QNA_CONTENT, QNA_FILE, QNA_ANSWER
 			FROM QNA_BOARD
-			WHERE QNA_NUM=#{qnaNum}
+			WHERE USER_NUM=#{userNum} AND QNA_NUM=#{qnaNum}
     	</select>
     	<insert id="insertQna" parameterType="qnaModel">
     		INSERT INTO QNA_BOARD(USER_NUM, QNA_TITLE, QNA_CONTENT, QNA_FILE)
