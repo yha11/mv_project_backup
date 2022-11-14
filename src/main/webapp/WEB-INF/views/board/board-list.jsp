@@ -12,6 +12,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/ui/nav.jsp"></jsp:include>
+	<!-- Header-->
 <table class="table">
   <thead>
     <tr>
@@ -24,6 +26,7 @@
   <tbody id="tBody">
   </tbody>
 </table>
+<button onclick="location.href='/views/board/board-insert'">글작성</button>
 <div id="totalDiv"></div>
 <script>
 	$(document).ready(function(){
@@ -35,13 +38,13 @@
 				page : 1,
 				pageSize : 10
 		}
+		//http method post, get
 		$.ajax({
 			type:'GET',
 			url:'/boards',
 			data : data,
 			accept: "application/json",
 			success:function(res){
-
 				$('#totalDiv').html('총갯수:' + res.total);
 				let html = '';
 				let list = res.list;
@@ -59,7 +62,10 @@
 					html += '</tr>';
 				}
 				console.log(html);
-				$('tBody').html(html);
+				$('#tBody').html(html);
+			},
+			error : function(err){
+				console.log(err);
 			}
 		})
 	}
@@ -68,5 +74,7 @@
 		location.href='/views/board/board-view?boardNum=' + boardNum;
 	}
 </script>
+<!-- footer -->
+   <jsp:include page="/WEB-INF/views/ui/footer.jsp"></jsp:include>
 </body>
 </html>
