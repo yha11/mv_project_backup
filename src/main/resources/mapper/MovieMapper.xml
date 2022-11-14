@@ -2,19 +2,14 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="MovieMapper">
-	<select id="list" resultType="com.ezen.sb.model.MovieVO">
+	<select id="selectlists" resultType="com.ezen.sb.model.MovieVO">
 		SELECT * FROM MOVIE ORDER BY RANK DESC
 	</select>
-	<insert id="insert">
-		INSERT INTO MOVIE(RANK, TITLE, IMAGE, PERCENT, LINK,
-		TICKETING)
-		VALUES(#{rank}, #{title}, #{image}, #{percent}, #{link},
-		#{ticketing})
+	<insert id="insertMovie">
+		INSERT INTO MOVIE(RANK, TITLE, IMAGE, PERCENT, LINK,TICKETING)
+		VALUES(#{rank}, #{title}, #{image}, #{percent}, #{link},#{ticketing})
 	</insert>
-	<select id="read" resultType="com.ezen.sb.model.MovieVO">
-		SLELCT * FROM MOVIE WHERE RANK=#{rank}
-	</select>
-	<delete id="delete">
+	<delete id="deleteMovie">
 		DELETE FROM	MOVIE WHERE RANK=#{rank}
 	</delete>
 </mapper>
