@@ -73,6 +73,7 @@ public class UserController {
         return rMap;
     }
     
+    //정보 수정
     @PostMapping("/user/modify")
     public int modifyUserInfo(@RequestBody UserInfoModel userInfoModel, HttpSession session) {
 		return userService.updateUserInfo(userInfoModel, session);

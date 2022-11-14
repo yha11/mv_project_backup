@@ -6,7 +6,7 @@
 <mapper namespace="com.ezen.sb.mapper.NormalMapper">
 
     <select id="selectUserInfos" resultType="userInfoModel">
-        select * from user_info
+    	SELECT * FROM USER_INFO
     </select>
     
 </mapper>

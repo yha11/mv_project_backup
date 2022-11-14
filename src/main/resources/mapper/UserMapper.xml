@@ -6,10 +6,10 @@
 <mapper namespace="com.ezen.sb.mapper.UserMapper">
 
     <select id="selectUserInfoById" resultType="userInfoModel">
-        select user_info.* from user_info where USER_ID = #{userId}
+    	SELECT USER_INFO.* FROM USER_INFO WHERE USER_ID = #{userId}
     </select>
     <select id="selectUserInfos" resultType="userInfoModel">
-        select * from user_info 
+    	SELECT * FROM USER_INFO
     </select>
     <insert id="insertUserInfo" parameterType="userInfoModel">
     	INSERT INTO USER_INFO(USER_ID, USER_NAME, USER_EMAIL, PASSWORD)
