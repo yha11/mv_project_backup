@@ -29,10 +29,14 @@ public class UserInfoModel implements UserDetails {
 	private Collection<? extends GrantedAuthority> authorities;
 	@Override
 	public String getUsername() {
-		return this.userId;
+		// TODO Auto-generated method stub
+		return userName;
 	}
 	
 	public String getUserName() {
-		return this.userName;
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 }
