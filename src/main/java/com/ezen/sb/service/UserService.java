@@ -2,6 +2,8 @@ package com.ezen.sb.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,7 +14,10 @@ import org.springframework.stereotype.Service;
 import com.ezen.sb.mapper.UserMapper;
 import com.ezen.sb.model.UserInfoModel;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class UserService implements UserDetailsService {
 	@Autowired
 	private UserMapper userMapper;
@@ -48,7 +53,10 @@ public class UserService implements UserDetailsService {
 		return userMapper.deleteUserInfo(userNum);
 	}
 	
-	public int updateUserInfo(UserInfoModel userInfoModel) {
-		return userMapper.updateUserInfo(userInfoModel);
+	public int updateUserInfo(UserInfoModel userInfoModel, HttpSession session) {
+		int result=  userMapper.updateUserInfo(userInfoModel);
+		userInfoModel = userMapper.selectUserInfoById(userInfoModel.getUserId());
+		session.setAttribute("user", userInfoModel);
+		return result;
 	}
 }

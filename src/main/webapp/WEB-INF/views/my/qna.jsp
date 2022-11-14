@@ -74,17 +74,22 @@
 			return;
 		}
 		
-		var param = {
+		/* var param = {
 				qnaTitle : $('#qnaTitle').val(),
 				qnaContent : $('#qnaContent').val()
-		}
+		} */
+		
+		var data = {};
+		$('[id]').each(function(idx, item) {
+			data[item.id] = item.value;
+		})
 		
 		$.ajax({
 			url : '/addqna',
 			type : 'POST',
 			accept : "application/json",
 			contentType: "application/json; charset=utf-8",
-			data: JSON.stringify(param),
+			data: JSON.stringify(data),
 			dataType: "json",
 			success : function(res) {
 				console.log(res);

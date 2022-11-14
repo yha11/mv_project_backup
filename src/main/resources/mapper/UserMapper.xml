@@ -6,7 +6,7 @@
 <mapper namespace="com.ezen.sb.mapper.UserMapper">
 
     <select id="selectUserInfoById" resultType="userInfoModel">
-        select * from user_info where USER_ID = #{userId}
+        select user_info.* from user_info where USER_ID = #{userId}
     </select>
     <select id="selectUserInfos" resultType="userInfoModel">
         select * from user_info 
@@ -20,8 +20,8 @@
     </delete>
     <update id="updateUserInfo" parameterType="userInfoModel">
     	UPDATE USER_INFO
-		SET USER_EMAIL=#{userEmail}
-		WHERE USER_ID=#{userID}
+		SET USER_NAME=#{userName}, USER_EMAIL=#{userEmail}
+		WHERE USER_ID=#{userId}
     </update>
     
 </mapper>

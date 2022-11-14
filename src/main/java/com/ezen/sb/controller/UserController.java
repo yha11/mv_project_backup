@@ -3,6 +3,7 @@ package com.ezen.sb.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class UserController {
 		return null;
 	}
 
-	@PostMapping("/user/update1")
+	@PostMapping("/user/update")
 	@ApiOperation(value = "유저 수정")
 	@ApiResponses({ @ApiResponse(code = 200, message = "OK") })
 	public Map<String, Object> updateUser(@RequestBody UserInfoModel userInfo, Authentication authentication) {
@@ -72,9 +73,9 @@ public class UserController {
         return rMap;
     }
     
-    @PostMapping("/user/update")
-    public int updateUserInfo(@RequestBody UserInfoModel userInfoModel) {
-		return userService.updateUserInfo(userInfoModel);
+    @PostMapping("/user/modify")
+    public int modifyUserInfo(@RequestBody UserInfoModel userInfoModel, HttpSession session) {
+		return userService.updateUserInfo(userInfoModel, session);
 	}
     
 }
