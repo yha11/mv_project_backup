@@ -1,8 +1,12 @@
 package com.ezen.sb.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
+@Getter
+@Setter
+@ToString
 public class MovieVO {
 	private String title;
 	private String rank;
@@ -10,11 +14,6 @@ public class MovieVO {
 	private String percent;
 	private String link;
 	private String ticketing;
-	
 
-	@Override
-	public String toString() {
-		return "MovieVO [title=" + title + ", rank=" + rank + ", image=" + image + ", percent=" + percent + "]";
-	}
 }
 
