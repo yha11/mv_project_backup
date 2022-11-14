@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>영화리뷰사이트 | 로그인</title>
-<link href="css/styles.css" rel="stylesheet" />
+<link href="../../resources/css/styles.css" rel="stylesheet" />
 <style>
 /* CSS RESET */
 * {
@@ -106,6 +106,7 @@ li {
 		alert(message);
 	}
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 <div id="wrap">
