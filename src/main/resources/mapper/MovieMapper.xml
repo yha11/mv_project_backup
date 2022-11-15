@@ -26,7 +26,7 @@
 		DELETE FROM MOVIE WHERE RANK=#{rank}
 	</delete>
 	
-	<select id="selectMovie">
+	<select id="selectMovie" resultType="movieVO">
 		SELECT RANK, TITLE, IMAGE, PERCENT
 		FROM MOVIE
 		WHERE MOVIE_NUM=${movieNum}

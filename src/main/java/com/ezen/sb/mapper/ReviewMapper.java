@@ -8,8 +8,10 @@ public interface ReviewMapper {
 	
 	List<ReviewModel> selectReviews(long movieNum);
 	
+	List<ReviewModel> selectMyReviews(long userNum);
+	
 	int insertReview(ReviewModel reviewModel);
 	
-	int deleteReview(long userNum);
+	int deleteReview(ReviewModel reviewModel);
 
 }

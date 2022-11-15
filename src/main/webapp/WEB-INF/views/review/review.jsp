@@ -60,7 +60,7 @@
 	<div class="mb-3 row">
 	    <label for="mvTitle" class="col-sm-2 col-form-label" style="background-color: #dddddd; border-radius: 6px; text-align: center;">영화</label>
 	    <div class="col-sm-10">
-	    <input type="text" readonly class="form-control-plaintext" id="mvTitle" value="블랙팬서">
+	    <input type="text" readonly class="form-control-plaintext" id="mvTitle" value="">
 	    </div>
   	</div>
   	<div class="mb-3 row">
@@ -84,11 +84,11 @@
   	<div class="mb-3 row">
 	    <label for="mvReview" class="col-sm-2 col-form-label" style="background-color: #dddddd; border-radius: 6px; display: flex; flex-direction: column; justify-content: center; align-items: center;">관람평</label>
 	    <div class="col-sm-10">
-	    <textarea class="form-control" id="mvReview" rows="3" style="height: 200px"></textarea>
+	    <textarea class="form-control" id="reviewContent" rows="3" style="height: 200px"></textarea>
 	    </div>
   	</div>
 	<div style="width: 200px; margin: 30px auto 30px auto; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-		<button type="button" class="btn btn-primary" style="border-radius: 20px;" onclick="">등록하기</button>
+		<button type="button" class="btn btn-primary" style="border-radius: 20px;" onclick="writeReview()">등록하기</button>
 	</div>
 </div>
 
@@ -127,6 +127,59 @@
 	        }
 	    })
 	});
+	
+	$(document).ready(function() {
+		getMvTitle();
+	})
+	
+	function getMvTitle() {
+		$.ajax({
+			url : '/movie/${param.movieNum}',
+			type : 'GET',
+			accept : "application/json",
+	    	contentType: "application/json; charset=utf-8",
+	    	dataType : "json",
+	    	success : function(res) {
+	    		console.log(res);
+	    		var title = res.title;
+	    		
+	    		$("#mvTitle").attr("value", title);
+	    	}
+			
+		})
+	}
+	
+	function writeReview() {
+		var star = 0;
+		$('input[name=rating]:checked').each(function() {
+			star = $(this).val();
+		})
+		console.log(star);
+		
+		var data = {
+				movieNum : ${param.movieNum},
+				reviewContent : $('#reviewContent').val(),
+				reviewStarrate : star,
+		}
+		console.log(data);
+		
+ 		$.ajax({
+			url : '/addreview',
+			type : 'POST',
+			accept : "application/json",
+	    	contentType: "application/json; charset=utf-8",
+	    	data: JSON.stringify(data),
+			dataType: "json",
+			success : function(res) {
+				console.log(res);
+				
+			},
+			error: function(error) {
+				console.log(error);
+			}
+			
+		}) 
+	}
 </script>
 </body>
 </html>

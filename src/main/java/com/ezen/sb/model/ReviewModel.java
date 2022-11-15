@@ -10,4 +10,7 @@ public class ReviewModel {
 	private String reviewDate;
 	private long userNum;
 	private long movieNum;
+	private String userName;
+	private String title;
+	private String image;
 }

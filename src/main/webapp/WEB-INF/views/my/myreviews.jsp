@@ -13,40 +13,115 @@
     <!-- 부트스트랩 -->
 <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
-    <!-- WARNING: Respond.js 는 당신이 file:// 을 통해 페이지를 볼 때는 동작하지 않습니다. -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+
+<style>
+	.star {
+		background-color: #ffc400;
+		width: 20px;
+	}
+	.nonstar {
+		background-color: #f0f0f0;
+		width: 20px;
+	}
+	
+</style>
 
   </head>
   <body>
 
     <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
-    <script src="js/bootstrap.min.js"></script>
 <%@ include file="../ui/nav.jsp" %>
 
-<div class="card mb-3" style="max-width: 540px; margin: 30px auto 30px auto; cursor: pointer;" onclick="location.href='#'">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000086/86119/86119_320.jpg" class="img-fluid rounded-start" alt="블랙 팬서-와칸다 포에버">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">영화 제목</h5>
-        <p class="card-text">내가 쓴 영화 리뷰</p>
-        <p class="card-text"><small class="text-muted">리뷰 쓴 날짜(최신순)</small></p>
-      </div>
-    </div>
-  </div>
-</div>
+<div id="div"></div>
 
 <%@ include file="../ui/footer.jsp" %>
 
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+<script>
+	$(document).ready(function() {
+		getreviews();
+	})
+	
+	function getreviews() {
+		$.ajax({
+			url : '/myreviews',
+			type : 'GET',
+			accept : "application/json",
+			contentType : "application/json; charset=utf-8",
+			dataType : "json",
+			success : function(res) {
+				console.log(res);
+				
+				let html = '';
+				let list = res.list;
+				
+				for(let i=0; i<list.length; i++) {
+					const board = list[i];
+					console.log(board);
+					
+					html += '<div class="card mb-3" style="max-width: 540px; margin: 30px auto 30px auto;">';
+					html += '<div class="row g-0">';
+					html += '<div class="col-md-4">';
+					html += '<img src="' + board.image + '" class="img-fluid rounded-start" alt="' + board.title + '">';
+					html += '</div>';
+					html += '<div class="col-md-8">';
+					html += '<div class="card-body">';
+					html += '<h5 class="card-title">' + board.title + '</h5>';
+					
+					var starrate = board.reviewStarrate;
+	    			
+	    			for(var j=0; j<starrate; j++) {
+	    				html += '<img class="star" src="../../resources/img/starrate.png">';
+	    			}
+	    			
+	    			for(var j=starrate; j<5; j++) {
+	    				html += '<img class="nonstar" src="../../resources/img/starrate.png">';
+	    			}
+					
+					html += '<p class="card-text">' + board.reviewContent + '</p>';
+					html += '<p class="card-text"><small class="text-muted">' + board.reviewDate + '</small></p>';
+					html += '</div>';
+					html += '<input type="hidden" id="reviewNum" value="' + board.reviewNum + '">';
+					html += '<div style="width: 300px; margin: 30px auto 30px auto; text-align: right;">';
+					html += '<button type="button" class="btn btn-danger" onclick="delReview()">삭제</button>';
+					html += '</div>';
+					html += '</div>';
+					html += '</div>';
+					html += '</div>';
+				}
+				$('#div').html(html);
+			},
+			error: function(error) {
+				console.log(error);
+			}
+			
+		})
+	}
+	
+	function delReview() {
+		var data = $('#reviewNum').val();
+		
+		$.ajax({
+			url : '/delreview',
+			type : 'POST',
+			accept : "application/json",
+			contentType: "application/json; charset=utf-8",
+			data: JSON.stringify(data),
+			dataType: "json",
+			success : function(res) {
+				console.log(res);
+				alert('리뷰가 삭제되었습니다.');
+			},
+			error: function(error) {
+				console.log(error);
+			}
+			
+		})
+	}
+</script>
+
   </body>
 </html>

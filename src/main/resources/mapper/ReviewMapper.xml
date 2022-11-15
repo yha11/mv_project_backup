@@ -6,18 +6,27 @@
     <mapper namespace="com.ezen.sb.mapper.ReviewMapper">
     	
     	<select id="selectReviews" resultType="reviewModel">
-    		SELECT U.USER_ID, R.REVIEW_STARRATE, R.REVIEW_CONTENT, R.REVIEW_DATE
+    		SELECT U.USER_NAME, R.REVIEW_STARRATE, R.REVIEW_CONTENT, R.REVIEW_DATE
 			FROM REVIEW R
 				INNER JOIN USER_INFO U
 				ON R.USER_NUM=U.USER_NUM
 			WHERE R.MOVIE_NUM=#{movieNum}
+			ORDER BY R.REVIEW_NUM DESC
+    	</select>
+    	<select id="selectMyReviews" resultType="reviewModel">
+    		SELECT M.IMAGE, M.TITLE, R.REVIEW_NUM, R.REVIEW_STARRATE, R.REVIEW_CONTENT, R.REVIEW_DATE
+			FROM REVIEW R
+				INNER JOIN MOVIE M
+				ON R.MOVIE_NUM=M.MOVIE_NUM
+			WHERE R.USER_NUM=#{userNum}
+			ORDER BY R.REVIEW_NUM DESC
     	</select>
     	<insert id="insertReview" parameterType="reviewModel">
     		INSERT INTO REVIEW(REVIEW_STARRATE, REVIEW_CONTENT, USER_NUM, MOVIE_NUM)
 			VALUES(#{reviewStarrate}, #{reviewContent}, #{userNum}, #{movieNum})
     	</insert>
     	<delete id="deleteReview" parameterType="reviewModel">
-    		DELETE FROM REVIEW WHERE USER_NUM=#{userNum}
+    		DELETE FROM REVIEW WHERE REVIEW_NUM=#{reviewNum}
     	</delete>
     	
     </mapper>

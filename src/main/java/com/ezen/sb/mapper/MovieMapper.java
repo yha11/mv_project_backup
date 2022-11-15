@@ -12,5 +12,5 @@ public interface MovieMapper {
 	int insertMovie(MovieVO movieModel);
 	int deleteMovie(MovieVO movieModel);
 	
-	MovieVO selectMovie(long movieNum);
+	MovieVO selectMovie(Integer movieNum);
 }
