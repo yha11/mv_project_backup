@@ -25,12 +25,12 @@ public class AuthenticationEntryPointHandler implements AuthenticationEntryPoint
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         String exception = (String) request.getAttribute("exception");
         ErrorCode errorCode;
-        Iterator<String> names = request.getAttributeNames().asIterator();
-        while(names.hasNext()) {
-        	String name = names.next();
-        	log.info("name=>{}",name);
-        	log.info("value=>{}",request.getAttribute(name));
-        }
+		/*
+		 * Iterator<String> names = request.getAttributeNames().asIterator();
+		 * while(names.hasNext()) { String name = names.next();
+		 * log.info("name=>{}",name); log.info("value=>{}",request.getAttribute(name));
+		 * }
+		 */
         log.info("authException=>{}",authException);
         /**
          * 토큰이 없는 경우 예외처리
