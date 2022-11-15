@@ -8,6 +8,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class MovieVO {
+	private Integer movieNum;
 	private String title;
 	private String rank;
 	private String image;
