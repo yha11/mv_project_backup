@@ -5,20 +5,20 @@
 
 <mapper namespace="com.ezen.sb.mapper.UserMapper">
 
-    <select id="selectUserInfoById" resultType="userInfoModel">
+    <select id="selectUserInfoById" resultType="com.ezen.sb.model.UserInfoModel">
     	SELECT USER_INFO.* FROM USER_INFO WHERE USER_ID = #{userId}
     </select>
-    <select id="selectUserInfos" resultType="userInfoModel">
+    <select id="selectUserInfos" resultType="com.ezen.sb.model.UserInfoModel">
     	SELECT * FROM USER_INFO
     </select>
-    <insert id="insertUserInfo" parameterType="userInfoModel">
+    <insert id="insertUserInfo" parameterType="com.ezen.sb.model.UserInfoModel">
     	INSERT INTO USER_INFO(USER_ID, USER_NAME, USER_EMAIL, PASSWORD)
 		VALUES(#{userId},#{userName},#{userEmail},#{password})
     </insert>
     <delete id="deleteUserInfo">
     	DELETE FROM USER_INFO WHERE USER_NUM=#{userNum}
     </delete>
-    <update id="updateUserInfo" parameterType="userInfoModel">
+    <update id="updateUserInfo" parameterType="com.ezen.sb.model.UserInfoModel">
     	UPDATE USER_INFO
 		SET USER_NAME=#{userName}, USER_EMAIL=#{userEmail}
 		WHERE USER_ID=#{userId}

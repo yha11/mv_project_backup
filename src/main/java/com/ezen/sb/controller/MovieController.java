@@ -1,12 +1,9 @@
 package com.ezen.sb.controller;
 
 import java.net.URLEncoder;
-import java.util.ArrayList;
+import java.util.List;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,10 +11,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ezen.sb.model.MovieDAO;
 import com.ezen.sb.model.MovieVO;
 import com.ezen.sb.model.NaverAPI;
+import com.ezen.sb.service.MovieService;
 
 @Controller
 public class MovieController {
 	MovieDAO dao;
+	
+	@Autowired
+	private MovieService movieService;
 
 	@RequestMapping("/movie")
 	public String moviejsp() {
@@ -26,23 +27,8 @@ public class MovieController {
 
 	@ResponseBody  
 	@RequestMapping("movie.json") 
-	public ArrayList<MovieVO> movie() throws Exception { 
-		ArrayList<MovieVO> array = new ArrayList<MovieVO>();
-		Document doc = Jsoup.connect("http://www.cgv.co.kr/movies/").get();
-		Elements es = doc.select("ol");
-		for (Element e : es.select("li")) {
-			MovieVO vo = new MovieVO();
-			vo.setRank(e.select(".rank").text());
-			vo.setImage(e.select("img").attr("src"));
-			vo.setTitle(e.select(".title").text());
-			vo.setPercent(e.select(".percent span").text());
-			vo.setLink(e.select(".box-image a").attr("href"));
-			vo.setTicketing(e.select(".link-reservation").attr("href"));
-			if (!e.select(".rank").text().equals("")) {
-				array.add(vo);
-			}
-		}
-		return array;
+	public List<MovieVO> movie() throws Exception { 
+		return movieService.selectBoards();
 	}
 
 	@ResponseBody

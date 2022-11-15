@@ -8,6 +8,7 @@ public interface MovieMapper {
 
 	List<MovieVO> selectLists(MovieVO movieModel);
 	MovieVO selectRead(String rank);
+	int countMovie();
 	int insertMovie(MovieVO movieModel);
 	int deleteMovie(MovieVO movieModel);
 }

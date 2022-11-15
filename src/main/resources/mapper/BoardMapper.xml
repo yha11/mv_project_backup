@@ -5,7 +5,7 @@
 
 <mapper namespace="com.ezen.sb.mapper.BoardMapper">
 
-	<select id="selectBoard" resultType="boardModel">
+	<select id="selectBoard" resultType="com.ezen.sb.model.BoardModel">
 		SELECT 
 			BOARD_NUM,
 			BOARD_PARENT_NUM,
@@ -20,7 +20,7 @@
 		FROM BOARD_INFO BI1
 		WHERE BOARD_NUM = #{boardNum}
 	</select>
-	<select id="selectBoards" resultType="boardModel">
+	<select id="selectBoards" resultType="com.ezen.sb.model.BoardModel">
 		WITH RECURSIVE BI AS(
 		SELECT 
 			BOARD_NUM,
@@ -66,12 +66,12 @@
 		</trim>
 	</select>
 
-	<insert id="insertBoard" parameterType="boardModel">
+	<insert id="insertBoard" parameterType="com.ezen.sb.model.BoardModel">
 		INSERT BOARD_INFO( BOARD_PARENT_NUM, BOARD_TITLE, BOARD_FILE_PATH, BOARD_CONTENT,CREUSR, MODUSR)
 		VALUES(#{boardParentNum},#{boardTitle},#{boardFilePath},#{boardContent},#{creusr},#{modusr})
 	</insert>
 
-	<update id="updateBoard" parameterType="boardModel">
+	<update id="updateBoard" parameterType="com.ezen.sb.model.BoardModel">
 		UPDATE BOARD_INFO
 		<set>
 			<if test="boardTitle != null and boardTitle != ">

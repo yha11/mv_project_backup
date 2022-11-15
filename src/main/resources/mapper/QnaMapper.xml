@@ -5,22 +5,22 @@
     
     <mapper namespace="com.ezen.sb.mapper.QnaMapper">
     
-    	<select id="selectQnas" resultType="qnaModel">
+    	<select id="selectQnas" resultType="com.ezen.sb.model.QnaModel">
     		SELECT QNA_NUM, QNA_DATE, QNA_TITLE, QNA_STATUS
 			FROM QNA_BOARD
 			WHERE USER_NUM=#{userNum}
 			ORDER BY QNA_NUM DESC
     	</select>
-    	<select id="selectQna" resultType="qnaModel">
+    	<select id="selectQna" resultType="com.ezen.sb.model.QnaModel">
     		SELECT QNA_DATE, QNA_STATUS, QNA_TITLE, QNA_CONTENT, QNA_FILE, QNA_ANSWER
 			FROM QNA_BOARD
 			WHERE USER_NUM=#{userNum} AND QNA_NUM=#{qnaNum}
     	</select>
-    	<insert id="insertQna" parameterType="qnaModel">
+    	<insert id="insertQna" parameterType="com.ezen.sb.model.QnaModel">
     		INSERT INTO QNA_BOARD(USER_NUM, QNA_TITLE, QNA_CONTENT)
 			VALUES(#{userNum}, #{qnaTitle}, #{qnaContent})
     	</insert>
-    	<update id="updateQna" parameterType="qnaModel">
+    	<update id="updateQna" parameterType="com.ezen.sb.model.QnaModel">
     	UPDATE QNA_BOARD
 		SET QNA_STATUS='완료', QNA_ANSWER=#{qnaAnswer}
 		WHERE QNA_NUM=#{qnaNum}

@@ -10,11 +10,6 @@ public class MovieVO {
 	private String percent;
 	private String link;
 	private String ticketing;
-	
-
-	@Override
-	public String toString() {
-		return "MovieVO [title=" + title + ", rank=" + rank + ", image=" + image + ", percent=" + percent + "]";
-	}
+	private String credat;
 }
 
