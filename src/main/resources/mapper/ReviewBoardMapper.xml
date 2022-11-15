@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ezen.sb.mapper.ReviewBoardMapper">
+
+	<select id="selectBoardList" resultType="com.ezen.sb.model.ReviewBoardModel">
+		SELECT
+			BOARD_NUM,
+			BOARD_RATED,
+			BOARD_JENRE,
+			BOARD_TITLE,
+			BOARD_WRITER,
+			BOARD_RCMD_NUM,
+			BOARD_DATE,
+			BOARD_CNT
+		FROM REVIEW_BOARD_INFO
+	</select>
+
+	<select id="selectBoardRead" resultType="com.ezen.sb.model.ReviewBoardModel">
+		SELECT
+			BOARD_NUM,
+			BOARD_RATED,
+			BOARD_JENRE,
+			BOARD_TITLE,
+			BOARD_CONTENT,
+			BOARD_WRITER,
+			BOARD_RCMD_NUM,
+			BOARD_DATE,
+			BOARD_CNT
+		FROM REVIEW_BOARD_INFO
+		WHERE BOARD_NUM = #{boardNum}
+	</select>
+	
+	<insert id="insertReviewBoard" parameterType="com.ezen.sb.model.ReviewBoardModel">
+		INSERT INTO REVIEW_BOARD_INFO( 
+			BOARD_RATED, 
+			BOARD_JENRE, 
+			BOARD_TITLE, 
+			BOARD_CONTENT, 
+			BOARD_WRITER )
+		VALUES( 
+			#{boardRated},
+			#{boardJenre},
+			#{boardTitle},
+			#{boardContent},
+			#{boardWriter} )
+	</insert>
+	
+	<update id="updateReviewBoard" parameterType="com.ezen.sb.model.ReviewBoardModel">
+		UPDATE REVIEW_BOARD_INFO
+		SET
+			BOARD_RATED=#{boardRated},
+			BOARD_JENRE=#{boardJenre},
+			BOARD_TITLE=#{boardTitle},
+			BOARD_CONTENT=#{boardWriter}
+		WHERE BOARD_NUM=#{boardNum}
+	</update>
+
+	<delete id="deleteReviewBoard">
+		DELETE FROM REVIEW_BOARD_INFO
+		WHERE BOARD_NUM=#{boardNum}
+	</delete>
+
+
+</mapper>

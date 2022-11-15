@@ -9,7 +9,7 @@
 				AND DATE_FORMAT(CREDAT,'%Y%m%d') = DATE_FORMAT(NOW(),'%Y%m%d')
 			</if>
 		</where>
-		ORDER BY RANK DESC
+		ORDER BY MOVIE_NUM ASC
 	</select>
 	<select id="countMovie" resultType="int">
 		SELECT COUNT(1) FROM MOVIE
