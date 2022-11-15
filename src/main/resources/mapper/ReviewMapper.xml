@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="com.ezen.sb.mapper.ReviewMapper">
+    	
+    	<select id="selectReviews" resultType="reviewModel">
+    		SELECT U.USER_ID, R.REVIEW_STARRATE, R.REVIEW_CONTENT, R.REVIEW_DATE
+			FROM REVIEW R
+				INNER JOIN USER_INFO U
+				ON R.USER_NUM=U.USER_NUM
+			WHERE R.MOVIE_NUM=#{movieNum}
+    	</select>
+    	<insert id="insertReview" parameterType="reviewModel">
+    		INSERT INTO REVIEW(REVIEW_STARRATE, REVIEW_CONTENT, USER_NUM, MOVIE_NUM)
+			VALUES(#{reviewStarrate}, #{reviewContent}, #{userNum}, #{movieNum})
+    	</insert>
+    	<delete id="deleteReview" parameterType="reviewModel">
+    		DELETE FROM REVIEW WHERE USER_NUM=#{userNum}
+    	</delete>
+    	
+    </mapper>

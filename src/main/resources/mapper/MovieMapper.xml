@@ -25,4 +25,10 @@
 	<delete id="deleteMovie">
 		DELETE FROM MOVIE WHERE RANK=#{rank}
 	</delete>
+	
+	<select id="selectMovie">
+		SELECT RANK, TITLE, IMAGE, PERCENT
+		FROM MOVIE
+		WHERE MOVIE_NUM=${movieNum}
+	</select>
 </mapper>

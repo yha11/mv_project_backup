@@ -18,50 +18,45 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<%@ include file="../ui/nav.jsp"%>
 
-<div class="card mb-3" style="max-width: 700px; margin: 30px auto 30px auto;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="https://caching.lottecinema.co.kr//Media/MovieFile/MovieImg/202211/18944_103_1.jpg" class="img-fluid rounded-start" alt="블랙 팬서: 와칸다 포에버">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h1 class="card-title">블랙 팬서: 와칸다 포에버</h1>
-		<div class="container text-center">
-		  <div class="row" style="text-align: left;">
-		    <div class="col">
-		      평점
-		    </div>
-		    <div class="col">
-		      예매율
-		    </div>
-		    <div class="col">
-		      누적관객수
-		    </div>
-		  </div>
-		  <hr>
-		</div>
-		<div style="max-width: 400px; margin: 0px auto 30px auto;">
-        <p class="card-text"><small class="text-muted">장르</small></p>
-        <p class="card-text"><small class="text-muted">개봉</small></p>
-        <p class="card-text"><small class="text-muted">분</small></p>
-        <p class="card-text"><small class="text-muted">감독</small></p>
-        <p class="card-text"><small class="text-muted">출연</small></p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div style="max-width: 700px; margin: 30px auto 30px auto;">
-	<ul class="nav nav-tabs">
-	  <li class="nav-item">
-	    <button id="synopsis" class="nav-link active" aria-current="page" onclick="getSynopsis()">영화정보</button>
-	  </li>
-	  <li class="nav-item">
-	    <button id="reviews" class="nav-link" onclick="getReviews()">평점 및 관람평</button>
-	  </li>
-	</ul>
-</div>
+<div class="container text-center" style="width: 1000px;">
+			<div class="row">
+			  <div class="col-2" style="width: 100px; margin: 30px auto 30px auto;">
+				<ul class="nav flex-column nav-pills" >
+					<li class="nav-item" style="margin: 30px auto 30px auto;">
+					  <button class="nav-link active" id="synopsis" aria-current="page" style="width: 140px; display: flex; flex-direction: column; justify-content: center; align-items: center;">영화정보</button>
+					</li>
+					<li class="nav-item">
+					  <button class="nav-link" id="reviews" style="width: 140px; display: flex; flex-direction: column; justify-content: center; align-items: center;">평점 및 관람평</button>
+					</li>
+				  </ul>
+			  </div>
+			  
+			  <!-- 바뀔 부분 -->
+			  <div class="col-10">
+				<div class="card mb-3" style="max-width: 700px; margin: 30px auto 30px auto;">
+					<div class="row g-0">
+					  <div class="col-md-4">
+						<img src="https://caching.lottecinema.co.kr//Media/MovieFile/MovieImg/202211/18944_103_1.jpg" class="img-fluid rounded-start" alt="블랙 팬서: 와칸다 포에버">
+					  </div>
+					  <div class="col-md-8">
+						<div class="card-body">
+						  <h1 class="card-title">블랙 팬서: 와칸다 포에버</h1>
+						  <div class="container text-center">
+							<hr>
+						  </div>
+						  <div style="max-width: 400px; margin: 0px auto 30px auto;">
+						  <p class="card-text" style="text-align: left;"><small class="text-muted">순위</small></p>
+						  <p class="card-text" style="text-align: left;"><small class="text-muted">예매율</small></p>
+						  </div>
+						</div>
+					  </div>
+					</div>
+				  </div>
+			  </div>
+			</div>
+		  </div>
+
 
 <div style="max-width: 650px; margin: 30px auto 30px auto;">
 	<div id="div"></div>
@@ -80,16 +75,70 @@
 	})
 	
 	function getSynopsis() {
-		$('#div').html('시놉시스');
-		$("#reviews").removeClass("active");
-	    $("#synopsis").addClass("active");
+	    
+	    $.ajax({
+	    	url : '/movie/${param.movieNum}',
+	    	type : 'GET',
+	    	accept : "application/json",
+	    	contentType: "application/json; charset=utf-8",
+	    	dataType: "json",
+	    	success : function(res) {
+	    		console.log(res);
+	    		
+	    		/* $('#div').html('시놉시스');
+	    		$("#reviews").removeClass("active");
+	    	    $("#synopsis").addClass("active"); */
+	    		
+	    	},
+			error : function(error) {
+				console.log(error);
+			}
+	    })
 	}
 	
 	function getReviews() {
-		$('#div').html('평점 및 관람평');
-		$("#synopsis").removeClass("active");
-	    $("#reviews").addClass("active");
+	    
+	    $.ajax({
+	    	url : '/reviews/${param.movieNum}',
+	    	type : 'GET',
+	    	accept : "application/json",
+	    	contentType: "application/json; charset=utf-8",
+	    	dataType: "json",
+	    	success : function(res) {
+	    		console.log(res);
+	    		let html = '';
+	    		let list = res.list;
+	    		for(let i=0; i<list.length; i++) {
+	    			const reviews = list[i];
+	    			console.log(reviews);
+	    			html += '<div class="container text-center">';
+	    			html += '<div class="row" style="width: 700px; margin: 30px auto 30px auto;">';
+	    			html += '<div class="col" style="text-align: left;">' + reviews.userId + '</div>';
+	    			html += '<div class="col" style="text-align: right;">' + reviews.reviewDate + '</div>';
+	    			html += '</div>';
+	    			html += '<div class="row" style="width: 700px; margin: 30px auto 30px auto;">';
+	    			html += '<div class="col" style="text-align: left;">' + reviews.reviewStarrate + '</div>';
+	    			html += '</div>';
+	    			html += '<div class="row" style="width: 700px; margin: 30px auto 30px auto;">';
+	    			html += '<div class="col" style="text-align: left;">' + reviews.reviewContent + '</div>';
+	    			html += '</div>';
+	    			html += '</div>';
+	    			
+	    		}
+	    		
+	    		$('#div').html('html');
+    			$("#synopsis").removeClass("active");
+    		    $("#reviews").addClass("active");
+	    		
+	    },
+	    error : function(error) {
+			console.log(error);
 	}
-</script>	
+	    
+	})
+	}
+	
+	
+</script>
 </body>
 </html>
