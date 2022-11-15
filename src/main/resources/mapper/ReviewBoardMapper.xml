@@ -5,7 +5,7 @@
 
 <mapper namespace="com.ezen.sb.mapper.ReviewBoardMapper">
 
-	<select id="selectBoardList" resultType="reviewBoardModel">
+	<select id="selectBoardList" resultType="com.ezen.sb.model.ReviewBoardModel">
 		SELECT
 			BOARD_NUM,
 			BOARD_RATED,
@@ -18,7 +18,7 @@
 		FROM REVIEW_BOARD_INFO
 	</select>
 
-	<select id="selectBoardRead" resultType="reviewBoardModel">
+	<select id="selectBoardRead" resultType="com.ezen.sb.model.ReviewBoardModel">
 		SELECT
 			BOARD_NUM,
 			BOARD_RATED,
@@ -33,7 +33,7 @@
 		WHERE BOARD_NUM = #{boardNum}
 	</select>
 	
-	<insert id="insertReviewBoard" parameterType="reviewBoardModel">
+	<insert id="insertReviewBoard" parameterType="com.ezen.sb.model.ReviewBoardModel">
 		INSERT INTO REVIEW_BOARD_INFO( 
 			BOARD_RATED, 
 			BOARD_JENRE, 
@@ -48,7 +48,7 @@
 			#{boardWriter} )
 	</insert>
 	
-	<update id="updateReviewBoard" parameterType="reviewBoardModel">
+	<update id="updateReviewBoard" parameterType="com.ezen.sb.model.ReviewBoardModel">
 		UPDATE REVIEW_BOARD_INFO
 		SET
 			BOARD_RATED=#{boardRated},
