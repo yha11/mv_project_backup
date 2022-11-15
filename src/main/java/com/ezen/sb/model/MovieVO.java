@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class MovieVO {
-	private String movieNum;
+	private Integer movieNum;
 	private String title;
 	private String rank;
 	private String image;
