@@ -30,6 +30,41 @@
 		{{/each}}
 	</script>
 
+	<div id="review">
+		<span>review</span>
+		<div class="inreview"></div>
+		<script id="temp1" type="text/x-handlebars-template">
+			{{#each .}}
+				<div><span class="una">{{username}}</span>
+				<span class="uco">{{content}}</span></div>
+			{{/each}}
+		</script>
+		<div class="inreview2">
+			<input type="hidden" id="mrank"> <input type="text"
+				id="username" class="txtreview" maxlength="3"> <input
+				type="password" id="userpw" class="txtreview"> <input
+				type="text" id="content" class="txtreview">
+			<button class="btnreview" onClick="funInsert()">등록</button>
+		</div>
+	</div>
+
+	<div class="right_btn" style="margin-top: 0;">
+		<table id="reservation"></table>
+		<script id="temp-r" type="text/x-handlebars-template">
+		{{#each .}}
+			<tr class="reserA">
+				<td class="title title2" rank="{{rank}}">{{title}}</td>
+				<td>
+					<button onClick="window.open('{{link}}')" target="_blank">영화정보</button>
+				</td>
+				<td>
+					<button onClick="window.open('{{ticketing}}')" target="_blank">예매하기</button>
+				</td>
+				<td><button class="reserdel">삭제</button></td>
+			</tr>
+		{{/each}}
+		</script>
+	</div>
 	<div class="right_box">
 		<h2>영화검색</h2>
 		검색어: <input type="text" id="keyword" value=""> <input
@@ -57,6 +92,54 @@
 
 </body>
 <script>
+	var mrank;
+
+	// 덧글 입력
+	function funInsert() {
+		var username = $("#username").val();
+		var userpw = $("#userpw").val();
+		var content = $("#content").val();
+		mrank = $("#mrank").val();
+
+		$.ajax({
+			type : "post",
+			url : "minsert",
+			data : {
+				"username" : username,
+				"userpw" : userpw,
+				"content" : content,
+				"mrank" : mrank
+			},
+			success : function(data) {
+				getReply();
+				username = $("#username").val("");
+				userpw = $("#userpw").val("");
+				content = $("#content").val("");
+			}
+		});
+	}
+
+	// 리뷰 보기
+	$("#reservation").on("click", ".reserA .title", function() {
+		$("#review").show();
+		mrank = $(this).attr("rank");
+		getReply();
+	});
+
+	function getReply() {
+		$.ajax({
+			type : "get",
+			url : "list.json",
+			data : {
+				"mrank" : mrank
+			},
+			success : function(data) {
+				var temp = Handlebars.compile($("#temp1").html());
+				$(".inreview").html(temp(data));
+				$("#mrank").val(mrank);
+			}
+		});
+	}
 
 	// cgv 
 	getlist();
@@ -71,6 +154,82 @@
 		});
 	}
 
+	// 예약 보기
+	getrlist();
+	function getrlist() {
+		$.ajax({
+			type : "get",
+			url : "list",
+			success : function(data) {
+				var temp = Handlebars.compile($("#temp-r").html());
+				$("#reservation").html(temp(data));
+			}
+		});
+	}
+
+	$("#insert").on("click", function() {
+		if (!confirm("저장하시겠습니까?"))
+			return;
+		
+		$("#container .AA input:checkbox:checked").each(function() {
+			var row = $(this).parent().parent();
+
+			var rank = row.find(".rank").html();
+			var image = row.find("img").attr("src");
+			var title = row.find(".title").html();
+			var percent = row.find(".percent").html();
+			var link = row.find(".link").attr("href");
+			var ticketing = row.find(".ticketing a").attr("href");
+		
+			$.ajax({
+				type : "get",
+				url : "insert",
+				data : {
+					"rank" : rank,
+					"image" : image,
+					"title" : title,
+					"percent" : percent,
+					"link" : link,
+					"ticketing" : ticketing
+				},
+				success : function() {
+				}
+			});
+
+			$(this).prop("checked", false);
+		});
+
+		alert("저장되었습니다");
+		getrlist();
+		/* getlist(); */
+
+	});
+
+	// 삭제
+	$("#reservation").on("click", ".reserA .reserdel", function() {
+		var reserA = $(this).parent().parent();
+		rank = reserA.find(".title").attr("rank");
+
+		$.ajax({
+			type : "post",
+			url : "mdelete",
+			data : {
+				"mrank" : rank
+			}
+		})
+
+		$.ajax({
+			type : "post",
+			url : "delete",
+			data : {
+				"rank" : rank
+			},
+			success : function() {
+				alert("삭제되었습니다.");
+				getrlist();
+			}
+		})
+	});
 
 	//검색
 

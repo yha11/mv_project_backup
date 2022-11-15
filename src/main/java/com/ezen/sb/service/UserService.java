@@ -54,8 +54,9 @@ public class UserService implements UserDetailsService {
 	}
 	
 	public int updateUserInfo(UserInfoModel userInfoModel, HttpSession session) {
-		int result=  userMapper.updateUserInfo(userInfoModel);
+		int result = userMapper.updateUserInfo(userInfoModel);
 		userInfoModel = userMapper.selectUserInfoById(userInfoModel.getUserId());
+		userInfoModel.setPassword(null);
 		session.setAttribute("user", userInfoModel);
 		return result;
 	}

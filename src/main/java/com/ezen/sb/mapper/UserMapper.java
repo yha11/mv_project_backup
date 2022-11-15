@@ -2,6 +2,10 @@ package com.ezen.sb.mapper;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.ezen.sb.model.UserInfoModel;
 
 public interface UserMapper {
