@@ -118,10 +118,6 @@
 				<td>휴대폰 번호 <i class="bi bi-check-lg" style="color: red;"></i></td>
 				<td>
 					<input type='tel' class="phone" name='phone' maxlength="13"/>
-					<!--  -->
-					<input type="button" value="인증번호 받기" onclick="return phoneCheck(0)" class="page">
-					<input type="hidden" id="phoneValid" name="phoneValid" value="false" size="20">
-					<input type="hidden" name="checkedPhone" size="20">
 				</td>
 			</tr>
 			<tr>
