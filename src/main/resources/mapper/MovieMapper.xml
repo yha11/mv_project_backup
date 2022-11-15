@@ -3,29 +3,26 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ezen.sb.mapper.MovieMapper">
 	<select id="selectLists" resultType="com.ezen.sb.model.MovieVO">
-		select * from MOVIE 
+		SELECT * FROM MOVIE 
 		<where>
 			<if test='credate == null and credat == ""'>
 				AND DATE_FORMAT(CREDAT,'%Y%m%d') = DATE_FORMAT(NOW(),'%Y%m%d')
 			</if>
 		</where>
-		order by RANK desc
+		ORDER BY RANK DESC
 	</select>
 	<select id="countMovie" resultType="int">
 		SELECT COUNT(1) FROM MOVIE
 		WHERE DATE_FORMAT(CREDAT,'%Y%m%d') = DATE_FORMAT(NOW(),'%Y%m%d')
 	</select>
 	<insert id="insertMovie">
-		insert into MOVIE(rank, title, image, percent, link,
-		ticketing)
-		values(#{rank}, #{title}, #{image}, #{percent}, #{link},
-		#{ticketing})
+		INSERT INTO MOVIE(rank, title, image, percent, link,ticketing)
+		VALUES(#{rank}, #{title}, #{image}, #{percent}, #{link},#{ticketing})
 	</insert>
 	<select id="selectRead" resultType="com.ezen.sb.model.MovieVO">
-		select * from MOVIE where
-		RANK=#{rank}
+		SELECT * FROM MOVIE WHERE RANK=#{rank}
 	</select>
 	<delete id="deleteMovie">
-		delete FROM MOVIE where RANK=#{rank}
+		DELETE FROM MOVIE WHERE RANK=#{rank}
 	</delete>
 </mapper>
