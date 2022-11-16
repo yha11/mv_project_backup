@@ -172,6 +172,7 @@
 			dataType: "json",
 			success : function(res) {
 				console.log(res);
+				location.href='mvinfo-reviews?movieNum=' + ${param.movieNum};
 				
 			},
 			error: function(error) {

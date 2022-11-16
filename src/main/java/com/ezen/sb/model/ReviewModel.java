@@ -13,4 +13,5 @@ public class ReviewModel {
 	private String userName;
 	private String title;
 	private String image;
+	private String userId;
 }

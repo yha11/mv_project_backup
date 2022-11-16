@@ -2,6 +2,8 @@ package com.ezen.sb.service;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,11 @@ public class QnaService {
 	
 	public QnaModel selectQna(long userNum, long qnaNum) {
 		return qnaMapper.selectQna(userNum, qnaNum);
+	}
+	
+	public PageInfo<QnaModel> selectAllQna() {
+		PageHelper.startPage(1,10);
+		return PageInfo.of(qnaMapper.selectAllQna());
 	}
 	
 	public int insertQna(long userNum, QnaModel qnaModel) {

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ezen.sb.model.MovieVO;
@@ -18,7 +19,6 @@ import com.ezen.sb.service.ReviewService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -32,6 +32,11 @@ public class ReviewController {
 	 public @ResponseBody MovieVO getSynopsis(@PathVariable("movieNum") Integer movieNum) { 
 		 return reviewService.selectMovie(movieNum);
 	 }
+	 
+	 @GetMapping("/allmovietitle")
+	 public @ResponseBody List<MovieVO> selectAllMovie() {
+			return reviewService.selectAllMovie();
+		}
 
 	// 영화 리뷰 가져오기
 	@GetMapping("/reviews/{movieNum}")
@@ -46,6 +51,18 @@ public class ReviewController {
 		}
 		UserModel user = (UserModel) session.getAttribute("user");
 		return reviewService.selectMyReviews(user.getUserNum());
+	}
+	
+	@GetMapping("/allreviews")
+	public @ResponseBody PageInfo<ReviewModel> selectAllReviews(HttpSession session) {
+		if(session.getAttribute("user")==null) {
+			return null;
+		}
+		UserInfoModel user = (UserInfoModel) session.getAttribute("user");
+		if(!user.getRole().equals("ROLE_ADMIN")) {
+			return null;
+		}
+		return reviewService.selectAllReviews();
 	}
 
 	@PostMapping("/addreview")

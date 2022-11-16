@@ -86,7 +86,7 @@
 					html += '</div>';
 					html += '<input type="hidden" id="reviewNum" value="' + board.reviewNum + '">';
 					html += '<div style="width: 300px; margin: 30px auto 30px auto; text-align: right;">';
-					html += '<button type="button" class="btn btn-danger" onclick="delReview()">삭제</button>';
+					html += '<button type="button" class="btn btn-danger" onclick="delReview(' + board.reviewNum + ')">삭제</button>';
 					html += '</div>';
 					html += '</div>';
 					html += '</div>';
@@ -101,8 +101,10 @@
 		})
 	}
 	
-	function delReview() {
-		var data = $('#reviewNum').val();
+	function delReview(reviewNum) {
+		var data = {
+				reviewNum : reviewNum
+		}
 		
 		$.ajax({
 			url : '/delreview',
@@ -114,6 +116,7 @@
 			success : function(res) {
 				console.log(res);
 				alert('리뷰가 삭제되었습니다.');
+				location.href='myreviews';
 			},
 			error: function(error) {
 				console.log(error);

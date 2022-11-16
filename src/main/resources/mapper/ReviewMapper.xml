@@ -21,6 +21,15 @@
 			WHERE R.USER_NUM=#{userNum}
 			ORDER BY R.REVIEW_NUM DESC
     	</select>
+    	<select id="selectAllReviews" resultType="reviewModel">
+    		SELECT R.REVIEW_NUM, R.REVIEW_STARRATE, R.REVIEW_CONTENT, U.USER_ID, M.TITLE
+			FROM REVIEW R
+				INNER JOIN USER_INFO U
+				ON R.USER_NUM=U.USER_NUM
+				INNER JOIN MOVIE M
+				ON R.MOVIE_NUM=M.MOVIE_NUM
+			ORDER BY R.REVIEW_NUM DESC
+    	</select>
     	<insert id="insertReview" parameterType="reviewModel">
     		INSERT INTO REVIEW(REVIEW_STARRATE, REVIEW_CONTENT, USER_NUM, MOVIE_NUM)
 			VALUES(#{reviewStarrate}, #{reviewContent}, #{userNum}, #{movieNum})

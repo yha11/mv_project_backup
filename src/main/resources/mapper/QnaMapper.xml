@@ -16,6 +16,11 @@
 			FROM QNA_BOARD
 			WHERE USER_NUM=#{userNum} AND QNA_NUM=#{qnaNum}
     	</select>
+    	<select id="selectAllQna" resultType="com.ezen.sb.model.QnaModel">
+    		SELECT QNA_NUM, QNA_DATE, QNA_TITLE, QNA_STATUS
+			FROM QNA_BOARD
+			ORDER BY QNA_NUM DESC
+    	</select>
     	<insert id="insertQna" parameterType="com.ezen.sb.model.QnaModel">
     		INSERT INTO QNA_BOARD(USER_NUM, QNA_TITLE, QNA_CONTENT)
 			VALUES(#{userNum}, #{qnaTitle}, #{qnaContent})

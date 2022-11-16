@@ -24,6 +24,10 @@ public class ReviewService {
 		return movieMapper.selectMovie(movieNum);
 	}
 	
+	public List<MovieVO> selectAllMovie() {
+		return movieMapper.selectAllMovie();
+	}
+	
 	public PageInfo<ReviewModel> selectReviews(long movieNum) {
 		PageHelper.startPage(1,10);
 		return PageInfo.of(reviewMapper.selectReviews(movieNum));
@@ -34,6 +38,11 @@ public class ReviewService {
 		return PageInfo.of(reviewMapper.selectMyReviews(userNum));
 	}
 	
+	public PageInfo<ReviewModel> selectAllReviews() {
+		PageHelper.startPage(1,10);
+		return PageInfo.of(reviewMapper.selectAllReviews());
+	}
+		
 	public int insertReview(ReviewModel reviewModel, HttpSession session) {
 		UserModel user = (UserModel) session.getAttribute("user");
 		reviewModel.setUserNum(user.getUserNum());

@@ -31,4 +31,9 @@
 		FROM MOVIE
 		WHERE MOVIE_NUM=${movieNum}
 	</select>
+	<select id="selectAllMovie" resultType="movieVO">
+		SELECT MOVIE_NUM, TITLE
+		FROM MOVIE
+		ORDER BY MOVIE_NUM;
+	</select>
 </mapper>
