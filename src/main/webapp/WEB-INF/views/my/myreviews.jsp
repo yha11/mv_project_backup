@@ -102,7 +102,9 @@
 	}
 	
 	function delReview() {
-		var data = $('#reviewNum').val();
+		var data = {
+				reviewNum : $('#reviewNum').val()
+		}
 		
 		$.ajax({
 			url : '/delreview',
@@ -114,6 +116,7 @@
 			success : function(res) {
 				console.log(res);
 				alert('리뷰가 삭제되었습니다.');
+				location.href='myreviews';
 			},
 			error: function(error) {
 				console.log(error);
