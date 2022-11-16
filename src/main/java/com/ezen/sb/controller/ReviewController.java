@@ -14,6 +14,7 @@ import com.ezen.sb.model.MovieVO;
 import com.ezen.sb.model.ReviewModel;
 import com.ezen.sb.model.UserInfoModel;
 import com.ezen.sb.service.ReviewService;
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -43,6 +44,18 @@ public class ReviewController {
 		}
 		UserInfoModel user = (UserInfoModel) session.getAttribute("user");
 		return reviewService.selectMyReviews(user.getUserNum());
+	}
+	
+	@GetMapping("/allreviews")
+	public @ResponseBody PageInfo<ReviewModel> selectAllReviews(HttpSession session) {
+		if(session.getAttribute("user")==null) {
+			return null;
+		}
+		UserInfoModel user = (UserInfoModel) session.getAttribute("user");
+		if(!user.getRole().equals("ROLE_ADMIN")) {
+			return null;
+		}
+		return reviewService.selectAllReviews();
 	}
 
 	@PostMapping("/addreview")

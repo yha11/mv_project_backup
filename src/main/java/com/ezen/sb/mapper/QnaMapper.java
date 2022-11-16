@@ -13,6 +13,8 @@ public interface QnaMapper {
 	
 	QnaModel selectQna(@Param("userNum") long userNum, @Param("qnaNum") long qnaNum);
 	
+	List<QnaModel> selectAllQna();
+	
 	int insertQna(QnaModel qnaModel);
 	
 	int updateQna(QnaModel qnaModel);

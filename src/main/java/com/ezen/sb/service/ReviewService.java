@@ -36,6 +36,11 @@ public class ReviewService {
 		return PageInfo.of(reviewMapper.selectMyReviews(userNum));
 	}
 	
+	public PageInfo<ReviewModel> selectAllReviews() {
+		PageHelper.startPage(1,10);
+		return PageInfo.of(reviewMapper.selectAllReviews());
+	}
+		
 	public int insertReview(ReviewModel reviewModel, HttpSession session) {
 		UserInfoModel user = (UserInfoModel) session.getAttribute("user");
 		reviewModel.setUserNum(user.getUserNum());

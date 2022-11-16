@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ezen.sb.model.QnaModel;
 import com.ezen.sb.model.UserInfoModel;
 import com.ezen.sb.service.QnaService;
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -38,6 +39,16 @@ public class QnaController {
 	public @ResponseBody QnaModel getQna(HttpSession session, @PathVariable("qnaNum") long qnaNum) {
 		UserInfoModel user = (UserInfoModel) session.getAttribute("user");
 		return qnaService.selectQna(user.getUserNum(), qnaNum);
+	}
+	
+	@GetMapping("/allqna")
+	public @ResponseBody PageInfo<QnaModel> selectAllQna(HttpSession session) {
+		UserInfoModel user = (UserInfoModel) session.getAttribute("user");
+		if(!user.getRole().equals("ROLE_ADMIN")) {
+			return null;
+		}
+		log.info("user={}", user);
+		return qnaService.selectAllQna();
 	}
 	
 	@PostMapping("/addqna")

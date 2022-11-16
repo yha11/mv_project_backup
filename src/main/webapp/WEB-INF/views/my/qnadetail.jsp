@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>내 문의 상세보기</title>
+<title>문의 상세보기</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body>
@@ -46,6 +46,9 @@
 	    <div class="col-sm-10">
 	    <textarea readonly class="form-control-plaintext" id="qnaAnswer" name="qnaAnswer" rows="3" style="height: 100px; resize: none;"></textarea>
 	    </div>
+	<div id="answerbutton">
+	<!-- 관리자용 답변 버튼 -->
+	</div>
   	</div>
 	<div style="width: 200px; margin: 30px auto 30px auto; display: flex; flex-direction: column; justify-content: center; align-items: center;">
 		<button type="button" class="btn btn-primary" style="border-radius: 6px;" onclick="location.href='myqna'">목록</button>
@@ -60,6 +63,12 @@
 	$(document).ready(function() {
 		qnaview();
 	})
+
+	var role = '${user.role}';
+	
+	if(role === 'ROLE_ADMIN') {
+		adminqnaview();
+	}
 	
 	function qnaview() {
 		$.ajax({
@@ -87,6 +96,45 @@
 			}
 		})
 		
+	}
+	
+	function adminqnaview() {
+		$('#qnaAnswer').attr('readonly', false);
+		
+		let html = '';
+		html += '<div style="width: 200px; margin: 30px auto 30px auto; display: flex; flex-direction: column; justify-content: center; align-items: center;">';
+		html += '<button type="button" class="btn btn-primary" style="border-radius: 6px;" onclick="answer()">답변 등록</button>';
+		html += '</div>';
+		
+		console.log(html);
+		$('#answerbutton').html(html);
+		
+	}
+	
+	function answer() {
+		var data = {
+				qnaNum : ${param.qnaNum},
+				qnaAnswer : $('#qnaAnswer').val()
+		}
+		console.log(data);
+		
+		$.ajax({
+			url : '/modifyqna',
+			type : 'POST',
+			accept : "application/json",
+			contentType: "application/json; charset=utf-8",
+			data: JSON.stringify(data),
+			dataType: "json",
+			success : function(res) {
+				console.log(res);
+				alert('답변이 등록되었습니다.');
+				location.href='../admin/allqna';
+				
+			},
+			error: function(error) {
+				console.log(error);
+			}
+		})
 	}
 </script>
 </body>
