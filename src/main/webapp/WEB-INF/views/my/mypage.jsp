@@ -22,7 +22,7 @@
 	<%@ include file="../ui/nav.jsp"%>
 
 		<c:choose>
-			<c:when test="${empty user}">
+			<c:when test="${empty userId}">
 				<div style="width: 650px; margin: 30px auto 30px auto; display: flex; flex-direction: column; justify-content: center; align-items: center;">
 					<div class="alert alert-danger" role="alert">
 					  로그인 후 사용 가능합니다.
@@ -31,11 +31,11 @@
 			</c:when>
 		</c:choose>
 		<c:choose>
-			<c:when test="${user.role=='ROLE_USER'}">
+			<c:when test="${admin==0}">
 				<div class="card text-center" style="width: 650px; margin: 30px auto 30px auto;">
 			 	<div class="card-header">일반 회원</div>
 			 	<div class="card-body">
-					<h5 class="card-title">${user.userName}님 반가워요!</h5>
+					<h5 class="card-title">${userName}님 반가워요!</h5>
 					<p class="card-text">오늘은 어떤 영화를 보셨나요?</p>
 					<a href="../review/mvinfo-reviews" class="btn btn-primary" style="border-radius: 20px;">리뷰쓰기</a>
 				</div>
@@ -51,11 +51,11 @@
 			</c:when>
 		</c:choose>
 		<c:choose>
-			<c:when test="${user.role=='ROLE_ADMIN'}">
+			<c:when test="${admin==1}">
 				<div class="card text-center" style="width: 650px; margin: 30px auto 30px auto;">
 			 	<div class="card-header">관리자</div>
 			 	<div class="card-body">
-					<h5 class="card-title">${user.userName}님</h5>
+					<h5 class="card-title">${userName}님</h5>
 					<p class="card-text">관리자 페이지입니다.</p>
 				</div>
 				<div class="card-footer text-muted">
