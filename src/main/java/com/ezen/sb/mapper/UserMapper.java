@@ -2,20 +2,22 @@ package com.ezen.sb.mapper;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.apache.ibatis.annotations.Param;
 
-import com.ezen.sb.model.UserInfoModel;
+import com.ezen.sb.model.UserModel;
 
 public interface UserMapper {
 
-	UserInfoModel selectUserInfoById(String userId);
-	
-	List<UserInfoModel> selectUserInfos();
+	UserModel findUser(@Param("userId")String userId);
+	List<UserModel> selectUserInfos();
 
-	int insertUserInfo(UserInfoModel uiModel);
-	int deleteUserInfo(long userNum);
-	
-	int updateUserInfo(UserInfoModel userInfoModel);
+	String checkUserPhone(@Param("phone")String phone);
+	String checkUserPhoneName(@Param("phone")String phone, @Param("userName")String userName);
+	String checkUserPhoneNameId(@Param("phone")String phone, @Param("userName")String userName, @Param("userId")String userId);
+	int updatePassword(@Param("userId")String userId, @Param("password")String password);
+	int insertMember(UserModel userModel);
+	UserModel getMember(@Param("userId")String userId);
+	String userCheck(@Param("userId")String userId);
+	int deleteMember(@Param("userId")String userId);
+	int updateMember(UserModel userModel);
 }

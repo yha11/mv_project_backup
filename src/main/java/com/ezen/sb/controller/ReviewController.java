@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ezen.sb.model.MovieVO;
 import com.ezen.sb.model.ReviewModel;
-import com.ezen.sb.model.UserInfoModel;
+import com.ezen.sb.model.UserModel;
 import com.ezen.sb.service.ReviewService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -44,7 +44,7 @@ public class ReviewController {
 		if(session.getAttribute("user")==null) {
 			return null;
 		}
-		UserInfoModel user = (UserInfoModel) session.getAttribute("user");
+		UserModel user = (UserModel) session.getAttribute("user");
 		return reviewService.selectMyReviews(user.getUserNum());
 	}
 

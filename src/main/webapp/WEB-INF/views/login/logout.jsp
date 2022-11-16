@@ -12,7 +12,5 @@
 		session.invalidate(); 
 		response.sendRedirect("login");
 	%>
-<%-- 아이디<%=session.getAttribute("id") %>
-이름<%=session.getAttribute("name") %> --%>
 </body>
 </html>

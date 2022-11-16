@@ -115,7 +115,7 @@ li {
 	<br><br><br><br><br>
 	<div class="table" align="center">
 		<div class="table-cell">
-			<form action="login.do" method="post" name="frm">
+			<form action="/login.do" method="post" name="frm">
 				<div class="login-container">
 					<h3 class="login--title">로그인</h3>
 					<div align="left"><label class=form-input--title for="userid">아이디</label></div>

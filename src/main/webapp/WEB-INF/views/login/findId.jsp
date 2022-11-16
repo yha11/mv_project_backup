@@ -18,7 +18,7 @@
 			<br>
 			<hr>
 			<br>
-				<form action="findId" method="post" name="frm">
+				<form action="findId.do" method="post" name="frm">
 					<table>
 						<tr>
 							<td>
@@ -33,7 +33,7 @@
 						</tr>
 						<tr>
 							<td>
-								휴대폰 번호 </td>
+								휴대폰번호 </td>
 								<td> <input type='tel' class="phone" name='phone' maxlength="13" size="13"/>
 							</td>
 						</tr>

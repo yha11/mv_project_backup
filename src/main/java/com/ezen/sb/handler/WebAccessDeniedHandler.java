@@ -29,7 +29,7 @@ public class WebAccessDeniedHandler implements AccessDeniedHandler {
         try {
 			json.put("code", errorCode.getCode());
 	        json.put("message", errorCode.getMessage());
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
         response.getWriter().print(json);

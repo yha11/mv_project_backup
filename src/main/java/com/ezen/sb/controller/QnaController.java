@@ -2,7 +2,6 @@ package com.ezen.sb.controller;
 
 
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ezen.sb.model.QnaModel;
-import com.ezen.sb.model.UserInfoModel;
+import com.ezen.sb.model.UserModel;
 import com.ezen.sb.service.QnaService;
 import com.github.pagehelper.PageInfo;
 
@@ -30,19 +29,19 @@ public class QnaController {
 		if(session.getAttribute("user")==null) {
 			return null;
 		}
-		UserInfoModel user = (UserInfoModel) session.getAttribute("user");
+		UserModel user = (UserModel) session.getAttribute("user");
 		return qnaService.selectQnas(user.getUserNum());
 	}
 	
 	@GetMapping("/qnadetail/{qnaNum}")
 	public @ResponseBody QnaModel getQna(HttpSession session, @PathVariable("qnaNum") long qnaNum) {
-		UserInfoModel user = (UserInfoModel) session.getAttribute("user");
+		UserModel user = (UserModel) session.getAttribute("user");
 		return qnaService.selectQna(user.getUserNum(), qnaNum);
 	}
 	
 	@PostMapping("/addqna")
 	public @ResponseBody int addQna(HttpSession session, @RequestBody QnaModel qnaModel) {
-		UserInfoModel user = (UserInfoModel) session.getAttribute("user");
+		UserModel user = (UserModel) session.getAttribute("user");
 		log.info("user={}", user);
 		return qnaService.insertQna(user.getUserNum(), qnaModel);
 	}

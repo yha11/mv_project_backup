@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title> 영화리뷰사이트 | 회원가입</title>
-<link href="../../resources/css/styles.css?test1=5" rel="stylesheet" />
+<title>이젠, 집에서 | 회원가입</title>
+<link href="css/styles.css?test1=5" rel="stylesheet" />
 <title>회원가입 화면</title>
 <style>
 
@@ -14,10 +14,9 @@
 	color: red;
 }
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<!-- 경로가 안 찾아져요 -->
-<!-- <script type="text/javascript" src="js/libs/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="js/member.js?test=12"></script> -->
+<script type="text/javascript" src="/resources/js/jquery3.6.1.js"></script>
+<!-- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+<script type="text/javascript" src="/resources/js/member.js?test=12"></script>
 <!-- 도로명 주소 검색시 사용하는 daum api -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 </head>
@@ -29,19 +28,19 @@
 <!-- 왼쪽, 오른쪽 바깥여백을 auto로 주면 중앙정렬된다.  -->
     <div align="center">
 			<h2>회원가입</h2>
-	<form action="#" method="post" name="frm">
+	<form action="/join.do" method="post" name="frm" >
 		<table>
 			<tr>
 			<td colspan="2"><hr> </td>
 			</tr>
 			<tr>
 				<td>이름 <i class="bi bi-check-lg" style="color: red;"></i> </td>
-				<td><input type="text" name="name" size="20" maxlength="16"></td>
+				<td><input type="text" name="userName" size="20" maxlength="16"></td>
 			</tr>
 			<tr>
 				<td>아이디 <i class="bi bi-check-lg" style="color: red;"></i></td>
 				<td>
-					<input type="text" id="userid" name="userid" size="20" maxlength="16">
+					<input type="text" id="userId" name="userId" size="20" maxlength="16">
 					<input type="hidden" name="reid" size="20">
 					<input type="button" value="중복체크" onclick="idCheck()" class="page">
 				</td>
@@ -59,7 +58,7 @@
 			</tr>
 			<tr>
 				<td>암호 <i class="bi bi-check-lg" style="color: red;"></i></td>
-				<td><input type="password" id="pwd" name="pwd" size="20" maxlength="16"></td>
+				<td><input type="password" id="password" name="password" size="20" maxlength="16"></td>
 				<td><input type="hidden" name="passwordValid" size="20" value="false"></td>
 			</tr>
 			<tr>
@@ -87,7 +86,7 @@
 			<tr>
 				<td>생년월일</td>
 				<td>
-					<input type="text" id="birth" name="birth" placeholder="8자리입력(예.19950922)" maxlength="8">
+					<input type="text" id="birth" name="birth" placeholder="8자리입력(예.19951129)" maxlength="8">
 				</td>
 			</tr>
 			<tr>
@@ -102,7 +101,7 @@
 
 			<tr>
 				<td>이메일</td>
-				<td><input type="text" name="email" value=""> @ <input type="text" name="eMailSite" value="" readonly>
+				<td><input type="text" id="preEmail" value="" onchange="changeEamil()"> @ <input type="text" id="eMailSite" value=""  onchange="changeEamil()" readonly>
 					<select	id="eMailForm" name="eMailForm" size="1" onchange="email_check()">
 						<option value="">선택하세요</option>
 						<option value="naver.com">naver.com</option>
@@ -119,12 +118,17 @@
 				<td>휴대폰 번호 <i class="bi bi-check-lg" style="color: red;"></i></td>
 				<td>
 					<input type='tel' class="phone" name='phone' maxlength="13"/>
+					<!--  -->
+					<input type="button" value="인증번호 받기" onclick="return phoneCheck(0)" class="page">
+					<input type="hidden" id="phoneValid" name="phoneValid" value="false" size="20">
+					<input type="hidden" name="checkedPhone" size="20">
 				</td>
 			</tr>
 			<tr>
 				<td>주소 <i class="bi bi-check-lg" style="color: red;"></i></td>
 				<td>
-					<input type="text" id="sample4_detailAddress" name="addr3" placeholder="주소"  size="60"><br>
+					<span id="guide" style="color:#999;display:none"></span>
+					<input type="text" id="sample4_detailAddress" name="addr" placeholder="상세주소"  size="60"><br>
 				</td>
 			</tr>
 			<tr>
@@ -136,17 +140,28 @@
 			<tr>
 				<td colspan="2" align="center">
 					<input type="hidden" name="admin" value="0">
-					<input type="submit" value="확인" class="back-btn"onclick="return joinCheck()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="submit" value="확인" class="back-btn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<input type="reset" value="다시작성" class="back-btn">
+					<input type="hidden" name="email" id="email">
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2">${message}</td>
 			</tr>
+			
 		</table>
 	</form>
     </div>
 </section>
+<script>
+function changeEamil(){
+	$('#email').val($('#preEmail').val() + '@' + $('#eMailSite').val());
+}
+function email_check(){
+	$('#eMailSite').val($('#eMailForm').val());
+	$('#email').val($('#preEmail').val() + '@' + $('#eMailForm').val());
+}
+</script>
 <jsp:include page="/WEB-INF/views/ui/footer.jsp"></jsp:include>
 </div>
 </body>
