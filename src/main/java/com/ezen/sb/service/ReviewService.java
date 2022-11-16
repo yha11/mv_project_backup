@@ -26,6 +26,10 @@ public class ReviewService {
 		return movieMapper.selectMovie(movieNum);
 	}
 	
+	public List<MovieVO> selectAllMovie() {
+		return movieMapper.selectAllMovie();
+	}
+	
 	public PageInfo<ReviewModel> selectReviews(long movieNum) {
 		PageHelper.startPage(1,10);
 		return PageInfo.of(reviewMapper.selectReviews(movieNum));

@@ -1,5 +1,7 @@
 package com.ezen.sb.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,11 @@ public class ReviewController {
 	 public @ResponseBody MovieVO getSynopsis(@PathVariable("movieNum") Integer movieNum) { 
 		 return reviewService.selectMovie(movieNum);
 	 }
+	 
+	 @GetMapping("/allmovietitle")
+	 public @ResponseBody List<MovieVO> selectAllMovie() {
+			return reviewService.selectAllMovie();
+		}
 
 	// 영화 리뷰 가져오기
 	@GetMapping("/reviews/{movieNum}")

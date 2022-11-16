@@ -86,7 +86,7 @@
 					html += '</div>';
 					html += '<input type="hidden" id="reviewNum" value="' + board.reviewNum + '">';
 					html += '<div style="width: 300px; margin: 30px auto 30px auto; text-align: right;">';
-					html += '<button type="button" class="btn btn-danger" onclick="delReview()">삭제</button>';
+					html += '<button type="button" class="btn btn-danger" onclick="delReview(' + board.reviewNum + ')">삭제</button>';
 					html += '</div>';
 					html += '</div>';
 					html += '</div>';
@@ -101,9 +101,9 @@
 		})
 	}
 	
-	function delReview() {
+	function delReview(reviewNum) {
 		var data = {
-				reviewNum : $('#reviewNum').val()
+				reviewNum : reviewNum
 		}
 		
 		$.ajax({

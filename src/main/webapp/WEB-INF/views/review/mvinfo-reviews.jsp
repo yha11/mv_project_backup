@@ -29,6 +29,17 @@
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<%@ include file="../ui/nav.jsp"%>
+	
+<div style="width: 800px; margin: 30px auto 30px auto;">
+	<div class="dropdown">
+	  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+	    영화
+	  </button>
+	  <ul id="alltitle" class="dropdown-menu">
+	    	<!-- 넣을 부분 -->
+	  </ul>
+	</div>
+</div>
 
 <div class="container text-center" style="width: 1000px;">
 			  <ul class="nav justify-content-center">
@@ -59,8 +70,29 @@
 
 <script>
 	$(document).ready(function() {
+		getMovieTitle();
 		getSynopsis();
 	})
+	
+	function getMovieTitle() {
+		$.ajax({
+			url : '/allmovietitle',
+			type : 'GET',
+		    accept : "application/json",
+		    contentType : "application/json; charset=utf-8",
+		    dataType : "json",
+		    success : function(res) {
+		    	console.log(res);
+		    	let html = '';
+		    	
+		    	for(let i=0; i<res.length; i++) {
+		    		const title = res[i];
+		    		html += '<li><a class="dropdown-item" href="mvinfo-reviews?movieNum=' + title.movieNum + '">' + title.title + '</a></li>';
+		    	}
+		    	$('#alltitle').html(html);
+		    }
+		})
+	}
 	
 	function getSynopsis() {
 	    
@@ -177,7 +209,7 @@
 	}
 	
 	function writeReview(movieNum) {
-		location.href = '/views/review/review?movieNum=' + ${param.movieNum};
+		location.href = '/views/review/review?movieNum=' + '${param.movieNum}';
 	}
 	
 	
