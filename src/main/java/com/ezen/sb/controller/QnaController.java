@@ -42,8 +42,8 @@ public class QnaController {
 	
 	@GetMapping("/allqna")
 	public @ResponseBody PageInfo<QnaModel> selectAllQna(HttpSession session) {
-		UserInfoModel user = (UserInfoModel) session.getAttribute("user");
-		if(!user.getRole().equals("ROLE_ADMIN")) {
+		UserModel user = (UserModel) session.getAttribute("user");
+		if(!user.getAdmin().equals("1")) {
 			return null;
 		}
 		log.info("user={}", user);

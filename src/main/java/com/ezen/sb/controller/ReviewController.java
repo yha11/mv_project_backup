@@ -58,8 +58,8 @@ public class ReviewController {
 		if(session.getAttribute("user")==null) {
 			return null;
 		}
-		UserInfoModel user = (UserInfoModel) session.getAttribute("user");
-		if(!user.getRole().equals("ROLE_ADMIN")) {
+		UserModel user = (UserModel) session.getAttribute("user");
+		if(!user.getAdmin().equals("1")) {
 			return null;
 		}
 		return reviewService.selectAllReviews();

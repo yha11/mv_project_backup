@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>이젠, 집에서 | 회원가입</title>
+<title>영화리뷰사이트 | 회원가입</title>
 <link href="css/styles.css?test1=5" rel="stylesheet" />
 <title>회원가입 화면</title>
 <style>
@@ -17,8 +17,6 @@
 <script type="text/javascript" src="/resources/js/jquery3.6.1.js"></script>
 <!-- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 <script type="text/javascript" src="/resources/js/member.js?test=12"></script>
-<!-- 도로명 주소 검색시 사용하는 daum api -->
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 </head>
 <body>
 <div id="wrap">
@@ -52,7 +50,6 @@
 						<span class="badId">4자 이상의 영문 혹은 영문과 숫자를 조합</span>
 						<input type="hidden" name="idValid" value = "false" size="20">
 						<br>
-						<span class="badCheckedId">아이디 중복확인</span>
 					</p>
 				</td>
 			</tr>
@@ -86,7 +83,7 @@
 			<tr>
 				<td>생년월일</td>
 				<td>
-					<input type="text" id="birth" name="birth" placeholder="8자리입력(예.19951129)" maxlength="8">
+					<input type="text" id="birth" name="birth" placeholder="8자리입력(예.19950922)" maxlength="8">
 				</td>
 			</tr>
 			<tr>
@@ -118,10 +115,6 @@
 				<td>휴대폰 번호 <i class="bi bi-check-lg" style="color: red;"></i></td>
 				<td>
 					<input type='tel' class="phone" name='phone' maxlength="13"/>
-					<!--  -->
-					<input type="button" value="인증번호 받기" onclick="return phoneCheck(0)" class="page">
-					<input type="hidden" id="phoneValid" name="phoneValid" value="false" size="20">
-					<input type="hidden" name="checkedPhone" size="20">
 				</td>
 			</tr>
 			<tr>

@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
-    <title>마이페이지</title>
+    <title>문의하기</title>
 
     <!-- 부트스트랩 -->
 <!-- CSS only -->
@@ -30,7 +30,7 @@
 	<div class="mb-3 row">
 	    <label for="userId" class="col-sm-2 col-form-label" style="background-color: #dddddd; border-radius: 6px; text-align: center;">아이디</label>
 	    <div class="col-sm-10">
-	      <input type="text" readonly class="form-control-plaintext" id="userId" value="${user.userId}">
+	      <input type="text" readonly class="form-control-plaintext" id="userId" value="${userid}">
 	    </div>
   	</div>
 	<div class="mb-3 row">

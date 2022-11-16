@@ -20,12 +20,6 @@ public class JoinController {
 	@Autowired
 	private UserService user;
 
-	@GetMapping("terms")
-	public String terms() {
-
-		return "views/join/terms";
-	}
-
 	@GetMapping("join")
 	public String join() {
 

@@ -127,7 +127,7 @@ li {
 						<a class="findPassword" href="findPassword">비밀번호 찾기</a>
 					</div>
 					<input type="submit" class="form-btn" value="로그인" id="login">
-					<input type="button" class="form-btn" value="회원가입" id="signup" onclick="location.href='/views/login/join'">
+					<input type="button" class="form-btn" value="회원가입" id="signup" onclick="location.href='/views/join/join'">
 				</div>
 			</form>
 		</div>

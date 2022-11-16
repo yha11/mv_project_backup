@@ -9,11 +9,10 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
-<link
-	href="resources/style.css"	rel="stylesheet" />
+<link href="resources/style.css" rel="stylesheet" />
 </head>
 <body>
-		<h1>Movie chart</h1>
+	<h1>Movie chart</h1>
 	<div id="container"></div>
 	<script id="temp" type="text/x-handlebars-template">
 		{{#each .}}
@@ -89,57 +88,10 @@
 			<button id="btnnext">다음</button>
 		</div>
 	</div>
-
+	<!-- footer -->
+	<jsp:include page="/WEB-INF/views/ui/footer.jsp"></jsp:include>
 </body>
 <script>
-	var mrank;
-
-	// 덧글 입력
-	function funInsert() {
-		var username = $("#username").val();
-		var userpw = $("#userpw").val();
-		var content = $("#content").val();
-		mrank = $("#mrank").val();
-
-		$.ajax({
-			type : "post",
-			url : "minsert",
-			data : {
-				"username" : username,
-				"userpw" : userpw,
-				"content" : content,
-				"mrank" : mrank
-			},
-			success : function(data) {
-				getReply();
-				username = $("#username").val("");
-				userpw = $("#userpw").val("");
-				content = $("#content").val("");
-			}
-		});
-	}
-
-	// 리뷰 보기
-	$("#reservation").on("click", ".reserA .title", function() {
-		$("#review").show();
-		mrank = $(this).attr("rank");
-		getReply();
-	});
-
-	function getReply() {
-		$.ajax({
-			type : "get",
-			url : "list.json",
-			data : {
-				"mrank" : mrank
-			},
-			success : function(data) {
-				var temp = Handlebars.compile($("#temp1").html());
-				$(".inreview").html(temp(data));
-				$("#mrank").val(mrank);
-			}
-		});
-	}
 
 	// cgv 
 	getlist();
@@ -154,82 +106,6 @@
 		});
 	}
 
-	// 예약 보기
-	getrlist();
-	function getrlist() {
-		$.ajax({
-			type : "get",
-			url : "list",
-			success : function(data) {
-				var temp = Handlebars.compile($("#temp-r").html());
-				$("#reservation").html(temp(data));
-			}
-		});
-	}
-
-	$("#insert").on("click", function() {
-		if (!confirm("저장하시겠습니까?"))
-			return;
-		
-		$("#container .AA input:checkbox:checked").each(function() {
-			var row = $(this).parent().parent();
-
-			var rank = row.find(".rank").html();
-			var image = row.find("img").attr("src");
-			var title = row.find(".title").html();
-			var percent = row.find(".percent").html();
-			var link = row.find(".link").attr("href");
-			var ticketing = row.find(".ticketing a").attr("href");
-		
-			$.ajax({
-				type : "get",
-				url : "insert",
-				data : {
-					"rank" : rank,
-					"image" : image,
-					"title" : title,
-					"percent" : percent,
-					"link" : link,
-					"ticketing" : ticketing
-				},
-				success : function() {
-				}
-			});
-
-			$(this).prop("checked", false);
-		});
-
-		alert("저장되었습니다");
-		getrlist();
-		/* getlist(); */
-
-	});
-
-	// 삭제
-	$("#reservation").on("click", ".reserA .reserdel", function() {
-		var reserA = $(this).parent().parent();
-		rank = reserA.find(".title").attr("rank");
-
-		$.ajax({
-			type : "post",
-			url : "mdelete",
-			data : {
-				"mrank" : rank
-			}
-		})
-
-		$.ajax({
-			type : "post",
-			url : "delete",
-			data : {
-				"rank" : rank
-			},
-			success : function() {
-				alert("삭제되었습니다.");
-				getrlist();
-			}
-		})
-	});
 
 	//검색
 
