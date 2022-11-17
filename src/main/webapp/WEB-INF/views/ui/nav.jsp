@@ -45,7 +45,7 @@ li {
                         <li class="dropdown">
                             <a class="dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">게시판</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="/views/board/board-list">공지사항</a></li>
+                                <li><a class="dropdown-item" href="/views/notice/noticelist">공지사항</a></li>
                                 <li><hr class="dropdown-divider" /></li>
                                 <li><a class="dropdown-item" href="/views/my/qna">문의하기</a></li>
                                 <li><a class="dropdown-item" href="#!">자주묻는 질문</a></li>

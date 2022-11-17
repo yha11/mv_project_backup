@@ -14,5 +14,5 @@ public class NoticeModel {
 	private String noticeDate;
 	private Integer noticeCnt;
 	private String noticeContent;
-	//private long userNum;
+	private Integer userNum;
 }
