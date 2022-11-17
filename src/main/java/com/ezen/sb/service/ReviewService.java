@@ -30,12 +30,12 @@ public class ReviewService {
 		return movieMapper.selectAllMovie();
 	}
 	
-	public PageInfo<ReviewModel> selectReviews(long movieNum) {
+	public PageInfo<ReviewModel> selectReviews(Integer movieNum) {
 		PageHelper.startPage(1,10);
 		return PageInfo.of(reviewMapper.selectReviews(movieNum));
 	}
 	
-	public PageInfo<ReviewModel> selectMyReviews(long userNum) {
+	public PageInfo<ReviewModel> selectMyReviews(Integer userNum) {
 		PageHelper.startPage(1,10);
 		return PageInfo.of(reviewMapper.selectMyReviews(userNum));
 	}

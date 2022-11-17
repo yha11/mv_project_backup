@@ -78,7 +78,7 @@ public class LoginController {
 	private void makeSession(HttpServletRequest request, UserModel userModel) {
 		HttpSession session = request.getSession();
 		session.setAttribute("userName", userModel.getUserName());
-		session.setAttribute("userid", userModel.getUserId());
+		session.setAttribute("userId", userModel.getUserId());
 		session.setAttribute("password", userModel.getPassword());
 		session.setAttribute("birth", userModel.getBirth());
 		session.setAttribute("email", userModel.getEmail());
@@ -88,6 +88,7 @@ public class LoginController {
 		}
 		session.setAttribute("addr", userModel.getAddr());
 		session.setAttribute("admin", userModel.getAdmin());
+		session.setAttribute("user", userModel);
 	}
 
 }

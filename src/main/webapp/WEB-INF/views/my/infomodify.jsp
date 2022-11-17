@@ -13,16 +13,16 @@
 <fieldset disabled>
   <div class="mb-3">
     <label for="userId" class="form-label">아이디</label>
-    <input type="text" class="form-control" id="userId" value="${user.userId}">
+    <input type="text" class="form-control" id="userId" value="${userId}">
   </div>
 </fieldset>
   <div class="mb-3">
     <label for="userName" class="form-label">이름</label>
-    <input type="text" class="form-control" id="userName" value="${user.userName}">
+    <input type="text" class="form-control" id="userName" value="${userName}">
   </div>
   <div class="mb-3">
     <label for="userEmail" class="form-label">이메일</label>
-    <input type="email" class="form-control" id="userEmail" value="${user.userEmail}">
+    <input type="email" class="form-control" id="userEmail" value="${email}">
   </div>
   <button class="btn btn-primary" onclick="infomodify()">수정</button>
 </div>

@@ -64,9 +64,9 @@
 		qnaview();
 	})
 
-	var role = '${user.role}';
+	var role = '${admin}';
 	
-	if(role === 'ROLE_ADMIN') {
+	if(role === 1) {
 		adminqnaview();
 	}
 	

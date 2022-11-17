@@ -8,7 +8,7 @@ public interface ReviewMapper {
 	
 	List<ReviewModel> selectReviews(long movieNum);
 	
-	List<ReviewModel> selectMyReviews(long userNum);
+	List<ReviewModel> selectMyReviews(Integer userNum);
 	
 	List<ReviewModel> selectAllReviews();
 	
