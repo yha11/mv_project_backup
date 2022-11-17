@@ -49,7 +49,7 @@ public class TransactionConfig {
 		return txAdvice;
 	}
 	
-	
+	@Bean
 	Advisor transactionAdviceAdvisor() {
 		log.debug("transactionAdviceAdvisor()");
 		AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
