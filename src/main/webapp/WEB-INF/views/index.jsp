@@ -10,7 +10,8 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
 	rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="resources/css/styles.css" rel="stylesheet" />
+<!-- 404 에러 떠서 주석처리 -->
+<!-- <link href="resources/css/styles.css" rel="stylesheet" /> -->
 <!-- nav에 주석처리 하니까 메인화면에 안떠서 일단 적어뒀어요. -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"

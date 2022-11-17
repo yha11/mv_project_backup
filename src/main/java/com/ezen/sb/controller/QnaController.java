@@ -52,8 +52,8 @@ public class QnaController {
 	
 	@PostMapping("/addqna")
 	public @ResponseBody int addQna(HttpSession session, @RequestBody QnaModel qnaModel) {
-		Integer userNum = (Integer) session.getAttribute("userNum");
-		return qnaService.insertQna(userNum, qnaModel);
+		UserModel user = (UserModel) session.getAttribute("user");
+		return qnaService.insertQna(user.getUserNum(), qnaModel);
 	}
 	
 	@PostMapping("/modifyqna")

@@ -20,4 +20,5 @@ public interface UserMapper {
 	String userCheck(@Param("userId")String userId);
 	int deleteMember(@Param("userId")String userId);
 	int updateMember(UserModel userModel);
+	int updateUser(UserModel userModel);
 }

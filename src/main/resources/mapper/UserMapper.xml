@@ -48,4 +48,9 @@
 		SET USER_NAME=#{userName},PASSWORD=#{password},BIRTH=#{birth},EMAIL=#{email},PHONE=#{phone},ADDR=#{addr}
 		WHERE USER_ID=#{userId}
     </update>
+    <update id="updateUser" parameterType="com.ezen.sb.model.UserModel">
+    	UPDATE USER_TBL
+		SET USER_NAME=#{userName}, EMAIL=#{email}
+		WHERE USER_NUM=#{userNum}
+    </update>
 </mapper>

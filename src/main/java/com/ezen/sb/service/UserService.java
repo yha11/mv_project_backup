@@ -2,9 +2,12 @@ package com.ezen.sb.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ezen.sb.mapper.UserMapper;
 import com.ezen.sb.model.DAOResult;
 import com.ezen.sb.model.DataStatus;
 import com.ezen.sb.model.UserDAO;
@@ -15,6 +18,9 @@ public class UserService {
 
 	@Autowired
 	private UserDAO userDAO;
+	
+	@Autowired
+	private UserMapper userMapper;
 
 	public String deleteMember(String userid) {
 		String message;
@@ -135,4 +141,13 @@ public class UserService {
 		return result;
 	}
 	
+	public int updateUser(HttpSession session, UserModel userModel) throws Exception {
+		UserModel user = (UserModel) session.getAttribute("user");
+		userModel.setUserNum(user.getUserNum());
+		
+		int result = userMapper.updateUser(userModel);
+		userModel = userDAO.findUser(user.getUserId());
+		session.setAttribute("user", userModel);
+		return result;
+	}
 }

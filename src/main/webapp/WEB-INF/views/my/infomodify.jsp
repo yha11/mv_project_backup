@@ -4,10 +4,13 @@
 <html lang="ko">
 <head>
    <title>마이페이지</title>
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<%@ include file="../ui/nav.jsp"%>
 </head>
 <body>
-<%@ include file="../ui/nav.jsp" %>
-
+<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	
 <div style="width: 300px; margin: 30px auto 30px auto;">
 <fieldset disabled>
@@ -27,13 +30,9 @@
   <button class="btn btn-primary" onclick="infomodify()">수정</button>
 </div>
 
-
-
-<%@ include file="../ui/footer.jsp" %>
-
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-
+<%@ include file="../ui/footer.jsp"%>
 <script>
 function infomodify(){
 	/*
@@ -46,7 +45,7 @@ function infomodify(){
 	var param = {
 			userId : $('#userId').val(),
 			userName : $('#userName').val(),
-			userEmail : $('#userEmail').val()
+			email : $('#userEmail').val()
 	}
 	//userId, password
 		$.ajax({
