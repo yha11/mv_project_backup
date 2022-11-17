@@ -34,19 +34,21 @@ public class QnaController {
 		return qnaService.selectQnas(user.getUserNum());
 	}
 	
-	@GetMapping("/qnadetail/{qnaNum}")
-	public @ResponseBody QnaModel getQna(HttpSession session, @PathVariable("qnaNum") long qnaNum) {
-		UserModel user = (UserModel) session.getAttribute("user");
-		return qnaService.selectQna(user.getUserNum(), qnaNum);
+	@GetMapping("/qnadetail/{qnaNum}/{userNum}")
+	public @ResponseBody QnaModel getQna(HttpSession session, @PathVariable("qnaNum") long qnaNum, @PathVariable("userNum") Integer userNum) {
+		if(session.getAttribute("user")==null) {
+			return null;
+		}
+		return qnaService.selectQna(qnaNum, userNum);
 	}
 	
 	@GetMapping("/allqna")
 	public @ResponseBody PageInfo<QnaModel> selectAllQna(HttpSession session) {
 		UserModel user = (UserModel) session.getAttribute("user");
-		if(!user.getAdmin().equals("1")) {
+		
+		if(!(user.getAdmin() == 1)) {
 			return null;
 		}
-		log.info("user={}", user);
 		return qnaService.selectAllQna();
 	}
 	

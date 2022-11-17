@@ -77,6 +77,7 @@ public class LoginController {
 
 	private void makeSession(HttpServletRequest request, UserModel userModel) {
 		HttpSession session = request.getSession();
+		session.setAttribute("userNum", userModel.getUserNum());
 		session.setAttribute("userName", userModel.getUserName());
 		session.setAttribute("userId", userModel.getUserId());
 		session.setAttribute("password", userModel.getPassword());

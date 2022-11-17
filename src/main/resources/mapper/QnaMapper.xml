@@ -5,26 +5,31 @@
     
     <mapper namespace="com.ezen.sb.mapper.QnaMapper">
     
+    	<!-- 내 문의 리스트 불러오기 -->
     	<select id="selectQnas" resultType="com.ezen.sb.model.QnaModel">
-    		SELECT QNA_NUM, QNA_DATE, QNA_TITLE, QNA_STATUS
+    		SELECT QNA_NUM, QNA_DATE, QNA_TITLE, QNA_STATUS, USER_NUM
 			FROM QNA_BOARD
 			WHERE USER_NUM=#{userNum}
 			ORDER BY QNA_NUM DESC
     	</select>
+    	<!-- 문의 상세보기 -->
     	<select id="selectQna" resultType="com.ezen.sb.model.QnaModel">
     		SELECT QNA_DATE, QNA_STATUS, QNA_TITLE, QNA_CONTENT, QNA_FILE, QNA_ANSWER
 			FROM QNA_BOARD
 			WHERE USER_NUM=#{userNum} AND QNA_NUM=#{qnaNum}
     	</select>
+    	<!-- 관리자 모든 문의 목록 불러오기 -->
     	<select id="selectAllQna" resultType="com.ezen.sb.model.QnaModel">
-    		SELECT QNA_NUM, QNA_DATE, QNA_TITLE, QNA_STATUS
+    		SELECT QNA_NUM, QNA_DATE, QNA_TITLE, QNA_STATUS, USER_NUM
 			FROM QNA_BOARD
 			ORDER BY QNA_NUM DESC
     	</select>
+    	<!-- 문의하기 -->
     	<insert id="insertQna" parameterType="com.ezen.sb.model.QnaModel">
     		INSERT INTO QNA_BOARD(USER_NUM, QNA_TITLE, QNA_CONTENT)
 			VALUES(#{userNum}, #{qnaTitle}, #{qnaContent})
     	</insert>
+    	<!-- 관리자 문의 답변하기 -->
     	<update id="updateQna" parameterType="com.ezen.sb.model.QnaModel">
     	UPDATE QNA_BOARD
 		SET QNA_STATUS='완료', QNA_ANSWER=#{qnaAnswer}

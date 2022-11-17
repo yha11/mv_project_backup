@@ -22,8 +22,8 @@ public class QnaService {
 		return PageInfo.of(qnaMapper.selectQnas(userNum));
 	}
 	
-	public QnaModel selectQna(Integer userNum, long qnaNum) {
-		return qnaMapper.selectQna(userNum, qnaNum);
+	public QnaModel selectQna(long qnaNum, Integer userNum) {
+		return qnaMapper.selectQna(qnaNum, userNum);
 	}
 	
 	public PageInfo<QnaModel> selectAllQna() {

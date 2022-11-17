@@ -146,7 +146,20 @@ public class UserService {
 		userModel.setUserNum(user.getUserNum());
 		
 		int result = userMapper.updateUser(userModel);
+		
 		userModel = userDAO.findUser(user.getUserId());
+		session.setAttribute("userNum", userModel.getUserNum());
+		session.setAttribute("userName", userModel.getUserName());
+		session.setAttribute("userId", userModel.getUserId());
+		session.setAttribute("password", userModel.getPassword());
+		session.setAttribute("birth", userModel.getBirth());
+		session.setAttribute("email", userModel.getEmail());
+		session.setAttribute("phone", userModel.getPhone());
+		if (userModel.getRegistDate() != null) {
+			session.setAttribute("registDate", userModel.getRegistDate().toString());
+		}
+		session.setAttribute("addr", userModel.getAddr());
+		session.setAttribute("admin", userModel.getAdmin());
 		session.setAttribute("user", userModel);
 		return result;
 	}

@@ -59,12 +59,13 @@ public class ReviewController {
 			return null;
 		}
 		UserModel user = (UserModel) session.getAttribute("user");
-		if(!user.getAdmin().equals("1")) {
+		
+		if(!(user.getAdmin() == 1)) {
 			return null;
 		}
 		return reviewService.selectAllReviews();
 	}
-
+	
 	@PostMapping("/addreview")
 	public @ResponseBody int addReview(@RequestBody ReviewModel reviewModel, HttpSession session) {
 		log.info("reviewModel={}", reviewModel);

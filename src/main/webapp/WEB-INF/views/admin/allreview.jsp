@@ -64,7 +64,7 @@
 						html += '<td>' + review.reviewStarrate + '</td>';
 						html += '<td>' + review.reviewContent + '</td>';
 						html += '<input type="hidden" id="reviewNum" value="' + review.reviewNum + '">';
-						html += '<td><button type="button" class="btn btn-danger" onclick="delReview()">삭제</button></td>';
+						html += '<td><button type="button" class="btn btn-danger" onclick="delReview(' + review.reviewNum + ')">삭제</button></td>';
 						html += '</tr>';
 					}
 					$('tBody').html(html);
@@ -75,9 +75,9 @@
 			})
 		}
 		
-		function delReview() {
+		function delReview(reviewNum) {
 			var data = {
-					reviewNum : $('#reviewNum').val()
+					reviewNum : reviewNum
 			}
 			
 			$.ajax({

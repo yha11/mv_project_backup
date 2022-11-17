@@ -64,7 +64,7 @@
 		qnaview();
 	})
 
-	var role = '${admin}';
+	var role = ${admin};
 	
 	if(role === 1) {
 		adminqnaview();
@@ -72,7 +72,7 @@
 	
 	function qnaview() {
 		$.ajax({
-			url : '/qnadetail/${param.qnaNum}',
+			url : '/qnadetail/${param.qnaNum}/${param.userNum}',
 			type : 'GET',
 			accept : "application/json",
 			contentType: "application/json; charset=utf-8",
@@ -106,7 +106,6 @@
 		html += '<button type="button" class="btn btn-primary" style="border-radius: 6px;" onclick="answer()">답변 등록</button>';
 		html += '</div>';
 		
-		console.log(html);
 		$('#answerbutton').html(html);
 		
 	}
@@ -128,7 +127,7 @@
 			success : function(res) {
 				console.log(res);
 				alert('답변이 등록되었습니다.');
-				location.href='../admin/allqna';
+				location.href='/views/admin/allqna';
 				
 			},
 			error: function(error) {

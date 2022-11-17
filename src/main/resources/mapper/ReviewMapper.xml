@@ -5,6 +5,7 @@
     
     <mapper namespace="com.ezen.sb.mapper.ReviewMapper">
     	
+    	<!-- 해당 영화의 모든 유저 리뷰들을 최신순으로 불러오기 -->
     	<select id="selectReviews" resultType="reviewModel">
     		SELECT U.USER_NAME, R.REVIEW_STARRATE, R.REVIEW_CONTENT, R.REVIEW_DATE
 			FROM REVIEW R
@@ -13,6 +14,7 @@
 			WHERE R.MOVIE_NUM=#{movieNum}
 			ORDER BY R.REVIEW_NUM DESC
     	</select>
+    	<!-- 마이페이지 MY리뷰 목록 보기 (최신순) -->
     	<select id="selectMyReviews" resultType="reviewModel">
     		SELECT M.IMAGE, M.TITLE, R.REVIEW_NUM, R.REVIEW_STARRATE, R.REVIEW_CONTENT, R.REVIEW_DATE
 			FROM REVIEW R
@@ -21,6 +23,7 @@
 			WHERE R.USER_NUM=#{userNum}
 			ORDER BY R.REVIEW_NUM DESC
     	</select>
+    	<!-- 관리자 모든 리뷰 최신순으로 불러오기 -->
     	<select id="selectAllReviews" resultType="reviewModel">
     		SELECT R.REVIEW_NUM, R.REVIEW_STARRATE, R.REVIEW_CONTENT, U.USER_ID, M.TITLE
 			FROM REVIEW R
@@ -30,10 +33,12 @@
 				ON R.MOVIE_NUM=M.MOVIE_NUM
 			ORDER BY R.REVIEW_NUM DESC
     	</select>
+    	<!-- 리뷰 쓰기 -->
     	<insert id="insertReview" parameterType="reviewModel">
     		INSERT INTO REVIEW(REVIEW_STARRATE, REVIEW_CONTENT, USER_NUM, MOVIE_NUM)
 			VALUES(#{reviewStarrate}, #{reviewContent}, #{userNum}, #{movieNum})
     	</insert>
+    	<!-- 관리자 리뷰 삭제 -->
     	<delete id="deleteReview" parameterType="reviewModel">
     		DELETE FROM REVIEW WHERE REVIEW_NUM=#{reviewNum}
     	</delete>

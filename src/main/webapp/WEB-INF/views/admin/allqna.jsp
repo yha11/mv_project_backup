@@ -53,14 +53,13 @@
 				for(let i=0; i<list.length; i++) {
 					const board = list[i];
 					console.log(board);
-					html += '<tr style="cursor:pointer" onclick="goQnaView(' + board.qnaNum + ')">';
+					html += '<tr style="cursor:pointer" onclick="goQnaView(' + board.qnaNum + ', ' + board.userNum + ')">';
 					html += '<th scope="row">' + board.qnaNum + '</th>';
 					html += '<td>' + board.qnaDate + '</td>';
 					html += '<td>' + board.qnaTitle + '</td>';
 					html += '<td>' + board.qnaStatus + '</td>';
 					html += '</tr>';
 				}
-				console.log(html);
 				$('tBody').html(html);
 			},
 			error: function(error) {
@@ -69,8 +68,8 @@
 		})
 	}
 	
-	function goQnaView(qnaNum) {
-		location.href='/views/my/qnadetail?qnaNum=' + qnaNum;
+	function goQnaView(qnaNum, userNum) {
+		location.href='/views/my/qnadetail?qnaNum=' + qnaNum + '&userNum=' + userNum;
 	}
 </script>
 </body>
