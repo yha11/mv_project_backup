@@ -30,7 +30,7 @@
 	<div class="mb-3 row">
 	    <label for="userId" class="col-sm-2 col-form-label" style="background-color: #dddddd; border-radius: 6px; text-align: center;">아이디</label>
 	    <div class="col-sm-10">
-	      <input type="text" readonly class="form-control-plaintext" id="userId" value="${userid}">
+	      <input type="text" readonly class="form-control-plaintext" id="userId" value="${userId}">
 	    </div>
   	</div>
 	<div class="mb-3 row">

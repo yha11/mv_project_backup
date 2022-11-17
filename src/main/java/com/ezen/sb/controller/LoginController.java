@@ -88,6 +88,7 @@ public class LoginController {
 		}
 		session.setAttribute("addr", userModel.getAddr());
 		session.setAttribute("admin", userModel.getAdmin());
+		session.setAttribute("user", userModel);
 	}
 
 }

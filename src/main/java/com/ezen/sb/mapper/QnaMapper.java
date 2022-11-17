@@ -9,9 +9,9 @@ import com.ezen.sb.model.QnaModel;
 
 public interface QnaMapper {
 	
-	List<QnaModel> selectQnas(long userNum);
+	List<QnaModel> selectQnas(Integer userNum);
 	
-	QnaModel selectQna(@Param("userNum") long userNum, @Param("qnaNum") long qnaNum);
+	QnaModel selectQna(@Param("userNum") Integer userNum, @Param("qnaNum") long qnaNum);
 	
 	List<QnaModel> selectAllQna();
 	

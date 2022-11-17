@@ -11,6 +11,6 @@ public class QnaModel {
 	private String qnaContent;
 	private String qnaFile;
 	private String qnaAnswer;
-	private long userNum;
+	private Integer userNum;
 
 }
