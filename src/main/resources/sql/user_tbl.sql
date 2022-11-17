@@ -16,3 +16,7 @@ INSERT INTO USER_TBL (USER_ID,USER_NAME,PASSWORD,BIRTH,EMAIL,PHONE,ADDR,ADMIN)
 VALUES('admin','관리자','1234','2022-11-01','admin@test.com','010-1234-4567','(11111) 서울시 도봉구 방학로, 101동 101호',1),
 ('test1','사용자1','1234','2022-11-01','admin@test.com','010-1234-4567','(11111) 서울시 도봉구 방학로, 101동 101호',0),
 ('test2','사용자2','1234','2022-11-01','admin@test.com','010-1234-4567','(11111) 서울시 도봉구 방학로, 101동 101호',0);
+
+UPDATE USER_TBL
+SET USER_NAME='test11', EMAIL='test11@test.com'
+WHERE USER_NUM=2;
