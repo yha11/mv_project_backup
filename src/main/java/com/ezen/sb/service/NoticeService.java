@@ -34,15 +34,17 @@ public class NoticeService {
 	 * noticeMapper.selectNoticeView(userNum, noticeNum); }
 	 */
 	
+	/*
 	public int insertNotice(NoticeModel noticeModel) {
 		return noticeMapper.insertNotice(noticeModel);
 	}
+	*/
 	
-	/*
-	 * public int insertNotice(long userNum, NoticeModel noticeModel) {
-	 * noticeModel.setUserNum(userNum); return
-	 * noticeMapper.insertNotice(noticeModel) }
-	 */
+	public int insertNotice(Integer userNum, NoticeModel noticeModel) {
+	 noticeModel.setUserNum(userNum); 
+	 return noticeMapper.insertNotice(noticeModel); 
+	}
+	 
 	
 	public int updateNotice(NoticeModel noticeModel) {
 		return noticeMapper.updateNotice(noticeModel);
