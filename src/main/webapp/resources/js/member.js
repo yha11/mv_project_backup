@@ -318,7 +318,7 @@ function idCheck() {
 
 	if (document.frm.userId.value == "") {
 		alert("아이디를 입력해 주세요.")
-		document.frm.userid.focus();
+		document.frm.userId.focus();
 
 		return;
 	}
@@ -447,14 +447,6 @@ function phoneCheck(caseNum) {
 
 			return false;
 		}
-
-		if (document.frm.phoneValid.value == "false") {
-			alert("핸드폰 인증을 진행해 주세요");
-			document.frm.phone.focus();
-
-			return false;
-		}
-
 		return true;
 	}
 
@@ -489,13 +481,6 @@ function phoneCheck(caseNum) {
 		if (document.frm.userId.value == "") {
 			alert("회원님의 아이디를 입력해주세요");
 			document.frm.userId.focus();
-
-			return false;
-		}
-
-		if (document.frm.phoneValid.value == "false") {
-			alert("핸드폰 인증을 진행해 주세요");
-			document.frm.phone.focus();
 
 			return false;
 		}

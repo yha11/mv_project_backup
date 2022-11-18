@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>영화리뷰사이트 | 아이디찾기</title>
-<script type="text/javascript" src="js/libs/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="js/member.js?test=11"></script>
+<script type="text/javascript" src="/resources/js/jquery3.6.1.js"></script>
+<script type="text/javascript" src="/resources/js/member.js"></script>
 </head>
 <body>
 	<div id="Wrap">
@@ -18,14 +18,14 @@
 			<br>
 			<hr>
 			<br>
-				<form action="findId.do" method="post" name="frm">
+				<form action="/findId.do" method="post" name="frm" onsubmit='return findId()'>
 					<table>
 						<tr>
 							<td>
 								이름
 							</td>
 							<td>
-								<input type="text" name="name" size="5">
+								<input type="text" name="userName" size="5" id='name'>
 							</td>
 						</tr>
 						<tr>
@@ -39,9 +39,10 @@
 						</tr>
 					</table>
 					<br><br><br>
-				</form>
+					
 					<button class="back-btn" onclick="history.back()" style="float:center">이전</button>
-					<input type="submit" value="확인" onclick="return findId()" class="back-btn" style="float:center">
+					<input type="submit" value="확인" class="back-btn" style="float:center">
+				</form>
 				</div>
 			</section>
 		<jsp:include page="/WEB-INF/views/ui/footer.jsp"></jsp:include>

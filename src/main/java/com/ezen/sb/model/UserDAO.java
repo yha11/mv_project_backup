@@ -67,8 +67,8 @@ public class UserDAO {
 		}
 		return umodel;
 	}
-
-	// 비밀번호 변경
+	
+		// 비밀번호 변경
 	public DAOResult updatePassword(String userid, String password) {
 		int updateResult = userMapper.updatePassword(userid, password);
 		DAOResult result;
@@ -82,8 +82,8 @@ public class UserDAO {
 	}
 
 	// userid 값 찾기 (매개변수 = phone,name,userid)
-	public DataStatus checkUserPhoneNameId(String phone, String userName, String userId) {
-		String checkedUserid = userMapper.checkUserPhoneNameId(phone, userName, userId);
+	public DataStatus checkUserPhoneNameId(String userName, String userId, String phone) {
+		String checkedUserid = userMapper.checkUserPhoneNameId(userName, userId, phone);
 		DataStatus result;
 
 		if (checkedUserid == null) {
