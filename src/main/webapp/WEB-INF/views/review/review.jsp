@@ -1,17 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/ui/foot.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>리뷰쓰기</title>
-<!-- 부트스트랩 -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-	crossorigin="anonymous">
-	
 <style>
 	.rating .rate_radio + label {
     position: relative;
@@ -45,11 +39,7 @@
 </head>
 <body>
 <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<%@ include file="../ui/nav.jsp"%>
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <div style="width: 500px; margin: 30px auto 30px auto;">
 	<div class="mb-3 row">
 	    <label for="userId" class="col-sm-2 col-form-label" style="background-color: #dddddd; border-radius: 6px; text-align: center;">아이디</label>
@@ -91,15 +81,6 @@
 		<button type="button" class="btn btn-primary" style="border-radius: 20px;" onclick="writeReview()">등록하기</button>
 	</div>
 </div>
-
-
-	<%@ include file="../ui/footer.jsp"%>
-	<!-- 부트스트랩 -->
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-		crossorigin="anonymous"></script>
-		
 <script>
 	//별점 마킹 모듈 프로토타입으로 생성
 	function Rating(){};
@@ -182,5 +163,6 @@
 		}) 
 	}
 </script>
+<%@ include file="/WEB-INF/views/ui/foot.jsp"%>
 </body>
 </html>

@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="/WEB-INF/views/ui/header.jsp"%>
 <!DOCTYPE html>
 <!-- 로그인 페이지 -->
 <html>
 <head>
 <meta charset="UTF-8">
 <title>영화리뷰사이트 | 로그인</title>
-<link href="../../resources/css/styles.css" rel="stylesheet" />
 <style>
 /* CSS RESET */
 * {
@@ -110,7 +109,6 @@ li {
 </head>
 <body>
 <div id="wrap">
-<jsp:include page="/WEB-INF/views/ui/nav.jsp"></jsp:include>
 <section>
 	<br><br><br><br><br>
 	<div class="table" align="center">
@@ -133,7 +131,7 @@ li {
 		</div>
 	</div>
 	</section>
-	<jsp:include page="/WEB-INF/views/ui/footer.jsp"></jsp:include>
 	</div>
+<%@ include file="/WEB-INF/views/ui/foot.jsp"%>
 </body>
 </html>

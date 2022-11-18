@@ -1,21 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="/WEB-INF/views/ui/header.jsp"%>
 <!DOCTYPE html>
 <!-- 리뷰 게시판 페이지 -->
 <html>
 <head>
-	
 <meta charset="UTF-8">
 <title>영화리뷰사이트 | 리뷰게시판</title>
-<c:import url="/WEB-INF/views/common/import.jsp"></c:import>
 </head>
-
-
 <body>
-<jsp:include page="/WEB-INF/views/ui/nav.jsp"></jsp:include>
 <!-- Header-->
-
 <div class="col-sm-7">
          <table class="table table-striped">
            <thead>
@@ -86,6 +80,6 @@
 
 </script>
 <!-- footer -->
-   <jsp:include page="/WEB-INF/views/ui/footer.jsp"></jsp:include>
+<%@ include file="/WEB-INF/views/ui/foot.jsp"%>
 </body>
 </html>
