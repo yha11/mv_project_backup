@@ -35,13 +35,13 @@ public class ReviewService {
 		return PageInfo.of(reviewMapper.selectReviews(movieNum));
 	}
 	
-	public PageInfo<ReviewModel> selectMyReviews(Integer userNum) {
-		PageHelper.startPage(1,10);
+	public PageInfo<ReviewModel> selectMyReviews(Integer userNum, ReviewModel reviewModel) {
+		PageHelper.startPage(reviewModel.getPage(), reviewModel.getPageSize());
 		return PageInfo.of(reviewMapper.selectMyReviews(userNum));
 	}
 	
-	public PageInfo<ReviewModel> selectAllReviews() {
-		PageHelper.startPage(1,10);
+	public PageInfo<ReviewModel> selectAllReviews(ReviewModel reviewModel) {
+		PageHelper.startPage(reviewModel.getPage(), reviewModel.getPageSize());
 		return PageInfo.of(reviewMapper.selectAllReviews());
 	}
 		

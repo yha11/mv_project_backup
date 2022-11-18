@@ -26,28 +26,30 @@ public class QnaController {
 	private QnaService qnaService;
 	
 	@GetMapping("/qnaboard")
-	public @ResponseBody PageInfo<QnaModel> getQnas(HttpSession session) {
+	public @ResponseBody PageInfo<QnaModel> getQnas(HttpSession session, QnaModel qnaModel) {
 		if(session.getAttribute("user")==null) {
 			return null;
 		}
 		UserModel user = (UserModel) session.getAttribute("user");
-		return qnaService.selectQnas(user.getUserNum());
+		return qnaService.selectQnas(user.getUserNum(), qnaModel);
 	}
 	
-	@GetMapping("/qnadetail/{qnaNum}")
-	public @ResponseBody QnaModel getQna(HttpSession session, @PathVariable("qnaNum") long qnaNum) {
-		UserModel user = (UserModel) session.getAttribute("user");
-		return qnaService.selectQna(user.getUserNum(), qnaNum);
+	@GetMapping("/qnadetail/{qnaNum}/{userNum}")
+	public @ResponseBody QnaModel getQna(HttpSession session, @PathVariable("qnaNum") long qnaNum, @PathVariable("userNum") Integer userNum) {
+		if(session.getAttribute("user")==null) {
+			return null;
+		}
+		return qnaService.selectQna(qnaNum, userNum);
 	}
 	
 	@GetMapping("/allqna")
-	public @ResponseBody PageInfo<QnaModel> selectAllQna(HttpSession session) {
+	public @ResponseBody PageInfo<QnaModel> selectAllQna(HttpSession session, QnaModel qnaModel) {
 		UserModel user = (UserModel) session.getAttribute("user");
-		if(!user.getAdmin().equals("1")) {
+		
+		if(!(user.getAdmin() == 1)) {
 			return null;
 		}
-		log.info("user={}", user);
-		return qnaService.selectAllQna();
+		return qnaService.selectAllQna(qnaModel);
 	}
 	
 	@PostMapping("/addqna")

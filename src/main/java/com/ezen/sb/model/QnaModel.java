@@ -12,5 +12,7 @@ public class QnaModel {
 	private String qnaFile;
 	private String qnaAnswer;
 	private Integer userNum;
+	private Integer page;
+	private Integer pageSize;
 
 }

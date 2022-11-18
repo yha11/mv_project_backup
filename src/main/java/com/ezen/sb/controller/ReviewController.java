@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -45,26 +46,28 @@ public class ReviewController {
 	}
 	
 	@GetMapping("/myreviews")
-	public @ResponseBody PageInfo<ReviewModel> selectMyReviews(HttpSession session) {
+	public @ResponseBody PageInfo<ReviewModel> selectMyReviews(HttpSession session, ReviewModel reviewModel) {
 		if(session.getAttribute("user")==null) {
 			return null;
 		}
 		UserModel user = (UserModel) session.getAttribute("user");
-		return reviewService.selectMyReviews(user.getUserNum());
+		
+		return reviewService.selectMyReviews(user.getUserNum(), reviewModel);
 	}
 	
 	@GetMapping("/allreviews")
-	public @ResponseBody PageInfo<ReviewModel> selectAllReviews(HttpSession session) {
+	public @ResponseBody PageInfo<ReviewModel> selectAllReviews(HttpSession session, ReviewModel reviewModel) {
 		if(session.getAttribute("user")==null) {
 			return null;
 		}
 		UserModel user = (UserModel) session.getAttribute("user");
-		if(!user.getAdmin().equals("1")) {
+		
+		if(!(user.getAdmin() == 1)) {
 			return null;
 		}
-		return reviewService.selectAllReviews();
+		return reviewService.selectAllReviews(reviewModel);
 	}
-
+	
 	@PostMapping("/addreview")
 	public @ResponseBody int addReview(@RequestBody ReviewModel reviewModel, HttpSession session) {
 		log.info("reviewModel={}", reviewModel);

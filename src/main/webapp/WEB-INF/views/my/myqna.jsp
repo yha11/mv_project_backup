@@ -55,6 +55,10 @@
 	})
 
 	function qnalist(){
+		var data = {
+				page : ${param.page},
+				pageSize : 10
+		}
 		
 		/*
 		form 태그의 submit으로 데이터를 서버로 보낼 경우는 동기 방식
@@ -66,6 +70,7 @@
 			type: 'GET',
 			accept : "application/json",
 			contentType: "application/json; charset=utf-8",
+			data: data,
 			dataType: "json",
 			success: function(res) {
 				console.log(res);
@@ -73,15 +78,13 @@
 				let list = res.list; //페이징할때 필요하고 안할땐 필요없음
 				for(let i=0; i<list.length; i++) {
 					const board = list[i];
-					console.log(board);
-					html += '<tr style="cursor:pointer" onclick="goQnaView(' + board.qnaNum + ')">';
+					html += '<tr style="cursor:pointer" onclick="goQnaView(' + board.qnaNum + ', ' + board.userNum + ')">';
 					html += '<th scope="row">' + board.qnaNum + '</th>';
 					html += '<td>' + board.qnaDate + '</td>';
 					html += '<td>' + board.qnaTitle + '</td>';
 					html += '<td>' + board.qnaStatus + '</td>';
 					html += '</tr>';
 				}
-				console.log(html);
 				$('tBody').html(html);
 			},
 			error: function(error) {
@@ -90,8 +93,8 @@
 		})
 	}
 	
-	function goQnaView(qnaNum) {
-		location.href='/views/my/qnadetail?qnaNum=' + qnaNum;
+	function goQnaView(qnaNum, userNum) {
+		location.href='/views/my/qnadetail?qnaNum=' + qnaNum + '&userNum=' + userNum + '&page=' + ${param.page};
 	}
 </script>
 

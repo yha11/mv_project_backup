@@ -17,17 +17,17 @@ public class QnaService {
 	@Autowired
 	private QnaMapper qnaMapper;
 	
-	public PageInfo<QnaModel> selectQnas(Integer userNum) {
-		PageHelper.startPage(1,10);
+	public PageInfo<QnaModel> selectQnas(Integer userNum, QnaModel qnaModel) {
+		PageHelper.startPage(qnaModel.getPage(), qnaModel.getPageSize());
 		return PageInfo.of(qnaMapper.selectQnas(userNum));
 	}
 	
-	public QnaModel selectQna(Integer userNum, long qnaNum) {
-		return qnaMapper.selectQna(userNum, qnaNum);
+	public QnaModel selectQna(long qnaNum, Integer userNum) {
+		return qnaMapper.selectQna(qnaNum, userNum);
 	}
 	
-	public PageInfo<QnaModel> selectAllQna() {
-		PageHelper.startPage(1,10);
+	public PageInfo<QnaModel> selectAllQna(QnaModel qnaModel) {
+		PageHelper.startPage(qnaModel.getPage(), qnaModel.getPageSize());
 		return PageInfo.of(qnaMapper.selectAllQna());
 	}
 	

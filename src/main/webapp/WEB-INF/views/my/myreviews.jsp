@@ -46,11 +46,16 @@
 	})
 	
 	function getreviews() {
+		var data = {
+				page : ${param.page},
+				pageSize : 2
+		}
 		$.ajax({
 			url : '/myreviews',
 			type : 'GET',
 			accept : "application/json",
 			contentType : "application/json; charset=utf-8",
+			data: data,
 			dataType : "json",
 			success : function(res) {
 				console.log(res);
@@ -91,7 +96,38 @@
 					html += '</div>';
 					html += '</div>';
 					html += '</div>';
+					
 				}
+				//페이지 버튼
+				html += '<div style="max-width: 540px; margin: 30px auto 30px auto;">';
+				html += '<nav aria-label="Page navigation example">';
+				html += '<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">';
+				html += '<ul class="pagination">';
+				html += '<li class="page-item">';
+				html += '<a class="page-link" href="/views/my/myreviews?page=' + (${param.page}-1) + '&pageSize=2" aria-label="Previous">';
+				html += '<span aria-hidden="true">&laquo;</span>';
+				html += '</a>';
+				html += '</li>';
+				
+				/* //페이지 버튼 계산
+				var Size = 3;
+				var page = Math.floor(${param.page}/buttonSize) + 1;
+				var endPage = page + buttonSize - 1;
+		
+				for(var i=page; i<endPage; i++) {
+					html += '<li class="page-item"><a class="page-link" href="/views/my/myreviews?page=' + i + '&pageSize=2">' + i + '</a></li>';
+				} */
+				
+				html += '<li class="page-item">';
+				html += '<a class="page-link" href="/views/my/myreviews?page=' + (${param.page}+1) + '&pageSize=2" aria-label="Next">';
+				html += '<span aria-hidden="true">&raquo;</span>';
+				html += '</a>';
+				html += '</li>';
+				html += '</ul>';
+				html += '</div>';
+				html += '</nav>';
+				html += '</div>';
+				
 				$('#div').html(html);
 			},
 			error: function(error) {
@@ -116,7 +152,7 @@
 			success : function(res) {
 				console.log(res);
 				alert('리뷰가 삭제되었습니다.');
-				location.href='myreviews';
+				location.href='/views/my/myreviews?page=' + ${param.page} + '&pageSize=2';
 			},
 			error: function(error) {
 				console.log(error);

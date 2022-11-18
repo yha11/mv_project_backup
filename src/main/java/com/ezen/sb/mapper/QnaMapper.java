@@ -11,7 +11,7 @@ public interface QnaMapper {
 	
 	List<QnaModel> selectQnas(Integer userNum);
 	
-	QnaModel selectQna(@Param("userNum") Integer userNum, @Param("qnaNum") long qnaNum);
+	QnaModel selectQna(@Param("qnaNum") long qnaNum, @Param("userNum") Integer userNum);
 	
 	List<QnaModel> selectAllQna();
 	

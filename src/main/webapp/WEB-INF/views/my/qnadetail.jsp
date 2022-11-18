@@ -46,13 +46,13 @@
 	    <div class="col-sm-10">
 	    <textarea readonly class="form-control-plaintext" id="qnaAnswer" name="qnaAnswer" rows="3" style="height: 100px; resize: none;"></textarea>
 	    </div>
-	<div id="answerbutton">
-	<!-- 관리자용 답변 버튼 -->
-	</div>
+		<div id="answerbutton">
+		<!-- 관리자용 답변 버튼 -->
+		</div>
+		<div style="width: 200px; margin: 30px auto 30px auto; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+			<button type="button" class="btn btn-primary" name="myqna" style="border-radius: 6px;" onclick="goQnaList()">목록</button>
+		</div>
   	</div>
-	<div style="width: 200px; margin: 30px auto 30px auto; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-		<button type="button" class="btn btn-primary" style="border-radius: 6px;" onclick="location.href='myqna'">목록</button>
-	</div>
 </div>
 
 <%@ include file="../ui/footer.jsp" %>
@@ -64,7 +64,7 @@
 		qnaview();
 	})
 
-	var role = '${admin}';
+	var role = ${admin};
 	
 	if(role === 1) {
 		adminqnaview();
@@ -72,7 +72,7 @@
 	
 	function qnaview() {
 		$.ajax({
-			url : '/qnadetail/${param.qnaNum}',
+			url : '/qnadetail/${param.qnaNum}/${param.userNum}',
 			type : 'GET',
 			accept : "application/json",
 			contentType: "application/json; charset=utf-8",
@@ -90,6 +90,7 @@
 				$('input[name=qnaTitle]').attr('value',qnaTitle);
 				$('textarea[name=qnaContent]').html(qnaContent);
 				$('textarea[name=qnaAnswer]').html(qnaAnswer);
+				
 			},
 			error: function(error) {
 				console.log(error);
@@ -106,8 +107,9 @@
 		html += '<button type="button" class="btn btn-primary" style="border-radius: 6px;" onclick="answer()">답변 등록</button>';
 		html += '</div>';
 		
-		console.log(html);
 		$('#answerbutton').html(html);
+		
+		$('button[name=myqna]').attr('onclick', 'goAllQnaList()');
 		
 	}
 	
@@ -128,13 +130,21 @@
 			success : function(res) {
 				console.log(res);
 				alert('답변이 등록되었습니다.');
-				location.href='../admin/allqna';
+				location.href='/views/admin/allqna?page=' + ${param.page} + '&pageSize=10';
 				
 			},
 			error: function(error) {
 				console.log(error);
 			}
 		})
+	}
+	
+	function goQnaList() {
+		location.href='/views/my/myqna?page=' + ${param.page} + '&pageSize=10';
+	}
+	
+	function goAllQnaList() {
+		location.href='/views/admin/allqna?page=' + ${param.page} + '&pageSize=10';
 	}
 </script>
 </body>

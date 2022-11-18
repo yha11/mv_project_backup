@@ -94,7 +94,7 @@
 			success : function(res) {
 				console.log(res);
 				alert('문의가 등록되었습니다.');
-				location.href='myqna';
+				location.href='myqna?page=1&pageSize=10';
 			},
 			error: function(error) {
 				console.log(error);

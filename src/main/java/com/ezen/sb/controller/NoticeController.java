@@ -1,6 +1,8 @@
 package com.ezen.sb.controller;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ezen.sb.model.NoticeModel;
+import com.ezen.sb.model.UserModel;
 import com.ezen.sb.service.NoticeService;
 import com.github.pagehelper.PageInfo;
 
@@ -20,9 +23,8 @@ public class NoticeController {
 	private NoticeService noticeService;
 	
 	
-	@GetMapping("/notice") public @ResponseBody PageInfo<NoticeModel>
-		getList(NoticeModel noticeModel){ return
-		noticeService.selectNoticeList(noticeModel); }
+	@GetMapping("/noticeList") public @ResponseBody PageInfo<NoticeModel> getList(NoticeModel noticeModel){ 
+		return noticeService.selectNoticeList(noticeModel); }
 	
 	/*
 	 * @GetMapping("/notice") public @ResponseBody PageInfo<NoticeModel>
@@ -44,18 +46,20 @@ public class NoticeController {
 	 * UserInfoModel user = (UserInfoModel) session.getAttribute("user"); 
 	 * return noticeService.selectNoticeView(user.getUserNum(), noticeNum); }
 	 */
-	
+	/*
 	@PostMapping("/addNotice")
 	public @ResponseBody int addNotice(@RequestBody NoticeModel noticeModel) {
 		return noticeService.insertNotice(noticeModel);
 	}
+	*/
 	
-	/*
-	 * @PostMapping("/addNotice") public @ResponseBody int addNotice(@HttpSession
-	 * session, @RequestBody NoticeModel noticeModel) { UserInfoModel user =
-	 * (UserInfoModel)session.getAttribute("user"); log.info("user={}", user);
-	 * return noticeService.insertNotice(user.getUserNum() ,noticeModel) }
-	 */
+	@PostMapping("/addNotice")
+	public @ResponseBody int addNotice(HttpSession session, @RequestBody NoticeModel noticeModel) {
+		UserModel user = (UserModel)session.getAttribute("user");
+		
+		return noticeService.insertNotice(user.getUserNum(), noticeModel);
+	}
+	 
 	
 	@PostMapping("/modifyNotice")
 	public @ResponseBody int modifyNotice(@RequestBody NoticeModel noticeModel) {
