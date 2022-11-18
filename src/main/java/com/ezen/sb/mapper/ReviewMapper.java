@@ -3,6 +3,7 @@ package com.ezen.sb.mapper;
 import java.util.List;
 
 import com.ezen.sb.model.ReviewModel;
+import com.github.pagehelper.PageInfo;
 
 public interface ReviewMapper {
 	

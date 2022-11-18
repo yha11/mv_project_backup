@@ -43,11 +43,17 @@
 		})
 		
 		function getreviews() {
+			var data = {
+					page : ${param.page},
+					pageSize : 10
+			}
+			
 			$.ajax({
 				url : '/allreviews',
 				type : 'GET',
 				accept : "application/json",
 				contentType: "application/json; charset=utf-8",
+				data : data,
 				dataType: "json",
 				success : function(res) {
 					console.log(res);
@@ -90,7 +96,7 @@
 				success : function(res) {
 					console.log(res);
 					alert('리뷰가 삭제되었습니다.');
-					location.href='allreview';
+					location.href='allreview?page=' + ${param.page} + '&pageSize=10';
 				},
 				error: function(error) {
 					console.log(error);

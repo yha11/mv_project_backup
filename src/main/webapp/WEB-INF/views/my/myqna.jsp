@@ -55,6 +55,10 @@
 	})
 
 	function qnalist(){
+		var data = {
+				page : ${param.page},
+				pageSize : 10
+		}
 		
 		/*
 		form 태그의 submit으로 데이터를 서버로 보낼 경우는 동기 방식
@@ -66,6 +70,7 @@
 			type: 'GET',
 			accept : "application/json",
 			contentType: "application/json; charset=utf-8",
+			data: data,
 			dataType: "json",
 			success: function(res) {
 				console.log(res);
@@ -89,7 +94,7 @@
 	}
 	
 	function goQnaView(qnaNum, userNum) {
-		location.href='/views/my/qnadetail?qnaNum=' + qnaNum + '&userNum=' + userNum;
+		location.href='/views/my/qnadetail?qnaNum=' + qnaNum + '&userNum=' + userNum + '&page=' + ${param.page};
 	}
 </script>
 

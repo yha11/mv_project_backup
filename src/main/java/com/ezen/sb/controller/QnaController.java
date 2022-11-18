@@ -26,12 +26,12 @@ public class QnaController {
 	private QnaService qnaService;
 	
 	@GetMapping("/qnaboard")
-	public @ResponseBody PageInfo<QnaModel> getQnas(HttpSession session) {
+	public @ResponseBody PageInfo<QnaModel> getQnas(HttpSession session, QnaModel qnaModel) {
 		if(session.getAttribute("user")==null) {
 			return null;
 		}
 		UserModel user = (UserModel) session.getAttribute("user");
-		return qnaService.selectQnas(user.getUserNum());
+		return qnaService.selectQnas(user.getUserNum(), qnaModel);
 	}
 	
 	@GetMapping("/qnadetail/{qnaNum}/{userNum}")
@@ -43,13 +43,13 @@ public class QnaController {
 	}
 	
 	@GetMapping("/allqna")
-	public @ResponseBody PageInfo<QnaModel> selectAllQna(HttpSession session) {
+	public @ResponseBody PageInfo<QnaModel> selectAllQna(HttpSession session, QnaModel qnaModel) {
 		UserModel user = (UserModel) session.getAttribute("user");
 		
 		if(!(user.getAdmin() == 1)) {
 			return null;
 		}
-		return qnaService.selectAllQna();
+		return qnaService.selectAllQna(qnaModel);
 	}
 	
 	@PostMapping("/addqna")
