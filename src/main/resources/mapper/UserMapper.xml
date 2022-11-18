@@ -14,11 +14,11 @@
     <select id="checkUserPhone" resultType="com.ezen.sb.model.UserModel">
     	SELECT USER_ID FROM USER_TBL WHERE PHONE=#{phone}
     </select>
-    <select id="checkUserPhoneName" resultType="com.ezen.sb.model.UserModel">
+    <select id="checkUserPhoneName" resultType="string">
     	SELECT USER_ID FROM USER_TBL WHERE PHONE=#{phone} AND USER_NAME=#{userName}
     </select>
-    <select id="checkUserPhoneNameId" resultType="com.ezen.sb.model.UserModel">
-    	SELECT USER_ID FROM USER_TBL WHERE PHONE=#{phone} AND USER_NAME=#{userName} AND USER_ID=#{userId}
+    <select id="checkUserPhoneNameId" resultType="string">
+    	SELECT USER_ID FROM USER_TBL WHERE USER_NAME=#{userName} AND USER_ID=#{userId} AND PHONE=#{phone}
     </select>
      <update id="updatePassword" parameterType="com.ezen.sb.model.UserModel">
     	UPDATE USER_TBL

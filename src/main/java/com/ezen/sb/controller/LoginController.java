@@ -9,18 +9,25 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ezen.sb.mapper.UserMapper;
 import com.ezen.sb.model.UserDAO;
 import com.ezen.sb.model.UserModel;
+import com.ezen.sb.service.PhoneIDCheckService;
+import com.ezen.sb.service.UserService;
 
 @Controller
 public class LoginController {
 
 	@Autowired
 	private UserDAO user;
+	@Autowired
+	private PhoneIDCheckService phoneIDCheckService;
+	@Autowired
+	private UserService userservice;
 
 	// 로그인
 	@PostMapping("/login.do")
@@ -60,11 +67,47 @@ public class LoginController {
 		return "views/login/findId";
 	}
 
+	/*
+	 * // 아이디 찾기 확인
+	 * 
+	 * @PostMapping("/findId.do") public String findIdDo(HttpServletRequest request)
+	 * { String name = request.getParameter("name"); String phone =
+	 * request.getParameter("phone");
+	 * 
+	 * // checkPhoneUser 메서드를 통해 id찾기시 출력해줄 message 리턴받기 String message =
+	 * phoneIDCheckService.checkUserPhoneName(phone, name);
+	 * request.setAttribute("message", message);
+	 * 
+	 * return "views/login/findIdResult"; }
+	 */
+
+	// 아이디 찾기 확인
+	@PostMapping("/findId.do")
+	public String findIdDo(@RequestParam("phone") String phone,@RequestParam("userName") String userName, Model model)throws IOException {
+		model.addAttribute("message", phoneIDCheckService.checkUserPhoneName(phone,userName));
+		
+		return "views/login/findIdResult";
+	}
+
 	// 비밀번호 찾기
 	@GetMapping("/findPassword")
 	public String findPassword() {
 
 		return "views/login/findPassword";
+	}
+	
+	@PostMapping("/findPassword.do")
+	public String findpasswordDo(@RequestParam("userName") String userName,@RequestParam("userId")String userId ,@RequestParam("phone") String phone,Model model )throws IOException {
+		model.addAttribute("message", phoneIDCheckService.checkUserPhoneNameId(userName, userId, phone));
+		
+		return "views/login/findPasswordResult";
+	}
+	
+	@PostMapping("/updatePassword.do")
+	public String updatePassword(@RequestParam("userId")String userId, @RequestParam("password")String password, Model model) {
+		model.addAttribute("message", userservice.updatePassword(userId, password));
+		
+		return "views/login/login";
 	}
 
 	private void validate(String userid, String pwd) {

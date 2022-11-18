@@ -13,7 +13,7 @@ public interface UserMapper {
 
 	String checkUserPhone(@Param("phone")String phone);
 	String checkUserPhoneName(@Param("phone")String phone, @Param("userName")String userName);
-	String checkUserPhoneNameId(@Param("phone")String phone, @Param("userName")String userName, @Param("userId")String userId);
+	String checkUserPhoneNameId(@Param("userName")String userName, @Param("userId")String userId, @Param("phone")String phone);
 	int updatePassword(@Param("userId")String userId, @Param("password")String password);
 	int insertMember(UserModel userModel);
 	UserModel getMember(@Param("userId")String userId);

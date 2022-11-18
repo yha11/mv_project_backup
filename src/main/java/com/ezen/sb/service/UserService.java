@@ -22,9 +22,9 @@ public class UserService {
 	@Autowired
 	private UserMapper userMapper;
 
-	public String deleteMember(String userid) {
+	public String deleteMember(String userId) {
 		String message;
-		DAOResult result = userDAO.deleteMember(userid);
+		DAOResult result = userDAO.deleteMember(userId);
 
 		if (result == DAOResult.Success) {
 			message = "삭제되었습니다";
@@ -55,16 +55,16 @@ public class UserService {
 		return memberInfo;
 	}
 
-	public DataStatus comfirmId(String userid) {
+	public DataStatus comfirmId(String userId) {
 		DataStatus result;
 		UserModel userModel;
 
-		if (userid.length() < 4) {
+		if (userId.length() < 4) {
 			result = DataStatus.Invalid_InputValue;
 			return result;
 		} else {
 			try {
-				userModel = userDAO.findUser(userid);
+				userModel = userDAO.findUser(userId);
 				result = DataStatus.Exist;
 			}
 			// 존재하지 않는 회원일 경우 (exception 발생)
@@ -76,20 +76,20 @@ public class UserService {
 		return result;
 	}
 	
-	public UserModel findUser(String userid) throws Exception{
+	public UserModel findUser(String userId) throws Exception{
 		//userid로 찾기
-		UserModel userModel = userDAO.findUser(userid);
+		UserModel userModel = userDAO.findUser(userId);
 		
 		return userModel;
 	}
 	
-	public String updatePassword(String userid, String password) {
+	public String updatePassword(String userId, String password) {
 		String message;
 		UserModel userModel;
 
 		// 1. 새 비밀번호가 이전 비밀번호와 일치하는지 확인하기
 		try {
-			userModel = userDAO.findUser(userid);
+			userModel = userDAO.findUser(userId);
 			if (userModel.getPassword().equals(password)) {
 				message = "비밀번호가 이전 비밀번호와 같습니다. 새로운 비밀번호를 입력해주세요";
 				return message;
@@ -100,7 +100,7 @@ public class UserService {
 		}
 
 		// 2. 새 비밀번호가 이전 비밀번호와 일치하지 않다면
-		DAOResult result = userDAO.updatePassword(userid, password);
+		DAOResult result = userDAO.updatePassword(userId, password);
 		if (result == DAOResult.Success) {
 			message = "비밀번호 변경에 성공했습니다";
 		} else {
@@ -124,16 +124,16 @@ public class UserService {
 		return message;
 	}
 	
-	public UserModel getMember(String userid) {
-		UserModel umodel = userDAO.getMember(userid);
+	public UserModel getMember(String userId) {
+		UserModel umodel = userDAO.getMember(userId);
 
 		return umodel;
 	}
 
-	public int userCheck(String userid, String pwd) {
+	public int userCheck(String userId, String password) {
 		int result = -1;
-		String checkPwd = userDAO.userCheck(userid);
-		if (checkPwd.equals(pwd)) {
+		String checkPwd = userDAO.userCheck(userId);
+		if (checkPwd.equals(password)) {
 			result = 1;
 		} else {
 			result = 0;

@@ -20,21 +20,21 @@ public class JoinController {
 	@Autowired
 	private UserService user;
 
-	@GetMapping("join")
+	@GetMapping("/join")
 	public String join() {
 
 		return "views/join/join";
 	}
 
-	@GetMapping("idCheck.do")
+	@GetMapping("/idCheck.do")
 	public String idCheckDo(HttpServletRequest request) {
-		String userid = request.getParameter("userid");
+		String userid = request.getParameter("userId");
 		DataStatus result;
 
 		result = user.comfirmId(userid);
 		request.setAttribute("result", result);
 
-		return "views/join/idCheck";
+		return "/views/join/idCheck";
 	}
 
 	@PostMapping("/join.do")
