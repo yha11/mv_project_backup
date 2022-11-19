@@ -47,9 +47,9 @@ function getreviews() {
 	let fPage = Math.floor((page-1)/pageSize) * pageSize + 1;  //밑에 보여야하는 시작 페이지
 	let lPage = fPage + pageSize -1; //밑에 보여야 하는 종료 페이지
 	
-	if(!(fPage > 0)){
+	/* if(!(fPage > 0)){
 		fPage = 1;
-	} 
+	}  */
 	
 	var data = {
 			page : page,
@@ -83,30 +83,32 @@ function getreviews() {
 			}
 			$('tBody').html(html);
 			
-			let pageHtml = '<li class="page-item">';
-	        pageHtml += '<a class="page-link" href="/view/admin/allreview?page=';
-	        if(fPage-1 <0) {
-	        	pageHtml += 1;
+			let pageHtml = '';
+	        // << 페이지버튼
+	        if(page-1 > 0) {
+	        	pageHtml += '<li class="page-item">';
+		        pageHtml += '<a class="page-link" href="/views/admin/allreview?page=';
+	        	pageHtml += page-1;
+	        	pageHtml += '&pageSize=10" aria-label="Previous">';
 	        }else {
-	        	pageHtml += fPage-1;
+	        	pageHtml += '<li class="page-item disabled">';
+		        pageHtml += '<a class="page-link" href="#" aria-label="Previous">';
 	        }
-	        pageHtml += '&pageSize=10" aria-label="Next">';
 	        pageHtml += '<span aria-hidden="true">&laquo;</span>';
 	        pageHtml += '</a>';
 	        pageHtml += '</li>';
+	        // 페이지 버튼
 	        for(let i=fPage; i<=res.pages; i++){
 		        pageHtml += '<li class="page-item">';
 		        pageHtml += '<a class="page-link" href="/views/admin/allreview?page=' + i + '&pageSize=10">' + i + '</a>';
 		        pageHtml += '</li>';
 	        }
+	        // >> 페이지버튼
 	        pageHtml += '<li class="page-item">';
-	        pageHtml += '<a class="page-link" href="/view/admin/allreview?page='; + lPage+1 +  //onclick="getlists(page+10)"
-	        if(lPage+1 <re) {
-	        	pageHtml += 1;
-	        }else {
-	        	pageHtml += fPage-1;
-	        }
-	        pageHtml += '&pageSize=10" aria-label="Next">';
+        	pageHtml += '<a class="page-link" href="/views/admin/allreview?page=';
+        	pageHtml += page+1;
+        	pageHtml += '&pageSize=10" aria-label="Next">';
+	        
 	        pageHtml += '<span aria-hidden="true">&raquo;</span>';
 	        pageHtml += '</a>';
 	        pageHtml += '</li>';

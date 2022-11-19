@@ -25,7 +25,7 @@
     	</select>
     	<!-- 관리자 모든 리뷰 최신순으로 불러오기 -->
     	<select id="selectAllReviews" resultType="reviewModel">
-    		SELECT R.REVIEW_NUM, R.REVIEW_STARRATE, R.REVIEW_CONTENT, U.USER_ID, M.TITLE, COUNT(*) AS CNT
+    		SELECT R.REVIEW_NUM, R.REVIEW_STARRATE, R.REVIEW_CONTENT, U.USER_ID, M.TITLE
 			FROM REVIEW R
 				INNER JOIN USER_TBL U
 				ON R.USER_NUM=U.USER_NUM
