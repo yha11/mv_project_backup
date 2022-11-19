@@ -11,8 +11,9 @@
 <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
+<hr>
 <table class="table">
-  <thead>
+  <thead class="table-light">
     <tr>
       <th scope="col">리뷰 번호</th>
       <th scope="col">회원 아이디</th>
@@ -24,75 +25,123 @@
   </thead>
   <tbody id="tbody"></tbody>
 </table>
+<!-- 페이징 -->
+<div style="width: 1000px; margin: 30px auto 30px auto;">	
+  <nav aria-label="Page navigation example">
+	<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+		<ul class="pagination" id="pagination">
+		</ul>
+	</div>
+  </nav>
+</div>
 
 <script>
-		$(document).ready(function(){
-			getreviews();
-		})
-		
-		function getreviews() {
-			var data = {
-					page : ${param.page},
-					pageSize : 10
-			}
-			
-			$.ajax({
-				url : '/allreviews',
-				type : 'GET',
-				accept : "application/json",
-				contentType: "application/json; charset=utf-8",
-				data : data,
-				dataType: "json",
-				success : function(res) {
-					console.log(res);
-					let html = '';
-					let list = res.list;
-					for(let i=0; i<list.length; i++) {
-						const review = list[i];
-						console.log(review);
-						
-						html += '<tr>';
-						html += '<th scope="row">' + review.reviewNum + '</th>';
-						html += '<td>' + review.userId + '</td>';
-						html += '<td>' + review.title + '</td>';
-						html += '<td>' + review.reviewStarrate + '</td>';
-						html += '<td>' + review.reviewContent + '</td>';
-						html += '<input type="hidden" id="reviewNum" value="' + review.reviewNum + '">';
-						html += '<td><button type="button" class="btn btn-danger" onclick="delReview(' + review.reviewNum + ')">삭제</button></td>';
-						html += '</tr>';
-					}
-					$('tBody').html(html);
-				},
-				error: function(error) {
-					console.log(error);
-				}
-			})
-		}
-		
-		function delReview(reviewNum) {
-			var data = {
-					reviewNum : reviewNum
-			}
-			
-			$.ajax({
-				url : '/delreview',
-				type : 'POST',
-				accept : "application/json",
-				contentType: "application/json; charset=utf-8",
-				data: JSON.stringify(data),
-				dataType: "json",
-				success : function(res) {
-					console.log(res);
-					alert('리뷰가 삭제되었습니다.');
-					location.href='allreview?page=' + ${param.page} + '&pageSize=10';
-				},
-				error: function(error) {
-					console.log(error);
-				}
+$(document).ready(function(){
+	getreviews();
+})
+
+function getreviews() {
+	var page = ${param.page}; //현재 페이지
+	
+	let pageSize = 10; //밑에 보여야 하는 페이지 갯수
+	let fPage = Math.floor((page-1)/pageSize) * pageSize + 1;  //밑에 보여야하는 시작 페이지
+	let lPage = fPage + pageSize -1; //밑에 보여야 하는 종료 페이지
+	
+	if(!(fPage > 0)){
+		fPage = 1;
+	} 
+	
+	var data = {
+			page : page,
+			pageSize : pageSize
+	}
+	
+	$.ajax({
+		url : '/allreviews',
+		type : 'GET',
+		accept : "application/json",
+		contentType: "application/json; charset=utf-8",
+		data : data,
+		dataType: "json",
+		success : function(res) {
+			console.log(res);
+			let html = '';
+			let list = res.list;
+			for(let i=0; i<list.length; i++) {
+				const review = list[i];
+				console.log(review);
 				
-			})
+				html += '<tr>';
+				html += '<th scope="row">' + review.reviewNum + '</th>';
+				html += '<td>' + review.userId + '</td>';
+				html += '<td>' + review.title + '</td>';
+				html += '<td>' + review.reviewStarrate + '</td>';
+				html += '<td>' + review.reviewContent + '</td>';
+				html += '<input type="hidden" id="reviewNum" value="' + review.reviewNum + '">';
+				html += '<td><button type="button" class="btn btn-danger" onclick="delReview(' + review.reviewNum + ')">삭제</button></td>';
+				html += '</tr>';
+			}
+			$('tBody').html(html);
+			
+			let pageHtml = '<li class="page-item">';
+	        pageHtml += '<a class="page-link" href="/view/admin/allreview?page=';
+	        if(fPage-1 <0) {
+	        	pageHtml += 1;
+	        }else {
+	        	pageHtml += fPage-1;
+	        }
+	        pageHtml += '&pageSize=10" aria-label="Next">';
+	        pageHtml += '<span aria-hidden="true">&laquo;</span>';
+	        pageHtml += '</a>';
+	        pageHtml += '</li>';
+	        for(let i=fPage; i<=res.pages; i++){
+		        pageHtml += '<li class="page-item">';
+		        pageHtml += '<a class="page-link" href="/views/admin/allreview?page=' + i + '&pageSize=10">' + i + '</a>';
+		        pageHtml += '</li>';
+	        }
+	        pageHtml += '<li class="page-item">';
+	        pageHtml += '<a class="page-link" href="/view/admin/allreview?page='; + lPage+1 +  //onclick="getlists(page+10)"
+	        if(lPage+1 <re) {
+	        	pageHtml += 1;
+	        }else {
+	        	pageHtml += fPage-1;
+	        }
+	        pageHtml += '&pageSize=10" aria-label="Next">';
+	        pageHtml += '<span aria-hidden="true">&raquo;</span>';
+	        pageHtml += '</a>';
+	        pageHtml += '</li>';
+	        $('#pagination').html(pageHtml);
+		},
+		error: function(error) {
+			console.log(error);
 		}
-	</script>
+	})
+}
+		
+function delReview(reviewNum) {
+	var data = {
+			reviewNum : reviewNum
+	}
+	
+	$.ajax({
+		url : '/delreview',
+		type : 'POST',
+		accept : "application/json",
+		contentType: "application/json; charset=utf-8",
+		data: JSON.stringify(data),
+		dataType: "json",
+		success : function(res) {
+			console.log(res);
+			alert('리뷰가 삭제되었습니다.');
+			location.href='allreview?page=' + ${param.page} + '&pageSize=10';
+		},
+		error: function(error) {
+			console.log(error);
+		}
+		
+	})
+}
+</script>
 <%@ include file="/WEB-INF/views/ui/foot.jsp"%>
 </body>
 </html>

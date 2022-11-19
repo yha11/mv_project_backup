@@ -16,4 +16,5 @@ public class ReviewModel {
 	private String userId;
 	private Integer page;
 	private Integer pageSize;
+	private Integer cnt;
 }
