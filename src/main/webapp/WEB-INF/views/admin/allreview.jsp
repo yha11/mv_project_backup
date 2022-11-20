@@ -13,13 +13,17 @@
 
 <hr>
 <!-- 검색창 -->
-<select id="searchObj">
-	<option value="userId">아이디</option>
-	<option value="title">영화</option>
-	<option value="reviewContent">관람평</option>
-</select>
-<input type="text" id="searchStr" placeholder="검색어를 작성해주세요.">
-<button type="button" onclick="getReviews()">검색</button>
+<div style="width: 1000px; margin: 30px auto 30px auto;">
+	<div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+		<select id="searchObj">
+			<option value="userId">아이디</option>
+			<option value="title">영화</option>
+			<option value="reviewContent">관람평</option>
+		</select>&nbsp;
+		<input type="text" id="searchStr" placeholder="검색어를 작성해주세요.">&nbsp;
+		<button type="button" onclick="getReviews()">검색</button>
+	</div>
+</div>
 
 <table class="table">
   <thead class="table-light">
