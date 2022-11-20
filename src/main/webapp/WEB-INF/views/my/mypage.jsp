@@ -31,8 +31,8 @@
 				<div class="card-footer text-muted">
 					<ul class="nav justify-content-center">
 						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="myreviews?page=1&pageSize=2">MY 리뷰</a></li>
-						<li class="nav-item"><a class="nav-link" href="myqna?page=1&pageSize=10">1:1 문의</a></li>
+							aria-current="page" href="myreviews">MY 리뷰</a></li>
+						<li class="nav-item"><a class="nav-link" href="myqna">1:1 문의</a></li>
 						<li class="nav-item"><a class="nav-link" href="infomodify">정보 관리</a></li>
 					</ul>
 				</div>
@@ -50,8 +50,8 @@
 				<div class="card-footer text-muted">
 					<ul class="nav justify-content-center">
 						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="/views/admin/allreview?page=1&pageSize=10">리뷰 관리</a></li>
-						<li class="nav-item"><a class="nav-link" href="/views/admin/allqna?page=1&pageSize=10">문의 관리</a></li>
+							aria-current="page" href="/views/admin/allreview">리뷰 관리</a></li>
+						<li class="nav-item"><a class="nav-link" href="/views/admin/allqna">문의 관리</a></li>
 						<li class="nav-item"><a class="nav-link" href="infomodify">정보 관리</a></li>
 					</ul>
 				</div>

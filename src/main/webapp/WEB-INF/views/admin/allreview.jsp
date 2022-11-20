@@ -152,7 +152,7 @@ function delReview(reviewNum) {
 		success : function(res) {
 			console.log(res);
 			alert('리뷰가 삭제되었습니다.');
-			location.href='allreview?page=' + ${param.page} + '&pageSize=10';
+			location.href='/views/admin/allreview';
 		},
 		error: function(error) {
 			console.log(error);

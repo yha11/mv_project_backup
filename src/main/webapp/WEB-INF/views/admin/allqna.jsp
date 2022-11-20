@@ -121,7 +121,7 @@
 	}
 	
 	function goQnaView(qnaNum, userNum) {
-		location.href='/views/my/qnadetail?qnaNum=' + qnaNum + '&userNum=' + userNum + '&page=' +${param.page};
+		location.href='/views/my/qnadetail?qnaNum=' + qnaNum + '&userNum=' + userNum;
 	}
 </script>
 <%@ include file="/WEB-INF/views/ui/foot.jsp"%>

@@ -121,7 +121,7 @@
 			success : function(res) {
 				console.log(res);
 				alert('답변이 등록되었습니다.');
-				location.href='/views/admin/allqna?page=' + ${param.page} + '&pageSize=10';
+				location.href='/views/admin/allqna';
 				
 			},
 			error: function(error) {
@@ -131,11 +131,11 @@
 	}
 	
 	function goQnaList() {
-		location.href='/views/my/myqna?page=' + ${param.page} + '&pageSize=10';
+		window.history.back(); //뒤로가기
 	}
 	
 	function goAllQnaList() {
-		location.href='/views/admin/allqna?page=' + ${param.page} + '&pageSize=10';
+		window.history.back(); //뒤로가기
 	}
 </script>
 <%@ include file="/WEB-INF/views/ui/foot.jsp"%>
