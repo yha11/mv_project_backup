@@ -24,16 +24,35 @@
 		<tbody id="tBody"></tbody>
 	</table>
 </div>
+<!-- 페이징 -->
+<div style="width: 1000px; margin: 30px auto 30px auto;">	
+  <nav aria-label="Page navigation example">
+	<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+		<ul class="pagination" id="pagination">
+		</ul>
+	</div>
+  </nav>
+</div>
 
 <script>
 	$(document).ready(function(){
-		qnalist();
+		qnaList();
 	})
 
-	function qnalist(){
+	function qnaList(page){
+		if(!(page > 0)){
+			page = 1;
+		}
+		
+		var page = page?page:1; //현재 페이지
+		
+		let pageSize = 10; //밑에 보여야 하는 페이지 갯수
+		let fPage = Math.floor((page-1)/pageSize) * pageSize + 1;  //밑에 보여야하는 시작 페이지
+		let lPage = fPage + pageSize -1; //밑에 보여야 하는 종료 페이지
+		
 		var data = {
-				page : ${param.page},
-				pageSize : 10
+				page : page,
+				pageSize : pageSize
 		}
 		/*
 		form 태그의 submit으로 데이터를 서버로 보낼 경우는 동기 방식
@@ -62,6 +81,38 @@
 					html += '</tr>';
 				}
 				$('tBody').html(html);
+				
+				let pageHtml = '';
+		        // << 페이지버튼
+		        if(page-1 > 0) {
+		        	pageHtml += '<li class="page-item">';
+		        	pageHtml += '<a class="page-link" href="javascript:void(0)" onclick="qnaList(' + (page-1) + ')" aria-label="Previous">';
+		        }else {
+		        	pageHtml += '<li class="page-item disabled">';
+			        pageHtml += '<a class="page-link" href="#" aria-label="Previous">';
+		        }
+		        pageHtml += '<span aria-hidden="true">&laquo;</span>';
+		        pageHtml += '</a>';
+		        pageHtml += '</li>';
+		        // 페이지 버튼
+		        for(let i=fPage; i<=res.pages; i++){
+			        pageHtml += '<li class="page-item">';
+			        pageHtml += '<a class="page-link" href="javascript:void(0)" onclick="qnaList(' + i + ')">' + i + '</a>';
+			        pageHtml += '</li>';
+		        }
+		        // >> 페이지버튼
+		        if(res.nextPage > 0) {
+		        	pageHtml += '<li class="page-item">';
+		        	pageHtml += '<a class="page-link" href="javascript:void(0)" onclick="qnaList(' + (page+1) + ')" aria-label="Next">';
+		        }else {
+		        	pageHtml += '<li class="page-item disabled">';
+			        pageHtml += '<a class="page-link" href="#" aria-label="Next">';
+		        }
+		        
+		        pageHtml += '<span aria-hidden="true">&raquo;</span>';
+		        pageHtml += '</a>';
+		        pageHtml += '</li>';
+		        $('#pagination').html(pageHtml);
 			},
 			error: function(error) {
 				console.log(error);

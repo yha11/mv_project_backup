@@ -29,9 +29,15 @@
 		getreviews();
 	})
 	
-	function getreviews() {
+	function getreviews(page) {
+		if(!(page > 0)){
+			page = 1;
+		}
+		
+		var page = page?page:1; //현재 페이지
+		
 		var data = {
-				page : ${param.page},
+				page : page,
 				pageSize : 2
 		}
 		$.ajax({
@@ -87,23 +93,23 @@
 				html += '<nav aria-label="Page navigation example">';
 				html += '<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">';
 				html += '<ul class="pagination">';
-				html += '<li class="page-item">';
-				html += '<a class="page-link" href="/views/my/myreviews?page=' + (${param.page}-1) + '&pageSize=2" aria-label="Previous">';
+				if(page-1 > 0) {
+					html += '<li class="page-item">';
+					html += '<a class="page-link" href="javascript:void(0)" onclick="getreviews(' + (page-1) + ')" aria-label="Previous">';
+				}else {
+					html += '<li class="page-item disabled">';
+					html += '<a class="page-link" href="#" aria-label="Previous">';
+				}
 				html += '<span aria-hidden="true">&laquo;</span>';
 				html += '</a>';
 				html += '</li>';
-				
-				/* //페이지 버튼 계산
-				var Size = 3;
-				var page = Math.floor(${param.page}/buttonSize) + 1;
-				var endPage = page + buttonSize - 1;
-		
-				for(var i=page; i<endPage; i++) {
-					html += '<li class="page-item"><a class="page-link" href="/views/my/myreviews?page=' + i + '&pageSize=2">' + i + '</a></li>';
-				} */
-				
-				html += '<li class="page-item">';
-				html += '<a class="page-link" href="/views/my/myreviews?page=' + (${param.page}+1) + '&pageSize=2" aria-label="Next">';
+				if(res.nextPage > 0) {
+					html += '<li class="page-item">';
+					html += '<a class="page-link" href="javascript:void(0)" onclick="getreviews(' + (page+1) + ')" aria-label="Next">';
+				}else {
+					html += '<li class="page-item disabled">';
+					html += '<a class="page-link" href="#" aria-label="Next">';
+				}
 				html += '<span aria-hidden="true">&raquo;</span>';
 				html += '</a>';
 				html += '</li>';

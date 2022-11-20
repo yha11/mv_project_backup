@@ -57,6 +57,7 @@ function getReviews(page) {
 	if(!(page > 0)){
 		page = 1;
 	}
+	
 	var page = page?page:1; //현재 페이지
 	
 	let pageSize = 10; //밑에 보여야 하는 페이지 갯수
@@ -80,8 +81,6 @@ function getReviews(page) {
 		dataType: "json",
 		success : function(res) {
 			console.log(res);
-			
-			console.log(res.pages);
 			
 			let html = '';
 			let list = res.list;
