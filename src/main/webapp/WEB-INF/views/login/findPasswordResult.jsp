@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="/WEB-INF/views/ui/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +40,6 @@
 </head>
 <body>
 	<div id="Wrap">
-		<jsp:include page="/WEB-INF/views/ui/nav.jsp"></jsp:include>
 			<section>
 				<div align="center"><b><font size="6" color="gray">비밀 번호 변경</font></b></div>
 				<hr>
@@ -81,7 +81,7 @@
 					</table>					
 				</form>
 			</section>
-		<jsp:include page="/WEB-INF/views/ui/footer.jsp"></jsp:include>
 	</div>
+<%@ include file="/WEB-INF/views/ui/foot.jsp"%>
 </body>
 </html>
