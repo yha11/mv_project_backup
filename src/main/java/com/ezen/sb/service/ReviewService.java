@@ -42,7 +42,7 @@ public class ReviewService {
 	
 	public PageInfo<ReviewModel> selectAllReviews(ReviewModel reviewModel) {
 		PageHelper.startPage(reviewModel.getPage(), reviewModel.getPageSize());
-		return PageInfo.of(reviewMapper.selectAllReviews());
+		return PageInfo.of(reviewMapper.searchReview(reviewModel));
 	}
 		
 	public int insertReview(ReviewModel reviewModel, HttpSession session) {

@@ -19,7 +19,7 @@
 	<option value="reviewContent">관람평</option>
 </select>
 <input type="text" id="searchStr" placeholder="검색어를 작성해주세요.">
-<button type="button" onclick="search()">검색</button>
+<button type="button" onclick="getReviews()">검색</button>
 
 <table class="table">
   <thead class="table-light">
@@ -46,11 +46,11 @@
 
 <script>
 $(document).ready(function(){
-	getreviews();
+	getReviews();
 })
 
-function getreviews() {
-	var page = ${param.page}; //현재 페이지
+function getReviews(page) {
+	var page = page?page:1; //현재 페이지
 	
 	let pageSize = 10; //밑에 보여야 하는 페이지 갯수
 	let fPage = Math.floor((page-1)/pageSize) * pageSize + 1;  //밑에 보여야하는 시작 페이지
@@ -63,6 +63,8 @@ function getreviews() {
 	var data = {
 			page : page,
 			pageSize : pageSize,
+			searchObj : $('#searchObj').val(),
+			searchStr : $('#searchStr').val(),
 			
 	}
 	
@@ -115,9 +117,9 @@ function getreviews() {
 	        }
 	        // >> 페이지버튼
 	        pageHtml += '<li class="page-item">';
-        	pageHtml += '<a class="page-link" href="/views/admin/allreview?page=';
+        	pageHtml += '<a class="page-link" href="javascript:void(0)" onclick="getReviews(';
         	pageHtml += page+1;
-        	pageHtml += '&pageSize=10" aria-label="Next">';
+        	pageHtml += ')" aria-label="Next">';
 	        
 	        pageHtml += '<span aria-hidden="true">&raquo;</span>';
 	        pageHtml += '</a>';

@@ -11,7 +11,7 @@ public interface ReviewMapper {
 	
 	List<ReviewModel> selectMyReviews(Integer userNum);
 	
-	List<ReviewModel> selectAllReviews();
+	List<ReviewModel> selectAllReviews(ReviewModel reviewModel);
 	
 	int insertReview(ReviewModel reviewModel);
 	

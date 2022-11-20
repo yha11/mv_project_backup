@@ -42,14 +42,17 @@
 				INNER JOIN MOVIE M
 				ON R.MOVIE_NUM=M.MOVIE_NUM
 			<where>
-				<if test="searchObj == userId">
-					AND M.TITLE LIKE CONCAT('%', #{searchStr}, '%')
-				</if>
-				<if test="searchObj == title">
-					AND M.TITLE LIKE CONCAT('%', #{searchStr}, '%')
-				</if>
-				<if test="searchObj == reviewContent">
-					AND M.TITLE LIKE CONCAT('%', #{searchStr}, '%')
+				<if test='searchStr!=null and searchStr!=""'>
+				
+					<if test='searchObj == "userId"'>
+						AND U.USER_ID LIKE CONCAT('%', #{searchStr}, '%')
+					</if>
+					<if test='searchObj == "title"'>
+						AND M.TITLE LIKE CONCAT('%', #{searchStr}, '%')
+					</if>
+					<if test='searchObj == "reviewContent"'>
+						AND R.REVIEW_CONTENT LIKE CONCAT('%', #{searchStr}, '%')
+					</if>
 				</if>
 			</where>
 			ORDER BY R.REVIEW_NUM DESC
