@@ -12,6 +12,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
 <hr>
+<!-- 검색창 -->
+<select id="searchObj">
+	<option value="userId">아이디</option>
+	<option value="title">영화</option>
+	<option value="reviewContent">관람평</option>
+</select>
+<input type="text" id="searchStr" placeholder="검색어를 작성해주세요.">
+<button type="button" onclick="search()">검색</button>
+
 <table class="table">
   <thead class="table-light">
     <tr>
@@ -53,7 +62,8 @@ function getreviews() {
 	
 	var data = {
 			page : page,
-			pageSize : pageSize
+			pageSize : pageSize,
+			
 	}
 	
 	$.ajax({
@@ -143,6 +153,38 @@ function delReview(reviewNum) {
 		
 	})
 }
+
+/* <select id="searchObj">
+<option value="userId">아이디</option>
+<option value="title">영화</option>
+<option value="reviewContent">관람평</option>
+</select>
+<input type="text" id="searchStr" placeholder="검색어를 작성해주세요.">
+<button type="button" onclick="search()">검색</button> */
+
+/* function search() {
+	var data = {
+			searchObj : $('#searchObj').val(), // userId, title, reviewContent
+			searchStr : $('#searchStr').val()
+	}
+	console.log(data);
+	
+	$.ajax({
+		url : '/searchreview',
+		type : 'POST',
+		accept : "application/json",
+    	contentType: "application/json; charset=utf-8",
+    	data: JSON.stringify(data),
+		dataType: "json",
+		success : function(res) {
+			console.log(res);
+		},
+    	error: function(error) {
+			console.log(error);
+		}
+	})
+	
+} */
 </script>
 <%@ include file="/WEB-INF/views/ui/foot.jsp"%>
 </body>

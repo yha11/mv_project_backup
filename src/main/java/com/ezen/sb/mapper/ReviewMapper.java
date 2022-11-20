@@ -16,5 +16,7 @@ public interface ReviewMapper {
 	int insertReview(ReviewModel reviewModel);
 	
 	int deleteReview(ReviewModel reviewModel);
+	
+	List<ReviewModel> searchReview(ReviewModel reviewModel);
 
 }

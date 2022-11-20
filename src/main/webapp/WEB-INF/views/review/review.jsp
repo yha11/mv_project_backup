@@ -153,7 +153,7 @@
 			dataType: "json",
 			success : function(res) {
 				console.log(res);
-				location.href='mvinfo-reviews?movieNum=' + ${param.movieNum};
+				location.href='/views/review/mvinfo-reviews?movieNum=' + ${param.movieNum};
 				
 			},
 			error: function(error) {

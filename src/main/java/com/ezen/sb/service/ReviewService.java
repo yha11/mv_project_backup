@@ -54,5 +54,10 @@ public class ReviewService {
 	public int deleteReview(ReviewModel reviewModel) {
 		return reviewMapper.deleteReview(reviewModel);
 	}
+	
+	/*
+	 * public List<ReviewModel> searchReview(String searchObj, String searchStr) {
+	 * ReviewModel reviewModel = return reviewMapper.searchReview(reviewModel); }
+	 */
 
 }

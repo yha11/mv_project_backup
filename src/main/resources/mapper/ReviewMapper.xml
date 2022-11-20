@@ -33,6 +33,27 @@
 				ON R.MOVIE_NUM=M.MOVIE_NUM
 			ORDER BY R.REVIEW_NUM DESC
     	</select>
+    	<!-- 검색창 (유저아이디, 영화이름, 관람평) -->
+    	<select id="searchReview" resultType="reviewModel" parameterType="reviewModel">
+    		SELECT R.REVIEW_NUM, R.REVIEW_STARRATE, R.REVIEW_CONTENT, U.USER_ID, M.TITLE
+			FROM REVIEW R
+				INNER JOIN USER_TBL U
+				ON R.USER_NUM=U.USER_NUM
+				INNER JOIN MOVIE M
+				ON R.MOVIE_NUM=M.MOVIE_NUM
+			<where>
+				<if test="searchObj == userId">
+					AND M.TITLE LIKE CONCAT('%', #{searchStr}, '%')
+				</if>
+				<if test="searchObj == title">
+					AND M.TITLE LIKE CONCAT('%', #{searchStr}, '%')
+				</if>
+				<if test="searchObj == reviewContent">
+					AND M.TITLE LIKE CONCAT('%', #{searchStr}, '%')
+				</if>
+			</where>
+			ORDER BY R.REVIEW_NUM DESC
+    	</select>
     	<!-- 리뷰 쓰기 -->
     	<insert id="insertReview" parameterType="reviewModel">
     		INSERT INTO REVIEW(REVIEW_STARRATE, REVIEW_CONTENT, USER_NUM, MOVIE_NUM)
