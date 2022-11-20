@@ -50,15 +50,14 @@ $(document).ready(function(){
 })
 
 function getReviews(page) {
+	if(!(page > 0)){
+		page = 1;
+	}
 	var page = page?page:1; //현재 페이지
 	
 	let pageSize = 10; //밑에 보여야 하는 페이지 갯수
 	let fPage = Math.floor((page-1)/pageSize) * pageSize + 1;  //밑에 보여야하는 시작 페이지
 	let lPage = fPage + pageSize -1; //밑에 보여야 하는 종료 페이지
-	
-	/* if(!(fPage > 0)){
-		fPage = 1;
-	}  */
 	
 	var data = {
 			page : page,
@@ -77,11 +76,13 @@ function getReviews(page) {
 		dataType: "json",
 		success : function(res) {
 			console.log(res);
+			
+			console.log(res.pages);
+			
 			let html = '';
 			let list = res.list;
 			for(let i=0; i<list.length; i++) {
 				const review = list[i];
-				console.log(review);
 				
 				html += '<tr>';
 				html += '<th scope="row">' + review.reviewNum + '</th>';
@@ -99,9 +100,7 @@ function getReviews(page) {
 	        // << 페이지버튼
 	        if(page-1 > 0) {
 	        	pageHtml += '<li class="page-item">';
-		        pageHtml += '<a class="page-link" href="/views/admin/allreview?page=';
-	        	pageHtml += page-1;
-	        	pageHtml += '&pageSize=10" aria-label="Previous">';
+	        	pageHtml += '<a class="page-link" href="javascript:void(0)" onclick="getReviews(' + (page-1) + ')" aria-label="Previous">';
 	        }else {
 	        	pageHtml += '<li class="page-item disabled">';
 		        pageHtml += '<a class="page-link" href="#" aria-label="Previous">';
@@ -112,14 +111,17 @@ function getReviews(page) {
 	        // 페이지 버튼
 	        for(let i=fPage; i<=res.pages; i++){
 		        pageHtml += '<li class="page-item">';
-		        pageHtml += '<a class="page-link" href="/views/admin/allreview?page=' + i + '&pageSize=10">' + i + '</a>';
+		        pageHtml += '<a class="page-link" href="javascript:void(0)" onclick="getReviews(' + i + ')">' + i + '</a>';
 		        pageHtml += '</li>';
 	        }
 	        // >> 페이지버튼
-	        pageHtml += '<li class="page-item">';
-        	pageHtml += '<a class="page-link" href="javascript:void(0)" onclick="getReviews(';
-        	pageHtml += page+1;
-        	pageHtml += ')" aria-label="Next">';
+	        if(res.nextPage > 0) {
+	        	pageHtml += '<li class="page-item">';
+	        	pageHtml += '<a class="page-link" href="javascript:void(0)" onclick="getReviews(' + (page+1) + ')" aria-label="Next">';
+	        }else {
+	        	pageHtml += '<li class="page-item disabled">';
+		        pageHtml += '<a class="page-link" href="#" aria-label="Next">';
+	        }
 	        
 	        pageHtml += '<span aria-hidden="true">&raquo;</span>';
 	        pageHtml += '</a>';
