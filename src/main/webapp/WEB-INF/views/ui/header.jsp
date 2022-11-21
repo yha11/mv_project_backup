@@ -63,8 +63,6 @@ body {
         <%if(name != null){ %>
         <h3>${userName}</h3>&nbsp;님 반가워요!&nbsp;&nbsp;&nbsp;
 		     <form action ="/views/my/mypage" class="d-flex">
-		     	<input type="hidden" name="pageSize" value="10">
-		     	<input type="hidden" name="pageNum" value="1">
 		         <button type="submit" class="btn btn-outline-dark me-2">마이페이지</button>
 		     </form>
         <form action ="/views/login/logout" class="d-flex">
