@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/ui/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,6 @@
 </head>
 <body>
 	<div id="Wrap">
-		<jsp:include page="/WEB-INF/views/ui/nav.jsp"></jsp:include>
 			<section>
 			<br><br><br><br><br>
 			<div style="width: 30%; margin-left: auto; margin-right: auto;" align="center">
@@ -47,5 +47,7 @@
 			</section>
 		<jsp:include page="/WEB-INF/views/ui/footer.jsp"></jsp:include>
 	</div>
+	
+<%@ include file="/WEB-INF/views/ui/foot.jsp"%>
 </body>
 </html>
