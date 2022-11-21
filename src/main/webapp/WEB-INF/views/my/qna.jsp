@@ -11,29 +11,42 @@
 <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
-<div style="width: 500px; margin: 30px auto 30px auto;">
-	<div class="mb-3 row">
-	    <label for="userId" class="col-sm-2 col-form-label" style="background-color: #dddddd; border-radius: 6px; text-align: center;">아이디</label>
-	    <div class="col-sm-10">
-	      <input type="text" readonly class="form-control-plaintext" id="userId" value="${userId}">
-	    </div>
-  	</div>
-	<div class="mb-3 row">
-	    <label for="qnaTitle" class="col-sm-2 col-form-label" style="background-color: #dddddd; border-radius: 6px; display: flex; flex-direction: column; justify-content: center; align-items: center;">제목</label>
-	    <div class="col-sm-10">
-	    <input type="text" class="form-control" id="qnaTitle">
-	    </div>
-  	</div>
-  	<div class="mb-3 row">
-	    <label for="qnaContent" class="col-sm-2 col-form-label" style="background-color: #dddddd; border-radius: 6px; display: flex; flex-direction: column; justify-content: center; align-items: center;">내용</label>
-	    <div class="col-sm-10">
-	    <textarea class="form-control" id="qnaContent" rows="3" style="height: 200px"></textarea>
-	    </div>
-  	</div>
-	<div style="width: 200px; margin: 30px auto 30px auto; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-		<button type="button" class="btn btn-primary" style="border-radius: 20px;" onclick="qna()">문의하기</button>
-	</div>
-</div>
+<c:choose>
+	<c:when test="${empty userId}">
+		<div style="width: 650px; margin: 30px auto 30px auto; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+			<div class="alert alert-danger" role="alert">
+			  로그인 후 사용 가능합니다.
+			</div>
+		</div>
+	</c:when>
+</c:choose>
+<c:choose>
+	<c:when test="${!empty userId}">
+		<div style="width: 500px; margin: 30px auto 30px auto;">
+			<div class="mb-3 row">
+			    <label for="userId" class="col-sm-2 col-form-label" style="background-color: #dddddd; border-radius: 6px; text-align: center;">아이디</label>
+			    <div class="col-sm-10">
+			      <input type="text" readonly class="form-control-plaintext" id="userId" value="${userId}">
+			    </div>
+		  	</div>
+			<div class="mb-3 row">
+			    <label for="qnaTitle" class="col-sm-2 col-form-label" style="background-color: #dddddd; border-radius: 6px; display: flex; flex-direction: column; justify-content: center; align-items: center;">제목</label>
+			    <div class="col-sm-10">
+			    <input type="text" class="form-control" id="qnaTitle">
+			    </div>
+		  	</div>
+		  	<div class="mb-3 row">
+			    <label for="qnaContent" class="col-sm-2 col-form-label" style="background-color: #dddddd; border-radius: 6px; display: flex; flex-direction: column; justify-content: center; align-items: center;">내용</label>
+			    <div class="col-sm-10">
+			    <textarea class="form-control" id="qnaContent" rows="3" style="height: 200px"></textarea>
+			    </div>
+		  	</div>
+			<div style="width: 200px; margin: 30px auto 30px auto; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+				<button type="button" class="btn btn-primary" style="border-radius: 20px;" onclick="qna()">문의하기</button>
+			</div>
+		</div>
+	</c:when>
+</c:choose>
 
 <script>
 	function qna() {

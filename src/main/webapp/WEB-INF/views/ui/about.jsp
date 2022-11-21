@@ -9,12 +9,8 @@
 <title>영화리뷰사이트 | 사이트소개</title>
 </head>
 <body>
-<div id="wrap">
-<section>
-<br><br>
-<div align="center"><img alt="사이트 소개 이미지" src="/resources/img/about.jpg" ></div>
-<br><br>
-</section>
+<div class="text-center">
+	<img src="/resources/img/about.png" class="img-fluid" alt="main">
 </div>
 <%@ include file="/WEB-INF/views/ui/foot.jsp"%>
 </body>

@@ -10,7 +10,7 @@
 <body>
 <!-- 무비피아 이미지 -->
 <div class="text-center">
-	<img src="/resources/img/2.png" class="img-fluid" alt="main">
+	<img src="/resources/img/main.png" class="img-fluid" alt="main">
 </div>
 <%@ include file="/WEB-INF/views/ui/foot.jsp"%>
 </body>

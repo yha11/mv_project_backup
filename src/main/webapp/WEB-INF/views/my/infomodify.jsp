@@ -10,24 +10,37 @@
 <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	
-<div style="width: 300px; margin: 30px auto 30px auto;">
-<fieldset disabled>
-  <div class="mb-3">
-    <label for="userId" class="form-label">아이디</label>
-    <input type="text" class="form-control" id="userId" value="${userId}">
-  </div>
-</fieldset>
-  <div class="mb-3">
-    <label for="userName" class="form-label">이름</label>
-    <input type="text" class="form-control" id="userName" value="${userName}">
-  </div>
-  <div class="mb-3">
-    <label for="userEmail" class="form-label">이메일</label>
-    <input type="email" class="form-control" id="userEmail" value="${email}">
-  </div>
-  <button class="btn btn-primary" onclick="infomodify()">수정</button>
-</div>
-
+<c:choose>
+	<c:when test="${empty userId}">
+		<div style="width: 650px; margin: 30px auto 30px auto; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+			<div class="alert alert-danger" role="alert">
+			  로그인 후 사용 가능합니다.
+			</div>
+		</div>
+	</c:when>
+</c:choose>
+<c:choose>
+	<c:when test="${!empty userId}">
+		<div style="width: 300px; margin: 30px auto 30px auto;">
+		<fieldset disabled>
+		  <div class="mb-3">
+		    <label for="userId" class="form-label">아이디</label>
+		    <input type="text" class="form-control" id="userId" value="${userId}">
+		  </div>
+		</fieldset>
+		  <div class="mb-3">
+		    <label for="userName" class="form-label">이름</label>
+		    <input type="text" class="form-control" id="userName" value="${userName}">
+		  </div>
+		  <div class="mb-3">
+		    <label for="userEmail" class="form-label">이메일</label>
+		    <input type="email" class="form-control" id="userEmail" value="${email}">
+		  </div>
+		  <button class="btn btn-primary" onclick="infomodify()">수정</button>
+		</div>
+	</c:when>
+</c:choose>
+	
 <script>
 function infomodify(){
 	/*
