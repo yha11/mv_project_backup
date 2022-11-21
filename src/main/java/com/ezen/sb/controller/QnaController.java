@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ezen.sb.model.QnaModel;
 import com.ezen.sb.model.UserModel;
 import com.ezen.sb.service.QnaService;
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import lombok.extern.slf4j.Slf4j;

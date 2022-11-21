@@ -14,9 +14,9 @@ public class NoticeService {
 	@Autowired
 	private NoticeMapper noticeMapper;
 	
-	public PageInfo<NoticeModel> selectNoticeList(NoticeModel noticeModel){
+	public PageInfo<NoticeModel> selectNoticeList(Integer userNum, NoticeModel noticeModel){
 		PageHelper.startPage(noticeModel.getPage(), noticeModel.getPageSize());
-		return PageInfo.of(noticeMapper.selectNoticeList(noticeModel));
+		return PageInfo.of(noticeMapper.selectNoticeList(userNum));
 	}
 	
 	/*
@@ -25,7 +25,7 @@ public class NoticeService {
 	 * PageInfo.of(noticeMapper.selectNoticeList(noticeNum)); }
 	 */
 	
-	public NoticeModel selectNoticeView(int noticeNum) {
+	public NoticeModel selectNoticeView(Integer noticeNum) {
 		return noticeMapper.selectNoticeView(noticeNum);
 	}
 	

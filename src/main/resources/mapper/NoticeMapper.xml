@@ -13,6 +13,7 @@
 			NOTICE_DATE,
 			NOTICE_CNT
 		FROM NOTICE_BOARD
+		WHERE USER_NUM=#{userNum}
 		ORDER BY NOTICE_NUM DESC
 	</select>
 	
@@ -33,11 +34,14 @@
 		INSERT INTO NOTICE_BOARD(
 			NOTICE_TITLE, 
 			NOTICE_WRITER, 
-			NOTICE_CONTENT )
+			NOTICE_CONTENT,
+			USER_NUM)
+			
 		VALUES(
 			#{noticeTitle},
 			#{noticeWriter},
-			#{noticeContent} )
+			#{noticeContent},
+			#{userNum})
 	</insert>
 	
 	<update id="updateNotice" parameterType="com.ezen.sb.model.NoticeModel">
