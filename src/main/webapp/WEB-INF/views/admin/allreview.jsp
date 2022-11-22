@@ -58,7 +58,7 @@ function getReviews(page) {
 		page = 1;
 	}
 	
-	var page = page?page:1; //현재 페이지
+	var page = page; //현재 페이지
 	
 	let pageSize = 10; //밑에 보여야 하는 페이지 갯수
 	let fPage = Math.floor((page-1)/pageSize) * pageSize + 1;  //밑에 보여야하는 시작 페이지
@@ -161,37 +161,7 @@ function delReview(reviewNum) {
 	})
 }
 
-/* <select id="searchObj">
-<option value="userId">아이디</option>
-<option value="title">영화</option>
-<option value="reviewContent">관람평</option>
-</select>
-<input type="text" id="searchStr" placeholder="검색어를 작성해주세요.">
-<button type="button" onclick="search()">검색</button> */
 
-/* function search() {
-	var data = {
-			searchObj : $('#searchObj').val(), // userId, title, reviewContent
-			searchStr : $('#searchStr').val()
-	}
-	console.log(data);
-	
-	$.ajax({
-		url : '/searchreview',
-		type : 'POST',
-		accept : "application/json",
-    	contentType: "application/json; charset=utf-8",
-    	data: JSON.stringify(data),
-		dataType: "json",
-		success : function(res) {
-			console.log(res);
-		},
-    	error: function(error) {
-			console.log(error);
-		}
-	})
-	
-} */
 </script>
 <%@ include file="/WEB-INF/views/ui/foot.jsp"%>
 </body>

@@ -18,5 +18,7 @@ public interface QnaMapper {
 	int insertQna(QnaModel qnaModel);
 	
 	int updateQna(QnaModel qnaModel);
+	
+	List<QnaModel> searchAnswer(QnaModel qnaModel);
 
 }

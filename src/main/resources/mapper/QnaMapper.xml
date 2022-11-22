@@ -24,6 +24,22 @@
 			FROM QNA_BOARD
 			ORDER BY QNA_NUM DESC
     	</select>
+    	<!-- 관리자 답변 완료, 미완료 선택 -->
+    	<select id="searchAnswer" resultType="com.ezen.sb.model.QnaModel" parameterType="com.ezen.sb.model.QnaModel">
+    		SELECT QNA_NUM, QNA_DATE, QNA_TITLE, QNA_STATUS, USER_NUM
+			FROM QNA_BOARD
+			<where>
+				<if test='searchObj != null and searchObj != ""'>
+					<if test='searchObj == "answer"'>
+						AND QNA_STATUS = '완료'
+					</if>
+					<if test='searchObj == "unanswered"'>
+						AND QNA_STATUS = '미완료'
+					</if>
+				</if>
+			</where>
+			ORDER BY QNA_NUM DESC
+    	</select>
     	<!-- 문의하기 -->
     	<insert id="insertQna" parameterType="com.ezen.sb.model.QnaModel">
     		INSERT INTO QNA_BOARD(USER_NUM, QNA_TITLE, QNA_CONTENT)

@@ -22,6 +22,14 @@
 </c:choose>
 <c:choose>
 	<c:when test="${!empty userId}">
+	<!-- 완료, 미완료 체크창 -->
+	<div style="width: 800px; margin: 30px auto 30px auto;">
+		<ul style="list-style: none; display: flex; flex-direction: row; justify-content: center; align-items: center;">
+			<li style="float: left;"><input type="radio" name="searchObj" value="answer" onclick="qnaList()">완료</li>&nbsp;
+			<li style="float: left;"><input type="radio" name="searchObj" value="unanswered" onclick="qnaList()">미완료</li>
+		</ul>
+	</div>
+	
 		<div style="width: 800px; margin: 30px auto 30px auto;">
 			<table class="table">
 				<thead class="table-light">
@@ -55,7 +63,7 @@
 					page = 1;
 				}
 				
-				var page = page?page:1; //현재 페이지
+				var page = page; //현재 페이지
 				
 				let pageSize = 10; //밑에 보여야 하는 페이지 갯수
 				let fPage = Math.floor((page-1)/pageSize) * pageSize + 1;  //밑에 보여야하는 시작 페이지
@@ -63,7 +71,8 @@
 				
 				var data = {
 						page : page,
-						pageSize : pageSize
+						pageSize : pageSize,
+						searchObj : $('input[name=searchObj]:checked').val()
 				}
 				/*
 				form 태그의 submit으로 데이터를 서버로 보낼 경우는 동기 방식
@@ -83,7 +92,6 @@
 						let list = res.list; //페이징할때 필요하고 안할땐 필요없음
 						for(let i=0; i<list.length; i++) {
 							const board = list[i];
-							console.log(board);
 							html += '<tr style="cursor:pointer" onclick="goQnaView(' + board.qnaNum + ', ' + board.userNum + ')">';
 							html += '<th scope="row">' + board.qnaNum + '</th>';
 							html += '<td>' + board.qnaDate + '</td>';

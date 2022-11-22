@@ -14,5 +14,6 @@ public class QnaModel {
 	private Integer userNum;
 	private Integer page;
 	private Integer pageSize;
+	private String searchObj;
 
 }

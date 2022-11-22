@@ -80,11 +80,4 @@ public class ReviewController {
 		return reviewService.deleteReview(reviewModel);
 	}
 	
-	/*
-	 * @PostMapping("/searchreview") public @ResponseBody List<ReviewModel>
-	 * searchReview(@PathVariable("searchObj") String
-	 * searchObj, @PathVariable("searchStr") String searchStr) { return
-	 * reviewService.searchReview(searchObj, searchStr); }
-	 */
-
 }

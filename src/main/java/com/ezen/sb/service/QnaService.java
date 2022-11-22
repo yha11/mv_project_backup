@@ -28,7 +28,7 @@ public class QnaService {
 	
 	public PageInfo<QnaModel> selectAllQna(QnaModel qnaModel) {
 		PageHelper.startPage(qnaModel.getPage(), qnaModel.getPageSize());
-		return PageInfo.of(qnaMapper.selectAllQna());
+		return PageInfo.of(qnaMapper.searchAnswer(qnaModel));
 	}
 	
 	public int insertQna(Integer userNum, QnaModel qnaModel) {
