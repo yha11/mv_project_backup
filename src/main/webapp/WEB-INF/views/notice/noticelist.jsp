@@ -9,26 +9,43 @@
 <title>무비피아 | 공지사항</title>
 </head>
 <body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<div class="col-sm-7">
-		<table class="table table-striped">
-			<thead>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+	<div style="width: 800px; margin: 30px auto 30px auto;">
+		<table class="table">
+			<thead class="table-light">
 				<tr>
-					<th class="text-center">번호</th>
-					<th class="text-center">제목</th>
-					<th class="text-center">작성자</th>
-					<th class="text-center">작성시간</th>
-					<th class="text-center">조회수</th>
+					<th scope="col">번호</th>
+					<th scope="col">제목</th>
+					<th scope="col">작성자</th>
+					<th scope="col">작성시간</th>
+					<th scope="col">조회수</th>
 				</tr>
 			</thead>
-			<tbody id="list">
-			</tbody>
+			<tbody id="tBody"></tbody>
 		</table>
+
+		<div
+			style="width: 200px; margin: 30px auto 30px auto; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+			<button class="btn btn-primary" style="border-radius: 20px;"
+				onclick="location.href='/views/notice/addnotice'">글작성</button>
+		</div>
+	</div>
+	<!-- 페이징 -->
+	<div style="width: 1000px; margin: 30px auto 30px auto;">
+		<nav aria-label="Page navigation example">
+			<div
+				style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+				<ul class="pagination" id="pagination">
+				</ul>
+			</div>
+		</nav>
 	</div>
 
-	<button onclick="location.href='/views/notice/addnotice'">글작성</button>
-	<div id="totalDiv"></div>
 	<script>
+		
+		
 	$(document).ready(function(){
 		getList();
 	})
