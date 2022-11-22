@@ -169,7 +169,7 @@
 	    			html += '<hr>';
 	    			
 	    		}
-	    		html += '<div style="width: 100px; margin: 30px auto 30px auto;">';
+	    		html += '<div style="width: 300px; margin: 30px auto 30px auto;">';
     			html += '<button class="btn btn-primary" onclick="writeReview()">관람평 남기기</button>';
     			html += '</div>';
     			

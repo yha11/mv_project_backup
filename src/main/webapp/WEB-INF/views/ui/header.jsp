@@ -47,14 +47,17 @@ body {
 		  <li class="nav-item">
 			<a class="nav-link" href="/movie">영화 둘러보기</a>
 		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="/views/review/mvinfo-reviews">영화리뷰</a>
+		  </li>
 		  <li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-			  게시판
+			  고객센터
 			</a>
 			<ul class="dropdown-menu">
 			  <li><a class="dropdown-item" href="/views/notice/noticelist">공지사항</a></li>
 			  <li><a class="dropdown-item" href="/views/my/qna">문의하기</a></li>
-			  <li><a class="dropdown-item" href="#">자주 묻는 질문</a></li>
+			  <li><a class="dropdown-item" href="/views/notice/faq">자주 묻는 질문</a></li>
 			</ul>
 		  </li>
 		</ul>
