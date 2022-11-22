@@ -9,25 +9,27 @@
 <title>영화리뷰사이트 | 공지게시물 읽기</title>
 </head>
 <body>
-<table class="table">
-		<thead>
-			<tr>
-				<th scope="col">번호</th>
-				<td data-col="noticeNum"></td>
-				<th scope="col">제목</th>
-				<td data-col="noticeTitle"></td>
-				<th scope="col">작성자</th>
-				<td data-col="noticeWriter"></td>
-				<th scope="col">작성시간</th>
-				<td data-col="noticeDate"></td>
-				<th scope="col">조회수</th>
-				<td data-col="noticeCnt"></td>
-			</tr>
-			<tr>
-				<td colspan="2" data-col="noticeContent"></td>
-			</tr>
-		</thead>
-	</table>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+<div style="width: 500px; margin: 30px auto 30px auto;">
+	<div class="mb-3 row">
+	    <label for="noticeDate" class="col-sm-2 col-form-label" style="background-color: #dddddd; border-radius: 6px; text-align: center;">작성 날짜</label>
+	    <div class="col-sm-10">
+	      <input type="text" readonly class="form-control-plaintext" id="noticeDate" name="noticeDate" value="">
+	    </div>
+  	</div>
+  	<div class="mb-3 row">
+	    <label for="noticeTitle" class="col-sm-2 col-form-label" style="background-color: #dddddd; border-radius: 6px; text-align: center;">공지제목</label>
+	    <div class="col-sm-10">
+	    <input type="text" readonly class="form-control-plaintext" id="noticeTitle" name="noticeTitle" value="">
+	    </div>
+  	</div>
+  	<div class="mb-3 row">
+	    <label for="noticeContent" class="col-sm-2 col-form-label" style="background-color: #dddddd; border-radius: 6px; display: flex; flex-direction: column; justify-content: center; align-items: center;">공지 내용</label>
+	    <div class="col-sm-10">
+	    <textarea readonly class="form-control-plaintext" id="noticeContent" name="noticeContent" rows="3" style="height: 100px; resize: none;"></textarea>
+	    </div>
+  	</div>
 <button onclick="location.href='/views/notice/noticelist'">목록</button>
 
 	<script>
@@ -41,13 +43,21 @@
 				url : '/noticeView/${param.noticeNum}',
 				accept : "application/json",
 				success : function(res) {
-					const keys = Object.keys(res);
-					for (let i = 0; i < keys.length; i++) {
-						const key = keys[i];
-						$('[data-col="' + key + '"]').html(res[key]);
-					}
+					console.log(res);
+					var noticeDate = res.noticeDate;
+					var noticeTitle = res.noticeTitle;
+					var noticeContent = res.noticeContent;
+					
+					$('input[name=noticeDate]').attr('value',noticeDate);
+					$('input[name=noticeTitle]').attr('value',noticeTitle);
+					$('textarea[name=noticeContent]').html(noticeContent);
+					
+				},
+				error: function(error) {
+					console.log(error);
 				}
 			})
+			
 		}
 
 	</script>	

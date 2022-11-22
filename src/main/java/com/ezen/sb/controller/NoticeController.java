@@ -23,8 +23,14 @@ public class NoticeController {
 	private NoticeService noticeService;
 	
 	
-	@GetMapping("/noticeList") public @ResponseBody PageInfo<NoticeModel> getList(NoticeModel noticeModel){ 
-		return noticeService.selectNoticeList(noticeModel); }
+	@GetMapping("/noticeList") 
+	public @ResponseBody PageInfo<NoticeModel> getList(HttpSession session, NoticeModel noticeModel){ 
+		if(session.getAttribute("user")==null) {
+			return null;
+		}
+		UserModel user = (UserModel) session.getAttribute("user");
+		return noticeService.selectNoticeList(user.getUserNum(),noticeModel); 
+		}
 	
 	/*
 	 * @GetMapping("/notice") public @ResponseBody PageInfo<NoticeModel>
@@ -55,7 +61,7 @@ public class NoticeController {
 	
 	@PostMapping("/addNotice")
 	public @ResponseBody int addNotice(HttpSession session, @RequestBody NoticeModel noticeModel) {
-		UserModel user = (UserModel)session.getAttribute("user");
+		UserModel user =  (UserModel) session.getAttribute("user");
 		
 		return noticeService.insertNotice(user.getUserNum(), noticeModel);
 	}
