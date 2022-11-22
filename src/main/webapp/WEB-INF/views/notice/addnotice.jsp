@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>영화리뷰사이트 | 공지게시물 쓰기</title>
+<title>무비피아 | 공지사항</title>
 </head>
 <body>
 <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->

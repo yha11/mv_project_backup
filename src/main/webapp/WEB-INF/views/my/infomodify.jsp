@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-   <title>마이페이지</title>
+   <title>무비피아 | 마이페이지</title>
 </head>
 <body>
 <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->

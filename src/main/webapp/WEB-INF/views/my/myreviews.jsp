@@ -5,7 +5,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>마이페이지</title>
+<title>무비피아 | MY리뷰</title>
 <style>
 	.star {
 		background-color: #ffc400;

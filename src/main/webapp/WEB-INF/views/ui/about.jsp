@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>영화리뷰사이트 | 사이트소개</title>
+<title>무비피아 | 사이트소개</title>
 </head>
 <body>
 <div class="text-center">

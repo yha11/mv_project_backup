@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>무비피아 | 영화리뷰사이트</title>
 </head>
 <body>
 <!-- 무비피아 이미지 -->

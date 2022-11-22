@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>영화리뷰사이트 | 공지게시물 읽기</title>
+<title>무비피아 | 공지사항</title>
 </head>
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

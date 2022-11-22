@@ -5,7 +5,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>문의하기</title>
+<title>무비피아 | 문의하기</title>
 </head>
 <body>
 <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->

@@ -3,7 +3,7 @@
 <%@ include file="/WEB-INF/views/ui/header.jsp"%>
 <!DOCTYPE html>
 <head>
-<title>마이페이지-내 문의</title>
+<title>무비피아 | 문의하기</title>
 </head>
 <body>
 <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
